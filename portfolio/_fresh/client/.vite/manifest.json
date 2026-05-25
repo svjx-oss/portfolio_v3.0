@@ -1,0 +1,45 @@
+{
+  "_hooks.module-C_twUwvv.js": {
+    "file": "assets/hooks.module-C_twUwvv.js",
+    "name": "hooks.module"
+  },
+  "_jsxRuntime.module-B7IgqGcv.js": {
+    "file": "assets/jsxRuntime.module-B7IgqGcv.js",
+    "name": "jsxRuntime.module",
+    "imports": [
+      "_hooks.module-C_twUwvv.js"
+    ]
+  },
+  "fresh:client-entry": {
+    "file": "assets/client-entry-Ckr1r2LJ.js",
+    "name": "client-entry",
+    "src": "fresh:client-entry",
+    "isEntry": true,
+    "imports": [
+      "_hooks.module-C_twUwvv.js"
+    ],
+    "css": [
+      "assets/client-entry-GwDHhhc_.css"
+    ]
+  },
+  "islands/MobileNav.tsx": {
+    "file": "assets/fresh-island__MobileNav-DiLUi3kP.js",
+    "name": "fresh-island__MobileNav",
+    "src": "islands/MobileNav.tsx",
+    "isEntry": true,
+    "imports": [
+      "_hooks.module-C_twUwvv.js",
+      "_jsxRuntime.module-B7IgqGcv.js"
+    ]
+  },
+  "islands/ThemeToggle.tsx": {
+    "file": "assets/fresh-island__ThemeToggle-CJ_P8FUn.js",
+    "name": "fresh-island__ThemeToggle",
+    "src": "islands/ThemeToggle.tsx",
+    "isEntry": true,
+    "imports": [
+      "_hooks.module-C_twUwvv.js",
+      "_jsxRuntime.module-B7IgqGcv.js"
+    ]
+  }
+}
