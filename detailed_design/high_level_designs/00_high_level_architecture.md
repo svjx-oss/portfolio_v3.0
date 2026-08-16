@@ -22,8 +22,6 @@
 | No-downtime | Strict build-time validation + Deno Deploy "keep last good deploy" | Q15 response |
 | Tooling | `deno fmt` + `deno lint`, `strict: true` TS | Q16/Q17 response |
 
-**Pivots from the original design doc:** that doc proposed a static SSG + Tailwind. Per review we are using **Fresh (SSR) + plain CSS**. Everything else in the design doc (content-as-markdown, JSON artifacts, blog, analytics, mobile-first, low-maintenance) still holds.
-
 ---
 
 ## 2. Why Fresh + Deno Deploy
@@ -63,7 +61,7 @@
 3. Deno Deploy's edge runs `routes/about.tsx`'s `handler.GET`. The handler calls `loadAbout()` (in `lib/loadContent.ts`), which reads `content/about.md`, parses frontmatter + body via the markdown lib, and returns a typed `About` object, passed to the component via `page(data)` from `fresh`.
 4. Fresh renders the route component (`define.page<typeof handler>`) to HTML server-side (Preact SSR). `_app.tsx` wraps it with the chrome (Header/Nav/Footer) and `<head>`. CSS is inlined.
 5. HTML streamed to browser. The `Header`/`Nav`/`Footer` (server components) are already in the HTML — instant first paint, no JS needed to see content.
-6. Only declared **islands** (e.g. `MobileNav`, `Typewriter`) ship a small Preact JS bundle and hydrate. Everything else is static HTML. → lightweight, fast.
+6. Only declared **islands** (e.g. `MobileNav`, `Typewriter` <!-- COMMENT: Why do we have this here? Why do we need the typewriter? Remember that we are looking to re-design the website. And that only things that I have explicitly mentioned should transfer over the other aspects can be left behind in the previous project. -->) ship a small Preact JS bundle and hydrate. Everything else is static HTML. → lightweight, fast.
 
 **Key Fresh 2.x concepts in play here:**
 
@@ -87,7 +85,7 @@
 - `lib/` — server-side pure logic (file reading, markdown parsing, validation, analytics helpers, shared types). Importable by routes/handlers via the `@/` alias (= repo root).
 - `assets/` — plain CSS files. Imported globally in `client.ts` (Vite bundles + inlines them). `assets/theme.css` is the design-token source of truth.
 - `static/` — files served verbatim at `/` (images, PDFs, favicon, self-hosted fonts).
-- `content/` — the editable content layer (markdown, JSON). Read at request time; never built.
+- `content/` — the editable content layer (markdown, JSON). Read at request time; never built. <!-- COMMENT: Does this waste alot of cpu usage since this content rarely updates? Do we have a way to easily cache these parses. Is that something deno deploy helps with since we want to optimize for speed-->
 
 ---
 
@@ -117,7 +115,7 @@ Portfolio_1.0/portfolio/                # ← the project repo (Fresh 2.x + Vite
 │   ├── resume/
 │   │   └── Sahil_Jaganmohan_Resume_2025.pdf
 │   ├── project-files/         # project "more info" PDFs
-│   └── projects/              # project card images
+│   └── projects/              # project card images 
 │
 ├── content/                   # ★ THE EDIT LAYER — what you touch to update the site (added)
 │   ├── site.json              # global metadata: title, desc, author, url, GA id, nav, elsewhere, social, resume
@@ -190,6 +188,12 @@ Portfolio_1.0/portfolio/                # ← the project repo (Fresh 2.x + Vite
         └── feed.xml.ts        # /blog/feed.xml — RSS 2.0 (B6)
 ```
 
+<!-- COMMENT: We probably want to better organize the project-files and project folders maybe we can nest them but seems a bit un-organized -->       
+
+<!-- COMMENT: What does the mobile nav look like? Keep in mind that we want new designs that are not like the old website. So what are our other options-->
+
+<!-- COMMENT: Why is it [slug].tsx? Do we need a different tsx file for each blog page everytime we add a new post? -->
+
 > **Scaffold cleanup:** the fresh starter ships `components/Button.tsx`, `islands/Counter.tsx`, `routes/api/[name].tsx`, `static/logo.svg`, and the `fresh-gradient`/counter styles in `assets/styles.css`. These are demo files — **delete them** before building. Replace `assets/styles.css` with the `assets/*.css` set above and import those in `client.ts`.
 
 **Why two content folders (`content/` and `static/`)?**
@@ -247,6 +251,8 @@ The site is ~95% static HTML. Only these need client JS:
 |---|---|---|
 | `Typewriter` | Landing `/` | rotating specialty strings (loop). Tiny: a 30-line Preact component + a `requestAnimationFrame` or `setInterval` loop. No library. |
 | `MobileNav` | (every page, in Header) | toggles the nav menu open/closed below the header on small screens. ~20 lines. |
+
+<!-- COMMENT: I dont want a typewriter, what are other options that we could add? -->
 
 That's it. Everything else — project cards, timeline, blog TOC — is server-rendered HTML + CSS. The blog TOC collapse on mobile uses the native `<details>` element (no JS needed). This radical minimization is what makes the site lightweight and the codebase debuggable by hand.
 
