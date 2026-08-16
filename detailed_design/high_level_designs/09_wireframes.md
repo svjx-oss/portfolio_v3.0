@@ -1,5 +1,7 @@
 # 09 — Wireframes & Layout Diagrams
 
+<!-- COMMENT: I have a feeling that we are using too much of the prior website design as we did in the prior website. As I stated before we are looking to breakaway from that design with an all new modern design powered by typescript. I want you to look at the websites that I had provided to come up with an inspiration on what the design should be.  Be creative, modern, and minimalistic, it should look clean and effortless and minimal while being easy to read and navigate. -->
+
 > ASCII sketches of every page × breakpoint + the shared chrome + the pixel-mosaic concept. This is the visual companion to the page docs (`04`–`08`) and the chrome doc (`03`). Not pixel-perfect — meant to lock **structure** before code.
 
 Legend: `◐` = bitmoji logo · `☰` = hamburger · `█▍` = typewriter cursor · `●` = timeline node · `│` = rail line · `↗` = external link.
@@ -446,6 +448,7 @@ The rail's left offset shrinks via the gutter on mobile; cards fill remaining wi
 │        [✉] [in] [⌂] [gh] [📄]      © Sahil Jaganmohan 2026            │
 └────────────────────────────────────────────────────────────────────────┘
 ```
+<!-- COMMENT: It should be H1 And H2 shown here. "Up to H2 heading shown" -->
 
 ### Mobile — TOC collapses
 ```

@@ -136,7 +136,7 @@ Use this to confirm the deployable artifact works before pushing.
    }
    ```
 4. To stage without publishing: set `"status": "draft"` (excluded from the index, and `/blog/<slug>` returns 404).
-5. `deno task check` → fix any errors → `git push`.
+5. `deno task check` → fix any errors → `jj git push` (jj wraps the git backend for remote hosting; never invoke `git` directly).
 
 ## 9. Add an external blog link (redirects off-site)
 Add to `content/blog/blog.json`:

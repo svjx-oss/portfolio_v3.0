@@ -111,6 +111,8 @@ Self-host fonts in `static/fonts/`. **Inter** and **Geist Sans** are open-source
   --font-mono:    "IBM Plex Mono", ui-monospace, "SFMono-Regular", Menlo, monospace;
 }
 ```
+<!-- COMMENT: Is it a good idea to have multiple fonts in our website? Shouldnt we just have one but if we want to switch between them it is easy.-->
+
 - To make **Geist Sans** primary: move it first → `--font-body: "Geist Sans", "Inter", ...`. One line, whole site changes.
 - To make **PP Neue Montreal** primary: ensure its `@font-face` is active (uncommented) and move it first. (Per resolution E1, you don't own a license — its `@font-face` stays commented out. Inter/Geist remain active.)
 - `--font-heading` may differ from `--font-body` (e.g., a tighter heading font) — set independently if desired.

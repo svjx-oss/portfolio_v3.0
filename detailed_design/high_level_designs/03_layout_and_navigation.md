@@ -147,6 +147,8 @@ Mobile (< 768px):
 - Panel: absolutely positioned below header, `background: var(--color-bg-2)`, links stacked vertically, each tap = full page load (closes the menu naturally on the next render).
 - Active link gets the same sienna treatment.
 
+<!-- COMMENT: Does this need to be the full page?? I would prefer a isolated drop down per say, not something that takes over the whole page -->
+
 ### 3.4 Recommended no-JS base (`<details>`)
 ```html
 <details class="nav-mobile" id="mobile-nav">
@@ -171,6 +173,8 @@ A compact footer at the bottom of every page.
 │   © Sahil Jaganmohan 2026                                   │
 └─────────────────────────────────────────────────────────────┘
 ```
+<!-- COMMENT: I dont want dumb icons here we want to keep the style artsy and minimalistic-->
+
 - Social links come from `site.json → social` + `resume` — plain static strings from JSON.
 - Icons: small **inline SVGs**. A tiny icon set lives in `components/icons.tsx` (mail, linkedin, github, home, document, external-link). Hand-written SVG paths; easy to read/edit.
 - Copyright year is `new Date().getFullYear()` (runtime SSR — always correct, no manual edit).
@@ -260,6 +264,8 @@ Desktop (≥768px):
 └──────────────────────────────────────────────────────────────────┘
 ```
 
+<!-- COMMENT: I think both desktop and mobile should have a drop down for the other tabs but it should be a localized drop down not full screen. I should still see the content of the page but on the right side in line with the hamburger icon is the drop down  -->
+
 Mobile (<768px):
 ```
 ┌───────────────────────────┐
@@ -283,5 +289,8 @@ Full per-page wireframes (content layouts) → `09_wireframes.md`.
 ## 10. New navigation-related questions (→ `12_open_questions.md`)
 
 - **N1** Drop "Home" from the top-right *inline* nav (logo is the home link), but keep it in the mobile menu? (Recommended: yes.)
+  - Yes
 - **N2** Use a `<details>`-based no-JS fallback for the mobile menu (island only enhances)? (Recommended: yes — strongest "always works" guarantee.)
+  - yes
 - **N3** Should the footer include a small "back to top" affordance on long pages (about, timeline, blog posts)? (Recommended: no — keep footer uniform; long pages rely on the sticky header nav.)
+  - no
