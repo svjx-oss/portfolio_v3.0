@@ -2,6 +2,14 @@
 
 > GA4 via direct `gtag.js`. Captures pageviews + geolocation + cross-page journey tracking via Path Exploration + custom events.
 
+## Launch Policy
+
+Analytics is optional. Set `site.ga4_id` to an empty string to ship without analytics; all site behavior remains available.
+
+The initial site does **not** include a consent banner or dedicated privacy page. If GA4 is enabled, collect only the documented aggregate pageview and interaction events. Do not send names, email addresses, free-form content, or other personal/sensitive data as event parameters.
+
+Revisit consent, privacy disclosures, and tracking configuration if audience size, visitor jurisdictions, legal requirements, or analytics scope materially change.
+
 ---
 
 ## GA4 snippet
@@ -28,17 +36,17 @@ Why an island (not an inline `<script>`):
 | `blog_outbound` | external blog link |
 | `toc_click` | blog post TOC anchor |
 | `scroll_depth` | 25/50/75/100% thresholds |
+| `theme_change` | explicit theme preference change (`system`, `light`, `dark`); never sent on initial resolution |
 
 Destination-based detection — no per-link config. `data-event` attributes on components disambiguate where needed.
 
-## Islands summary
-
-The site has **two islands** (both ship the shared Preact runtime; marginal cost is each island's own logic):
+The site has **three islands** (all ship the shared Preact runtime; marginal cost is each island's own logic):
 
 | Island | What | ~Size |
 |---|---|---|
 | `MobileNav` | nav dropdown toggle | ~1KB |
 | `Analytics` | delegated event listener + scroll depth | ~1KB |
+| `ThemeToggle` | light/dark mode toggle | ~1KB |
 
 Everything else is server-rendered HTML + CSS.
 

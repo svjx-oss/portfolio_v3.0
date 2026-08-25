@@ -2,11 +2,11 @@
 
 > ASCII layout sketches for every page. This is the only place wireframes live.
 
-**Design language:** minimal, clean, generous whitespace. Dark navy bg, calm white text. Text-link footer (no icons). One nav dropdown (both desktop + mobile). No animations, no typewriter, no card grids for projects/blog.
+**Design language:** Blue Slate Editorial — ink-blue dark mode, blue-white light mode, calm high-contrast text, restrained sienna interaction accents, and generous whitespace. Text-link footer, one localized nav dropdown at every breakpoint, no decorative animation, and no card grids for projects/blog. Light and dark modes share identical geometry.
 
-Inspirations: imkylelambert (metadata strip, project list), paco.me (Now section, minimalism), leerob.com (blog as date+title list), maggieappleton (calm dark bg, whitespace), delba.dev (work as list), increment (editorial structure).
+Inspirations: imkylelambert (metadata strip, project list), paco.me (minimalism), leerob.com (blog as date+title list), maggieappleton (calm dark bg, whitespace), delba.dev (work as list), increment (editorial structure).
 
-Legend: `◐` = logo · `≡` = nav trigger · `●` = timeline node · `↗` = external link
+Legend: `◐` = logo · `◑` = theme preference · `≡` = nav trigger · `●` = timeline node · `↗` = external link
 
 ---
 
@@ -14,7 +14,7 @@ Legend: `◐` = logo · `≡` = nav trigger · `●` = timeline node · `↗` = 
 
 ```
 ┌──────────────────────────────────────────────┐
-│ [◐]                                    ≡    │ ← sticky, blur bg
+│ [◐]                              ◑  ≡      │ ← logo, theme preference, nav trigger
 ├──────────────────────────────────────────────┤
 │                                              │
 │          <main: page content>                │
@@ -32,7 +32,7 @@ Nav dropdown (all breakpoints, localized, right-aligned):
                     │ About      │
                     │ Experience │
                     │ Projects  │
-                    │ Blog       │
+                    │ Writing    │
                     └──────────┘
 ```
 
@@ -40,46 +40,38 @@ Nav dropdown (all breakpoints, localized, right-aligned):
 
 ## 1. Landing `/`
 
-Minimal hero + metadata strip + "Now" block + prose. (imkylelambert + paco.me)
+Minimal hero + metadata strip + short prose + path link row.
 
 ```
 ┌──────────────────────────────────────────────┐
-│ [◐]                                    ≡    │
+│ [◐]                                ◑  ≡    │
 ├──────────────────────────────────────────────┤
 │                                              │
 │                                              │
-│   Sahil Jaganmohan                           │ ← large, bold, sienna
-│   Computer engineer specializing in          │ ← one-liner, subtle
-│   embedded systems.                          │
+│   Sahil Jaganmohan                           │ ← large, bold
+│   I build thoughtful software and systems    │ ← one phrase in sienna
+│   with clear, reliable execution.            │
 │                                              │
 │   ─────────────────────────────────          │
-│   Discipline    Embedded systems             │ ← metadata strip
-│   Location      Cupertino, CA                │
-│   Currently     Apple, since Jan 2023        │
+│   ┃ Focus         Clear systems and           │ ← one continuous sienna rule
+│   ┃               experiences                 │   groups all metadata rows
+│   ┃ Based         Cupertino, CA                │
+│   ┃ Exploring     Design, photography, and    │
+│   ┃               the outdoors                │
 │   ─────────────────────────────────          │
 │                                              │
-│   Now                                        │ ← color-accented rows
-│   ┃ Working on                               │   each row has a colored
-│   ┃ Embedded at Apple, HW/SW co-design       │   left border (pop-color
-│   ┃ Learning                                 │   per category)
-│   ┃ Rust for embedded, RTOS scheduling       │
-│   ┃ Reading                                  │
-│   ┃ The Pragmatic Programmer                  │
-│   ┃ Listening                                │
-│   ┃ Deep house, drum and bass                │
+│   I like work where the difficult parts are  │ ← point of view, not resume bio
+│   mostly invisible: clear interfaces,        │
+│   reliable systems, and details that hold    │
+│   up when people rely on them.                │
 │                                              │
-│   ─────────────────────────────────          │
+│   I care about the full path from a rough    │
+│   idea to something finished, useful, and    │
+│   easy to understand.                        │
 │                                              │
-│   My curiosity of complex system             │
-│   architecture has encouraged me to          │
-│   delve into software/hardware...            │
+│   Projects · Writing · Resume                 │ ← compact path selector
 │                                              │
-│   I'm always interested in opportunities     │
-│   related to embedded systems...             │
-│                                              │
-│   Built some cool stuff: projects · github   │ ← inline links
-│   Take a look at my resume.                  │
-│                                              │
+│                                              │ ← intentional ending whitespace
 ├──────────────────────────────────────────────┤
 │   email · linkedin · github · resume        │
 │   © Sahil Jaganmohan 2026                   │
@@ -90,101 +82,124 @@ Minimal hero + metadata strip + "Now" block + prose. (imkylelambert + paco.me)
 
 ## 2. About `/about`
 
-Portrait + bio + skillset grid. (maggieappleton calm layout)
+Portrait + editorial intro + full-width biography + personal note + numbered disciplines.
 
 ```
 ┌──────────────────────────────────────────────┐
-│ [◐]                                    ≡    │
+│ [◐]                                ◑  ≡    │
 ├──────────────────────────────────────────────┤
 │                                              │
 │   About Me                                   │
 │   in more depth                              │
 │                                              │
-│   ┌─────────┐  I was born and raised in      │
-│   │         │  New Jersey...                 │
+│   ┌─────────┐  I enjoy turning complex ideas │ ← short editorial intro
+│   │         │  into clear, dependable work.  │
 │   │ portrait│                                 │
-│   │         │  Ever since I was young...      │
-│   └─────────┘  As an outdoor person...       │
+│   │         │                                 │
+│   └─────────┘                                 │
 │                                              │
-│   Professional Skillset                      │
-│   ┌────────┐ ┌────────┐ ┌────────┐           │
-│   │Languages│ │Embedded│ │Hardware│           │
-│   │C/C++    │ │I2C DMA │ │ASIC    │           │
-│   │Java Py  │ │SPI UART│ │RTL FPGA│           │
-│   └────────┘ └────────┘ └────────┘           │
-│   ┌────────┐ ┌────────┐ ┌────────┐           │
-│   │Cloud    │ │DBs     │ │Frameworks│        │
-│   └────────┘ └────────┘ └────────┘           │
+│   I was born and raised in New Jersey...      │ ← full-width biography
+│   Ever since I was young...                   │   resumes below portrait
+│   As an outdoor person...                     │
+│                                              │
+│   ─────────────────────────────────          │
+│   Outside of work                             │
+│   Usually behind a camera, on a trail, or    │ ← optional personal note
+│   following a new curiosity.                  │
+│                                              │
+│   What I work with                           │
+│                                              │
+│   01  Systems & software                     │ ← number has muted color
+│       Building reliable tools and systems    │
+│       that make complexity manageable.       │
+│       C/C++ · Python · Go · JavaScript       │
+│                                              │
+│   ─────────────────────────────────          │
+│   02  Hardware & embedded                    │ ← each number uses a
+│       Working across software and physical   │   fixed muted color
+│       constraints.                           │
+│       I2C · DMA · SPI · UART · FPGA          │
+│                                              │
+│   ─────────────────────────────────          │
+│   03  Product & platform                     │
+│       Turning working systems into           │
+│       dependable products.                   │
+│       Cloud · CI/CD · Databases · Docker     │
 ├──────────────────────────────────────────────┤
 │   email · linkedin · github · resume        │
 │   © Sahil Jaganmohan 2026                   │
 └──────────────────────────────────────────────┘
 ```
 
-Mobile: portrait stacks above bio. Skillset: 1 col.
+Mobile: portrait stacks above the editorial intro; biography, personal note, and numbered disciplines remain a single reading flow.
 
 ---
 
 ## 3. Timeline `/experience`
 
-Left-aligned rail. Year on rail, card to right.
+Left-aligned rail. Large year on rail, narrative entry to the right.
 
 ```
 ┌──────────────────────────────────────────────┐
-│ [◐]                                    ≡    │
+│ [◐]                                ◑  ≡    │
 ├──────────────────────────────────────────────┤
 │   Experience                                 │
 │   full-time & education                      │
 │                                              │
 │   │                                          │
-│   ● 2023  ┌──────────────────────────────┐   │
-│   │       │ Embedded Software Engineer   │   │
-│   │       │ Apple · Cupertino, CA        │   │
-│   │       │ • Silicon Engineering Group │   │
-│   │       │ • Directed design/dev of... │   │
-│   │       └──────────────────────────────┘   │
+│   ● 2023  Apple                      Present │ ← rail + narrative entry
+│   │       Embedded Software Engineer · CA     │
+│   │       Jan 2023 – Present                  │
+│   │       Building dependable systems where   │ ← role summary first
+│   │       performance and clarity matter.     │
+│   │       • Led design and development of... │
+│   │       • Improved...                       │
 │   │                                          │
-│   ● 2022  ┌──────────────────────────────┐   │
-│   │       │ Student                      │   │
-│   │       └──────────────────────────────┘   │
+│   │       ─────────────────────────────       │
+│   │                                          │
+│   ● 2022  Purdue University                   │
+│   │       Student · West Lafayette, IN        │
+│   │       Developing a foundation in...       │
 │   ⋮                                          │
 ├──────────────────────────────────────────────┤
 │   email · linkedin · github · resume        │
 └──────────────────────────────────────────────┘
 ```
 
-`●` = company color. Same layout mobile → desktop.
+`●` = company color. The `Present` marker is text, not a live badge. Same reading order mobile → desktop.
 
 ---
 
 ## 4. Projects `/projects`
 
-**Simple list** (not a card grid). Title + description + tags + optional link. (paco/delba/imkylelambert)
+**Numbered editorial list** (not a card grid). Decorative number + title + description + optional challenge + tags + meaningful link.
 
 ```
 ┌──────────────────────────────────────────────┐
-│ [◐]                                    ≡    │
+│ [◐]                                ◑  ≡    │
 ├──────────────────────────────────────────────┤
 │   Projects                                   │
 │   stuff I've worked on                       │
 │                                              │
-│   MapReduce                          more ↗ │
-│   Developed a full MapReduce implementation  │
-│   for multi-core machines...                 │
-│   [C] [OpenMP] [MPI]                        │
+│   01  MapReduce                    Repository ↗│
+│       Developed a full MapReduce              │
+│       implementation for multi-core machines. │
+│       The challenge: making parallel work     │
+│       predictable across workloads.           │
+│       [C] [OpenMP] [MPI]                      │
 │                                              │
 │   ─────────────────────────────────          │
 │                                              │
-│   Mood Music                         more ↗ │
-│   A web interface that suggests music       │
-│   based on heart rate...                    │
-│   [JavaScript] [Fitbit] [Spotify]           │
+│   02  Mood Music                  Project site ↗│
+│       A web interface that suggests music     │
+│       based on heart rate.                    │
+│       [JavaScript] [Fitbit] [Spotify]         │
 │                                              │
 │   ─────────────────────────────────          │
 │                                              │
-│   USB Full-Speed Bulk-Transfer SoC           │
-│   Designed a USB peripheral module...        │
-│   [SystemVerilog] [ASIC] [RTL]              │
+│   03  USB Full-Speed Bulk-Transfer SoC        │
+│       Designed a USB peripheral module...     │
+│       [SystemVerilog] [ASIC] [RTL]            │
 │                                              │
 │   ⋮                                          │
 ├──────────────────────────────────────────────┤
@@ -192,58 +207,62 @@ Left-aligned rail. Year on rail, card to right.
 └──────────────────────────────────────────────┘
 ```
 
-Each project is a row with a thin divider. No images, no cards. Title links externally if `link` is set. Tags are small pills.
+Each project is a row with a thin divider. The decorative number comes from list order. No images or cards. Destination labels state where a link leads; tags are small pills. The optional challenge sentence appears only when it adds useful context.
 
 ---
 
-## 5. Blog index `/blog`
+## 5. Writing index `/blog`
 
-Simple list with author, excerpt, and tags (not a bare date+title list — those aspects add context without clutter).
+One editorial index for essays, field notes, photo essays, and external work. Type labels add context without fragmenting a small archive.
 
 ```
 ┌──────────────────────────────────────────────┐
-│ [◐]                                    ≡    │
+│ [◐]                                ◑  ≡    │
 ├──────────────────────────────────────────────┤
-│   Blog                                       │
-│   writing, notes, and elsewhere              │
+│   Writing                                    │
+│   notes, essays, and images                  │
 │                                              │
-│   [img] Sahil · Aug 20, 2026                │ ← author badge + date
+│   Essay · Aug 20, 2026                        │ ← type + date
 │   Designing a low-latency dashboard          │ ← title (link)
 │   A short teaser about the post...           │ ← excerpt
-│   [engineering] [performance]              │ ← tags
+│   [engineering] [performance]                │ ← tags
 │                                              │
 │   ─────────────────────────────────          │
 │                                              │
-│   [img] Sahil · Jul 15, 2026                │
+│   Photo essay · Jul 15, 2026                 │
+│   Morning light on the coast                 │
+│   A short visual note from a hike...         │
+│   [photography] [outdoors]                   │
+│                                              │
+│   ─────────────────────────────────          │
+│                                              │
+│   Elsewhere · Jun 15, 2026                   │
 │   My essay on Medium                   ↗    │ ← external link marker
-│   Teaser shown on the index...              │
+│   Teaser shown on the index...               │
 │                                              │
 │   ─────────────────────────────────          │
 │                                              │
-│   [img] Sahil · Jun 03, 2026                │
-│   Why embedded matters                      │
-│   Excerpt...                                │
-│   [embedded] [career]                      │
+│   Field note · Jun 03, 2026                  │
+│   Why embedded matters                       │
+│   Excerpt...                                 │
+│   [embedded] [career]                        │
 │   ⋮                                          │
-│                                              │
-│   Elsewhere                                   │ ← hidden if empty
-│   Medium · GitHub · Substack                 │
 ├──────────────────────────────────────────────┤
 │   email · linkedin · github · resume        │
 └──────────────────────────────────────────────┘
 ```
 
-Author badge (circular avatar + name) is hardcoded — single author, no `authors.json`. Each row has a thin divider. Internal → `/blog/<slug>`. External → `external_url` (new tab, `↗`). Tags shown as small pills.
+Each row is text-led: type, date, title, excerpt, and optional tags. It has a thin divider. Internal → `/blog/<slug>`. External → `external_url` (new tab, `↗`). Images appear in posts, not on the Writing index. There is no filter bar at launch.
 
 ---
 
-## 6. Blog post `/blog/{slug}`
+## 6. Writing post `/blog/{slug}`
 
 TOC shows H1 + H2.
 
 ```
 ┌──────────────────────────────────────────────┐
-│ [◐]                                    ≡    │
+│ [◐]                                ◑  ≡    │
 ├──────────────────────────────────────────────┤
 │                                              │
 │   Designing a low-latency dashboard          │ ← H1
@@ -264,7 +283,7 @@ TOC shows H1 + H2.
 │   ## Results                                 │
 │   We observed a 500% improvement...          │
 │                                              │
-│   ← back to blog                             │
+│   ← back to writing                          │
 ├──────────────────────────────────────────────┤
 │   email · linkedin · github · resume        │
 └──────────────────────────────────────────────┘
@@ -276,7 +295,7 @@ TOC shows H1 + H2.
 
 ```
 ┌──────────────────────────────────────────────┐
-│ [◐]                                    ≡    │
+│ [◐]                                ◑  ≡    │
 ├──────────────────────────────────────────────┤
 │                                              │
 │           404: Not Found                     │
@@ -293,7 +312,12 @@ TOC shows H1 + H2.
 
 1. **Centered column** — `--content-max` for prose, `--content-max-wide` for lists.
 2. **Section titles** — H1 + sienna subtitle on non-landing pages.
-3. **Lists over cards** — projects and blog are lists (not card grids). Blog rows show author badge + date + title + excerpt + tags. Projects show title + description + tags + link. Only timeline uses cards (structural necessity).
+3. **Lists over cards** — projects and Writing are lists (not card grids). Writing rows show type + date + title + excerpt + tags. Projects show title + description + tags + link. Only timeline uses cards (structural necessity).
 4. **Mono font** for dates, tags, nav, metadata labels.
 5. **Gutter** is the only horizontal padding.
 6. **Sticky header** — anchors get `scroll-margin-top`.
+7. **Two themes, one layout** — theme changes tokens only; spacing, hierarchy, and component geometry remain fixed.
+8. **Color is supporting information** — text labels and structure remain understandable without accent colors.
+9. **Controls are explicit** — 44px targets, visible keyboard focus, and accessible names for icon controls.
+10. **Landing color moment** — one sienna phrase and metadata rule create visual interest; no multicolor status panel.
+11. **Landing progression** — identity → three-row orientation strip → two short point-of-view paragraphs → Projects/Writing/Resume → intentional whitespace.

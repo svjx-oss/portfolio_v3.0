@@ -1,13 +1,15 @@
-# 08 — Blog (`/blog` + `/blog/{slug}`)
+# 08 — Writing (`/blog` + `/blog/{slug}`)
 
 > Routes: `routes/blog/index.tsx`, `routes/blog/[slug].tsx`, `routes/blog/[slug]/[asset].tsx`, `routes/blog/feed.xml.ts` · CSS: `assets/blog.css`
 > Wireframe: `09` §5–6
 
 ---
 
-## Blog index (`/blog`)
+## Writing index (`/blog`)
 
-Simple list with author badge, excerpt, and tags (the context they add is worth it).
+One editorial index for technical essays, field notes, photo essays, and external links. Every entry uses the same text-led divided-row structure with type, date, title, excerpt, and tags.
+
+**Goal:** present writing as evidence of curiosity and depth. The index invites a post selection; a post ends with a return to the index and one related continuation when available.
 
 ```tsx
 // routes/blog/index.tsx
@@ -34,14 +36,10 @@ import SectionTitle from "@/components/SectionTitle.tsx";
 import Tag from "@/components/Tag.tsx";
 import type { BlogEntry } from "@/lib/types.ts";
 
-// Author badge is hardcoded — single author, no authors.json
-const AUTHOR = { name: "Sahil Jaganmohan", image: "/static/authors/sahil.jpg" };
-
 export default function BlogList({ entries }: { entries: BlogEntry[] }) {
   return (
     <article class="blog">
-      <SectionTitle title="Blog" subtitle="writing, notes, and elsewhere" />
-      {entries.length === 0 && <p class="blog__empty">No posts yet — check back soon.</p>}
+      <SectionTitle title="Writing" subtitle="notes, essays, and images" />
       <ul class="blog-list">
         {entries.map((e) => {
           const external = "external_url" in e;
@@ -49,8 +47,7 @@ export default function BlogList({ entries }: { entries: BlogEntry[] }) {
           return (
             <li class="blog-row">
               <div class="blog-row__meta">
-                <img class="author-avatar" src={AUTHOR.image} alt={AUTHOR.name} width="24" height="24" />
-                <span class="author-name">{AUTHOR.name}</span>
+                <span class="blog-row__type">{formatType(e.type)}</span>
                 <span class="blog-row__sep">·</span>
                 <time class="blog-row__date">{formatDate(e.date)}</time>
               </div>
@@ -70,14 +67,16 @@ export default function BlogList({ entries }: { entries: BlogEntry[] }) {
 }
 ```
 
-- Author badge: circular avatar + name, hardcoded in the component (single author — no `authors.json`).
-- Each row: author + date + title (link) + excerpt + tags (for posts). Thin dividers between rows.
+- Each row: type + date + title (link) + excerpt + tags (for posts). Thin dividers between rows.
 - External entries: `↗` marker, new tab, no tags.
 - `Elsewhere` section renders `site.elsewhere` (hidden if empty).
+- Optional fields may add reliable `reading_time` and materially changed `updated_at` values. Omit either field when it would be estimated or misleading.
+- Keep the index chronological by default. Do not add a filter bar at launch; types provide context without fragmenting a small archive.
+- The index has no images or repeated author avatar. Images belong in the post body, especially photo essays, where they have narrative context.
 
 ---
 
-## Blog post (`/blog/{slug}`)
+## Writing post (`/blog/{slug}`)
 
 ```tsx
 // routes/blog/[slug].tsx
@@ -104,10 +103,13 @@ export default define.page<typeof handler>(({ data }) => (
 import type { BlogPost } from "@/lib/types.ts";
 
 export default function PostView({ entry, html, headings }: BlogPost) {
-  const toc = headings.filter((h) => h.level <= 2);  // H1 + H2
+  const toc = [
+    { id: "post-title", text: entry.title, level: 1 },
+    ...headings.filter((h) => h.level === 2),
+  ];
   return (
     <article class="post">
-      <h1 class="post__title">{entry.title}</h1>
+      <h1 id="post-title" class="post__title">{entry.title}</h1>
       <time class="post__date">{formatDate(entry.date)}</time>
 
       {toc.length > 0 && (
@@ -126,8 +128,11 @@ export default function PostView({ entry, html, headings }: BlogPost) {
 
 - No `Toc.tsx` component — TOC is inline, 5 lines.
 - No author badge — just date.
-- TOC shows H1 (post title) + H2s. Collapses via `<details>` (no JS).
+- TOC shows the separately rendered post title plus extracted H2s. The component prepends the title entry because the title H1 is not part of the Markdown body. It collapses via `<details>` (no JS).
 - `throw new HttpError(404)` for missing/draft slugs.
+- When a related post is available, render one text-led `Continue reading: <title> →` link above the back link. Do not add recommendation cards, carousels, or multiple related links.
+- Code blocks and media follow `13` §5: no page-level horizontal overflow, descriptive alt text, captions when context is needed, and legibility in both themes.
+- For `photo-essay` posts, use a short opening note and a deliberate sequence of full-width or wide-measure images. Each image has alt text; captions identify place, subject, or intent when useful. Do not use masonry grids, thumbnail galleries, automatic slideshows, or lightboxes.
 
 ---
 

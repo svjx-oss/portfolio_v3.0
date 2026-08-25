@@ -3,7 +3,9 @@
 > Route: `routes/index.tsx` · Content: `content/landing.md` · CSS: `assets/landing.css`
 > Wireframe: `09` §1
 
-**Goal:** introduce who you are — entice clicks into child pages. Minimal hero + metadata strip + "Now" block + prose.
+**Goal:** introduce a point of view and direct the visitor into the portfolio. Minimal hero + metadata strip + two short point-of-view paragraphs + link row.
+
+**Visitor path:** identity → orientation → point of view → clear paths into Projects, Writing, and the resume. The page ends with generous whitespace.
 
 ---
 
@@ -33,21 +35,18 @@ export default define.page<typeof handler>(({ data }) => (
 // components/Landing.tsx
 import type { Landing } from "@/lib/types.ts";
 
-const POP_COLORS: Record<string, string> = {
-  green: "var(--color-pop-green)",
-  blue: "var(--color-pop-blue)",
-  purple: "var(--color-pop-purple)",
-  orange: "var(--color-pop-orange)",
-  pink: "var(--color-pop-pink)",
-  yellow: "var(--color-pop-yellow)",
-};
+function renderTagline(tagline: string, emphasis?: string) {
+  if (!emphasis) return tagline;
+  const [before, after] = tagline.split(emphasis);
+  return <>{before}<span class="tagline__emphasis">{emphasis}</span>{after}</>;
+}
 
 export default function Landing({ frontmatter, html }: Landing) {
-  const { name, tagline, metadata, now } = frontmatter;
+  const { name, tagline, tagline_emphasis, metadata } = frontmatter;
   return (
     <article class="landing">
       <h1 class="hero-name">{name}</h1>
-      <p class="tagline">{tagline}</p>
+      <p class="tagline">{renderTagline(tagline, tagline_emphasis)}</p>
 
       <dl class="metadata-strip">
         {metadata.map((m) => (
@@ -58,33 +57,24 @@ export default function Landing({ frontmatter, html }: Landing) {
         ))}
       </dl>
 
-      {now && (
-        <div class="now-block">
-          <h2 class="now-block__title">Now</h2>
-          {now.map((item) => (
-            <div class="now-item" style={{ "--accent": POP_COLORS[item.color] ?? "var(--color-accent)" }}>
-              <span class="now-item__label">{item.label}</span>
-              <span class="now-item__value">{item.value}</span>
-            </div>
-          ))}
-        </div>
-      )}
-
       <div class="prose" dangerouslySetInnerHTML={{ __html: html }} />
+
     </article>
   );
 }
 ```
 
 - No island. Fully static HTML.
-- `now` items render as rows, each with a colored left border (`border-left: 3px solid var(--accent)`) — Option B. The color comes from the `color` field in frontmatter, mapped to a `--color-pop-*` token.
-- Resume link in the body is a direct path to `/static/resume.pdf`.
+- The Markdown body is exactly two short point-of-view paragraphs followed by one text link row: Projects · Writing · Resume. It is not a resume summary or a second About page.
+- Resume link in the link row is a direct path to `/resume.pdf`.
 
 ## CSS
 
 - `.landing` — centered, `--content-max`, left-biased, generous top padding.
-- `.hero-name` — `--text-3xl`, bold, sienna.
+- `.hero-name` — `--text-3xl`, bold, `--color-text`.
 - `.tagline` — `--text-lg`, `--color-text-subtle`.
-- `.metadata-strip` — thin divider rules, mono labels, subtle values.
-- `.now-block` — a "Now" heading + rows. Each `.now-item` has `border-left: 3px solid var(--accent)` (per-item color), `padding-left: var(--space-3)`, label in mono `--color-text-muted`, value in `--color-text`. Visually distinct from the metadata strip above it.
+- `.tagline__emphasis` — sienna; the only emphasized phrase in the hero.
+- `.metadata-strip` — thin divider rules, one continuous `border-left: 3px solid var(--color-accent)` around the full group, `padding-left: var(--space-3)`, mono labels, subtle values. Use three concise orientation rows (`Focus`, `Based`, `Exploring`). Do not add a separate bar to each `.metadata-row`.
+- `.landing .prose` — no more than two short paragraphs plus one `.landing-links` row. The link row uses text links with `·` separators, not a button group.
+- The landing ends after the link row with generous whitespace. Do not add featured content, previews, cards, feeds, or an additional CTA.
 - `.prose a` — accent, underline.
