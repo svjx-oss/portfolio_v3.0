@@ -1,13 +1,13 @@
 # Implementation Progress
 
-> Persistent execution record for the implementation plan. Update this file at the end of every change, then stop for user review approval before starting the next change.
+> Repository-local mirror of implementation progress. The [Personal Portfolio Linear project](https://linear.app/svjx/project/personal-portfolio-6202ca3cda15) is the operational source of truth for issue status, review approval, blockers, and discussion. Keep this file synchronized with Linear at the end of every change.
 
 ## Current State
 
 | Field | Value |
 |---|---|
-| Current change | Not started |
-| Status | Planning complete; implementation has not begun |
+| Current change | Change 2 - Build shell and theme tokens |
+| Status | In progress |
 | Awaiting review | No |
 | Next action | Begin Change 1 after explicit user direction |
 
@@ -30,8 +30,38 @@
 
 ## Update Rules
 
-1. Before work, set `Current change` and change that row's review status to `In progress`.
-2. At the end of a change, record exact commands run, manual checks completed, known gaps, and the `jj` change identifier in Notes.
-3. Set `Awaiting review` to `Yes`, set the row's review status to `Awaiting user approval`, and stop work.
-4. Do not start the next change until the user explicitly approves the completed one. Then mark the completed row `Approved`, set its verification result, and advance `Current change`.
-5. If review identifies an issue, retain the current change until it is fixed, reverified, and approved.
+1. Before work, set the matching Linear issue to `In Progress`, then mirror the active change here.
+2. At the end of a change, add exact commands run, manual checks, known gaps, the `jj` change identifier, and its `type: summary` description with `Issue: ME-123` trailers (and `Fixes: ME-123` where applicable) to the Linear issue; mirror that evidence in this file.
+3. Set the Linear issue to the review state used by the team, or leave it `In Progress` with a review comment if no such state exists. Set `Awaiting review` to `Yes` here and stop work.
+4. Do not start the next change until the user explicitly approves the completed change in Linear or this conversation. Mark the Linear issue `Done`, mirror it as `Approved` here, and advance `Current change`.
+5. Use Linear blockers only for actual technical or external blockers, never merely to represent implementation order. If review identifies an issue, retain the current change until it is fixed, reverified, and approved.
+
+## Change Description Format
+
+Use a Conventional Commits-style title and add Linear references as trailers:
+
+```
+feat: add Writing index
+
+Issue: ME-11
+```
+
+For a corrective change, put `Fixes:` directly below its associated `Issue:` trailer:
+
+```
+fix: prevent fixture content in production
+
+Issue: ME-11
+Fixes: ME-11
+```
+
+For a shared or indirectly related change, add multiple `Issue:` trailers:
+
+```
+refactor: centralize content environment handling
+
+Issue: ME-11
+Issue: ME-12
+```
+
+Allowed types: `feat`, `fix`, `docs`, `test`, `chore`, and `refactor`. Every change must include at least one `Issue: ME-123` trailer. `Fixes: ME-123` is optional and used only when the change corrects an issue; it always appears immediately below its matching `Issue:` line.

@@ -4,9 +4,11 @@
 
 ## Working Rules
 
-- VCS is jj only: `jj new` → edit → `deno task check` → visual review → update `implementation_progress.md` → `jj describe -m "..."`.
+- Use the [Personal Portfolio Linear project](https://linear.app/svjx/project/personal-portfolio-6202ca3cda15) as the operational source of truth: move the active issue through its status, record actual blockers only, keep review discussion and verification evidence on the issue, and mark it Done only after explicit approval.
+- Load `.agents/skills/commit-message/SKILL.md` before creating or describing a jj change. It defines the required title and Linear-trailer format.
+- VCS is jj only: `jj new` → edit → `deno task check` → visual review → update the Linear issue → describe the change using `.agents/skills/commit-message/SKILL.md`.
 - Each change leaves the app runnable and `deno task check` green.
-- At the end of every change, stop and wait for explicit user review approval before starting the next change. Record the verification result, review status, and approved next change in `implementation_progress.md`.
+- At the end of every change, record verification evidence and review status on its Linear issue, then stop for explicit user review approval before starting the next change.
 - A page slice includes its content shape, validation, loader, route, component, CSS, and applicable tests. Do not scaffold a future page's code.
 - Visual changes are reviewed in light/dark modes at 320px, mobile, desktop, and 200% zoom.
 - Accessibility is implemented with each slice; shared cross-page verification happens near release.
@@ -14,7 +16,7 @@
 
 ## Phase 1: A Working Home
 
-### Change 1 — `chore: clean scaffold and configure checks`
+### Change 1 — `build: remove starter UI and configure checks`
 
 - Remove Fresh starter routes, counter island, demo components, and starter assets.
 - Configure tasks: `dev`, `build`, `preview`, `validate`, and `check`.
@@ -125,7 +127,7 @@ Verification: analytics remains fully disabled when the ID is empty; local reque
 
 Verification: `deno task check` is green; the complete matrix in `12b_testing_strategy.md` passes.
 
-### Change 12 — `chore: release audit and deployment readiness`
+### Change 12 — `build: audit deployment readiness`
 
 - Keep `show_writing_fixtures: false` for production.
 - Resolve production-only values when available: domain, optional GA4 ID, resume, portrait, Bitmoji, SJ favicon, fonts, and deployment configuration.
@@ -150,4 +152,4 @@ Verification: every route works in both themes without fixture exposure, missing
 - Landing is concise; About, Experience, Projects, and Writing follow the documented editorial reading paths.
 - Sienna is the interaction accent; pop/company/discipline colors are decorative and labeled.
 - `deno task check` and production build pass.
-- Every completed change is marked approved in `implementation_progress.md` before work begins on its successor.
+- Every completed change is marked approved in Linear before work begins on its successor.
