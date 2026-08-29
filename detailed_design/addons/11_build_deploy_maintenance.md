@@ -55,6 +55,10 @@ deno task build && deno deploy --prod
 
 Failed builds keep the last good deploy live.
 
+## Change descriptions
+
+Use jj only. Before creating or describing a change, load `.agents/skills/commit-message/SKILL.md`; it is the sole authority for change-description format and Linear references. Update the associated Linear issue with verification evidence and review status before moving to another implementation change.
+
 ---
 
 # Maintenance Playbook
