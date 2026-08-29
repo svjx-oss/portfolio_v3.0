@@ -12,7 +12,7 @@
 | `lib/markdown.ts` | `markdown.test.ts` | plain md → HTML; H1/H2 get stable unique IDs; headings extracted; raw HTML not rendered; relative image rewrite |
 | `lib/loadContent.ts` | `loadContent.test.ts` | all loaders return correct shapes; blog sorts newest-first; drafts excluded; missing/draft slug → null |
 | Theme helpers | `theme.test.ts` | preference resolution (`system/light/dark`), storage failure fallback, OS change behavior |
-| Fixed theme tokens | `contrast.test.ts` | primary, subtle, muted, accent, focus, and card-border pairings meet their required contrast |
+| Fixed theme tokens | `contrast.test.ts` | primary, subtle, muted, every accent, focus, and card-border pairing meets its required contrast |
 
 **Fixtures:** `test/fixtures/content/` — a valid minimal content tree shared by validate + loaders tests.
 
@@ -38,6 +38,7 @@
 - Writing index rows contain no author avatar or post image; photographs render only in their individual post context.
 - Writing fixtures render only in local/non-production preview when `show_writing_fixtures` is enabled; `DENO_DEPLOYMENT_ID` or `APP_ENV=production` is production, where configuration rejects the flag and loaders never expose fixtures.
 - Reduced-motion and forced-colors modes preserve all content and controls
+- Accent assignments remain stable across reloads, restart per documented visual group or prose paragraph, and never depend on client-side randomness
 
 ## What we skip
 
