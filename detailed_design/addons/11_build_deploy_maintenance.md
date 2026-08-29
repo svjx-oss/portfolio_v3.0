@@ -57,7 +57,7 @@ Failed builds keep the last good deploy live.
 
 ## Change descriptions
 
-Use jj only. Before creating or describing a change, load `.agents/skills/commit-message/SKILL.md`; it is the sole authority for change-description format and Linear references. Update the associated Linear issue with verification evidence and review status before moving to another implementation change.
+Use jj only. Before creating or describing a change, load `.agents/skills/commit-message/SKILL.md`; it is the sole authority for the title, required descriptive body, and Linear references. The body explains the meaningful changes and their purpose before the `ref:` trailers. Linear is the sole progress tracker: move the issue to `In Progress` before approved work begins, post meaningful progress and blockers during work, post verification evidence when review is requested, and mark it `Done` only after explicit user approval. See `detailed_design/README.md` §Linear Workflow.
 
 ---
 

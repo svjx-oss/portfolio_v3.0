@@ -16,8 +16,8 @@
 | Framework | **Fresh 2.x** (Preact SSR + islands) |
 | Hosting | **Deno Deploy** (edge SSR) |
 | CSS | **Plain CSS** — semantic classes + CSS custom properties |
-| Font | **One active font** (Inter or Geist Sans), switchable via one CSS var |
-| Theme | **Light + dark mode** with a toggle. Blue-slate palette with sienna accents. |
+| Font | **Inter**, loaded once and used across the interface |
+| Theme | **Light + dark mode** with a toggle. Neutral editorial foundations with deterministic rotating link accents. |
 | Markdown | **markdown-it** (the only content-pipeline dependency) |
 | Validation | **Hand-rolled** (no zod — schemas are simple enough to check directly) |
 | VCS | **jj** exclusively |
@@ -48,7 +48,7 @@ That's it. No zod, no sanitize-html, no markdown-it-anchor. We generate heading 
 | **increment.com** | Editorial structure, clear hierarchy, magazine-like layout |
 | **joshwcomeau.com** | Article-focused content, rich footer, personality in copy |
 
-**Net:** an editorial portfolio with a human point of view: ink-blue dark mode, blue-white light mode, restrained sienna accents, generous whitespace, and typography-led hierarchy. The landing uses a minimal hero with one sienna-emphasized phrase, a three-row Focus/Based/Exploring strip, two short point-of-view paragraphs, and a Projects/Writing/Resume link row followed by whitespace. Projects and Writing use divided lists rather than card grids. Writing holds technical essays, personal field notes, and photo essays. The footer uses text links, and one localized nav dropdown serves every breakpoint. No decorative animation or icon boxes.
+**Net:** an editorial portfolio with a human point of view: calm light/dark foundations, stable link accents, generous whitespace, and typography-led hierarchy. The landing uses a minimal hero, a three-row Focus/Based/Exploring strip, two short point-of-view paragraphs, and a compact contact registry sourced from `site.json`. Projects and Writing use divided lists rather than card grids. Writing holds technical essays, personal field notes, and photo essays. The footer uses direct text links. No decorative animation or icon boxes.
 
 ---
 
@@ -73,7 +73,7 @@ That's it. No zod, no sanitize-html, no markdown-it-anchor. We generate heading 
 **Request lifecycle:**
 1. `_middleware.ts` loads `site.json` → `ctx.state.site`.
 2. Route handler calls a loader (e.g. `loadAbout()`), returns `page(data)`.
-3. Fresh SSRs the page + chrome to HTML. `MobileNav`, `ThemeToggle`, and `Analytics` hydrate where mounted.
+3. Fresh SSRs the page + chrome to HTML. `ThemeToggle` hydrates where mounted.
 
 ### Caching
 
@@ -100,7 +100,7 @@ portfolio/
 │   └── projects/<slug>/   # per-project images
 │
 ├── content/               # ★ THE EDIT LAYER
-│   ├── site.json           # title, nav, social, GA ID, resume path, fixture flag
+│   ├── site.json           # title, nav, contact registry, GA ID
 │   ├── landing.md          # landing (frontmatter: name, tagline, metadata)
 │   ├── about.md            # about (frontmatter: portrait, skillset)
 │   ├── timeline/
@@ -127,8 +127,6 @@ portfolio/
 │   └── Tag.tsx
 │
 ├── islands/               # client-hydrated (minimal)
-│   ├── MobileNav.tsx      # nav dropdown toggle
-│   ├── Analytics.tsx      # delegated event listener + scroll depth
 │   └── ThemeToggle.tsx    # light/dark mode toggle
 │
 ├── assets/                # plain CSS
@@ -182,15 +180,13 @@ One pipeline. No special cases. Each loader is a small async function.
 
 ---
 
-## 7. Interactivity (three islands)
+## 7. Interactivity
 
 | Island | Why | ~Size |
 |---|---|---|
-| `MobileNav` | toggles the nav dropdown. ~20 lines. Progressive enhancement over `<details>`. | ~1KB |
-| `Analytics` | delegated click listener + scroll depth for GA4 events. ~40 lines. Mounted once in `_app.tsx`. | ~1KB |
 | `ThemeToggle` | cycles system/light/dark preference, resolves the active theme, and persists explicit choice. | ~1KB |
 
-All three ship the shared Preact runtime (already amortized). Everything else is static HTML + CSS. The Writing TOC collapses via native `<details>` (no JS). Theming is pure CSS custom property swapping — the island just flips an attribute.
+Only the theme toggle ships client JavaScript. Everything else is static HTML + CSS. Theming is pure CSS custom property swapping — the island just flips an attribute.
 
 ---
 
@@ -227,7 +223,7 @@ Failed builds keep the last good deploy live. Details → `11`.
 4. **Minimal deps.** Four packages total. No validation library, no sanitization library, no anchor plugin.
 5. **Plain semantic CSS.** No utility framework.
 6. **One visual system, two themes.** Components consume semantic tokens; light and dark modes change tokens, not layout or component structure.
-7. **Editorial restraint.** Sienna is the interactive brand accent. Pop and company colors are small supporting details, never large surfaces or the sole carrier of meaning.
+7. **Editorial restraint.** A fixed palette assigns accents deterministically to small links and supporting details. Colors never become large surfaces or the sole carrier of meaning.
 8. **Personality through content.** Photography, field notes, and human copy reveal curiosity without adding a separate lifestyle interface or decorative clutter.
 9. **Accessible by construction.** Keyboard focus, contrast, semantic structure, reduced motion, target sizes, and skip navigation are component requirements.
 10. **One page, one job, one next step.** Each route has a clear purpose and one relevant continuation link at its end. Avoid repeated cross-sells and competing calls to action.

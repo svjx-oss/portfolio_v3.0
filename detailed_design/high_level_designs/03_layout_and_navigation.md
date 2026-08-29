@@ -1,6 +1,6 @@
 # 03 — Layout & Navigation
 
-> The shared page chrome: `_app.tsx`, skip link, Header (logo + theme control + nav dropdown), Footer, and Seo. Defined once here; every page inherits it.
+> The shared page chrome: `_app.tsx`, skip link, adaptive Header, Footer navigation, and Seo. Defined once here; every page inherits it.
 
 ---
 
@@ -37,109 +37,76 @@ export default define.page((ctx) => {
 
 ---
 
-## 2. Navigation — localized dropdown (both desktop and mobile)
+## 2. Navigation
 
-**Both desktop and mobile use a localized dropdown menu** — not a full-page overlay. The page content stays visible; the dropdown appears on the right side, in line with the nav toggle. The persistent logo and landing-page path link row provide immediate orientation; the menu provides access to the complete site map without adding a permanent link row.
+There is no persistent dropdown or global header navigation. The footer provides direct page links.
 
-```
-Desktop (≥768px):
-┌──────────────────────────────────────────────────┐
-│ [◐]                                      ≡     │ ← logo left, dropdown trigger right
-│                                                  │
-│   (page content visible)                          │
-│                                                  │
-│              ┌─────────────┐                     │ ← dropdown opens inline,
-│              │ Home         │                     │   right-aligned, below trigger
-│              │ About        │                     │
-│              │ Experience   │                     │
-│              │ Projects    │                     │
-│              │ Writing      │                     │
-│              └─────────────┘                     │
-└──────────────────────────────────────────────────┘
-
-Mobile (<768px):
-┌──────────────────────┐
-│ [◐]              ≡  │
-│                      │
-│  (page content       │
-│   visible)           │
-│                      │
-│       ┌──────────┐   │
-│       │ Home     │   │
-│       │ About    │   │ ← same localized dropdown
-│       │ Exp      │   │   right-aligned
-│       │ Proj     │   │
-│       │ Writing  │   │
-│       └──────────┘   │
-└──────────────────────┘
-```
-
-### Implementation
-
-- A single `Nav` component renders the dropdown for **all breakpoints** (no separate mobile/desktop nav).
-- The trigger is a `≡` button (or a clean minimal SVG).
-- The dropdown is a `<details>` element (no-JS fallback) enhanced by `islands/MobileNav.tsx`:
-  ```html
-  <details class="nav-dropdown" id="nav">
-    <summary class="nav-trigger" aria-label="Toggle navigation">≡</summary>
-    <nav class="nav-menu">
-      <a href="/">Home</a>
-      <a href="/about">About</a>
-      <a href="/experience">Experience</a>
-      <a href="/projects">Projects</a>
-      <a href="/blog">Writing</a>
-    </nav>
-  </details>
-  ```
-- `MobileNav.tsx` island enhances open/close, closes on link click / outside click / Escape key, and returns focus to the trigger. Animation is disabled under reduced motion.
-- Native `<details>` works without JS — progressive enhancement.
-- Active link gets `aria-current="page"` + sienna color.
-- Links use native `<a href>` (full page load — no SPA routing). Fresh SSRs each page, so navigation is fast on the edge.
+- Index and standalone pages rely on the centered/left-aligned identity mark and footer navigation for orientation.
+- Blog post routes (`/blog/:slug`) add one contextual return control only: a clean icon-only SVG back arrow linking to `/blog`.
+- The blog back control has a 44px target, visible focus treatment, and `aria-label="Back to Writing"`. It has no visible text, enclosing border, or hover tooltip.
+- Links use native `<a href>` (full page load, not SPA routing). Fresh SSRs each page.
 
 ---
 
 ## 3. Header
 
-Slim sticky bar. Logo (left) + theme toggle + nav dropdown trigger (right).
+The header is a quiet masthead, not an application toolbar. It contains the identity mark on interior pages only; it does not carry the full site map.
+
+```
+Desktop:
+┌──────────────────────────────────────────────────┐
+│                    SJ                            │
+└──────────────────────────────────────────────────┘
+
+Mobile:
+┌──────────────────────┐
+│ SJ                   │
+└──────────────────────┘
+
+Blog post:
+┌──────────────────────────────────────────────────┐
+│ ←                  SJ                            │
+└──────────────────────────────────────────────────┘
+```
 
 ```css
 .site-header {
-  position: sticky; top: 0; z-index: 50;
-  display: flex; align-items: center; justify-content: space-between;
+  display: grid;
+  grid-template-columns: 1fr auto 1fr;
+  align-items: center;
   padding: var(--space-2) var(--gutter);
-  background: color-mix(in srgb, var(--color-bg-2) 88%, transparent);
-  backdrop-filter: blur(8px);
-  border-bottom: 1px solid var(--color-border);
 }
 ```
 
-Logo: `Bitmoji.png`, ~36px, links to `/`. On the right, theme control and nav trigger form a compact control group. Both have 44px targets, visible focus rings, explicit accessible names, subtle default color, and text-color hover/focus states.
-
-The theme control cycles `system → light → dark`. The visible icon reflects the preference, while its accessible label states the current preference and next action. Theme selection never changes layout.
+- The landing page omits the `SJ` mark because the hero already establishes identity.
+- Interior pages show the `SJ` home link. Desktop centers it; mobile aligns it left.
+- Blog post routes add the back-arrow control in the left grid column; all other routes leave it empty.
+- The header is sticky only on blog post routes, where a persistent return path aids long-form reading. All other headers scroll with the page.
+- No structural border, persistent container background, visible button circles, or hover tooltip. Hierarchy comes from alignment and whitespace.
+- The `SJ` identity links to `/`. The theme control lives in the footer beside the copyright, using a custom SVG sun/moon icon, a 44px target, visible focus ring, and an explicit accessible label. Theme selection never changes layout.
 
 ---
 
-## 4. Footer — minimalistic, no icons
+## 4. Footer — direct page navigation
 
-A clean, minimal footer. **No icon boxes.** Text links, one quiet contact invitation, and a copyright line.
+A clean, minimal footer. **No icon boxes or disclosures.** It presents direct page links and the theme preference.
 
 ```
 ┌──────────────────────────────────────────────────┐
 │                                                  │
-│   email  ·  linkedin  ·  github  ·  resume      │ ← text links, subtle
+│   Home / About / Experience / Projects / Writing │
 │                                                  │
-│   Interested in working together? Email me.      │ ← optional quiet invitation
+│   © 2026 Sahil Jaganmohan · Prefer light mode?   │ ← desktop
+│   © 2026 Sahil Jaganmohan                         │ ← mobile
+│   Prefer light mode?                              │
 │                                                  │
-│   © Sahil Jaganmohan 2026                        │
 └──────────────────────────────────────────────────┘
 ```
 
-- Social links come from `site.json → social` + `resume`.
-- **Text links**, not icon boxes — keeps the style artsy and minimalistic.
-- `·` separators, `--color-text-muted`, small mono font.
-- The optional contact invitation is one normal-text sentence. It links only `Email me`; it is not a button or a repeated CTA.
-- Copyright year is `new Date().getFullYear()`.
-- Analytics: text-link clicks fire `outbound_click`, `resume_download`, or `nav_click` via the analytics island.
+- Page links come from `site.nav` and use a stable accent sequence by position. They remain colored in both themes and receive a slow underline sweep on hover and focus; reduced-motion users receive the final state without animation.
+- Theme copy lives beside the editorial signature on desktop: `© 2026 Sahil Jaganmohan · Prefer light mode?`. On mobile it moves to the next line. It changes to `Prefer dark mode?` in light theme and underlines on hover/focus.
+- Landing contact details are separate from the footer and come from `site.json → contacts`.
+- The year is `new Date().getFullYear()`.
 
 ---
 
@@ -169,17 +136,13 @@ Renders `<head>` tags from `site` + `url`:
 | `Layout` | server | no |
 | `Seo` | server | no |
 | `Header` (incl. `Nav`) | server | no |
-| `MobileNav` | **island** | **yes (~1KB)** |
-| `Analytics` | **island** (mounted in `_app.tsx`) | **yes (~1KB)** |
-| `ThemeToggle` | **island** (in header) | **yes (~1KB)** |
+| `ThemeToggle` | **island** (in footer) | **yes (~1KB)** |
 | `Footer` | server | no |
 
 ## 8. Shared Interaction Rules
 
 - `main` has `id="main-content"`; the skip link becomes visible on focus.
-- Header controls remain keyboard reachable in visual order: logo, theme, navigation.
+- Header controls remain keyboard reachable in visual order: blog back control when present, logo, then theme.
 - All controls meet the 44px target requirement and use `:focus-visible`.
-- Dropdown never obscures its trigger and is constrained to the viewport gutter.
 - No interaction depends on hover. At 200% zoom, controls may wrap but cannot overlap.
-- The navigation label is always explicit (`Menu` visually, with `Toggle navigation` as its accessible name); do not rely on a bare hamburger glyph alone.
 - Page-level continuation links appear after primary content, not in the header or as floating controls.

@@ -4,8 +4,8 @@
 
 ## Working Rules
 
-- Use the [Personal Portfolio Linear project](https://linear.app/svjx/project/personal-portfolio-6202ca3cda15) as the operational source of truth: move the active issue through its status, record actual blockers only, keep review discussion and verification evidence on the issue, and mark it Done only after explicit approval.
-- Load `.agents/skills/commit-message/SKILL.md` before creating or describing a jj change. It defines the required title and Linear-trailer format.
+- Use the [Personal Portfolio Linear project](https://linear.app/svjx/project/personal-portfolio-6202ca3cda15) as the sole operational source of truth. Before an approved change begins, move its issue to `In Progress` and post the scope and planned verification. During work, post meaningful progress, remaining work, blockers, scope changes, and verification results. When ready for review, post the jj change identifier, complete verification evidence, manual-review results, known gaps, and the requested review decision. Keep the issue `In Progress` until explicit user approval, then mark it `Done` and record the approval. Record only actual blockers.
+- Load `.agents/skills/commit-message/SKILL.md` before creating or describing a jj change. It defines the required title, descriptive body, and Linear-trailer format.
 - VCS is jj only: `jj new` → edit → `deno task check` → visual review → update the Linear issue → describe the change using `.agents/skills/commit-message/SKILL.md`.
 - Each change leaves the app runnable and `deno task check` green.
 - At the end of every change, record verification evidence and review status on its Linear issue, then stop for explicit user review approval before starting the next change.
@@ -16,27 +16,27 @@
 
 ## Phase 1: A Working Home
 
-### Change 1 — `build: remove starter UI and configure checks`
+### `build: remove starter UI and configure checks`
 
 - Remove Fresh starter routes, counter island, demo components, and starter assets.
 - Configure tasks: `dev`, `build`, `preview`, `validate`, and `check`.
 - Add CI running `deno task check`.
-- Add only Fresh/Vite/Preact dependencies required to start the application; add markdown-it when landing content needs it in Change 2.
+- Add only Fresh/Vite/Preact dependencies required to start the application; add markdown-it when the content-driven landing page needs it.
 - Render a small static placeholder at `/` so the dev server and build are demonstrably working.
 
 Verification: `deno task dev` serves `/`; `deno task check` passes.
 
-### Change 2 — `feat: build shell and theme tokens`
+### `feat: build shell and theme tokens`
 
 - Add minimal `_app.tsx`, Layout, Header, Footer, Seo, and unified error page because the landing immediately uses them.
 - Add semantic Blue Slate theme tokens, reset, typography, spacing, focus styles, and light/dark token overrides.
 - Add the pre-paint system-theme resolver and `ThemeToggle` because the shell displays it.
 - Add Bitmoji header logo, SJ favicon, one localized `<details>` navigation menu, skip link, `main#main-content`, and text-link footer.
-- Use static shell links temporarily; content-driven navigation lands with the content model in Change 3.
+- Use static shell links temporarily; content-driven navigation lands with the content-driven landing page.
 
 Verification: themed landing placeholder, no-JS nav fallback, theme preference, skip link, keyboard focus, mobile header, 404 page, and both color schemes work.
 
-### Change 3 — `feat: complete content-driven landing page`
+### `feat: complete content-driven landing page`
 
 - Add markdown-it with raw HTML disabled; implement only the heading-free landing Markdown rendering needed here.
 - Add `site.json`, `landing.md`, `lib/types.ts`, landing loader, and hand-written landing/site validation.
@@ -50,7 +50,7 @@ Verification: content updates render on `/`; invalid landing/site content report
 
 ## Phase 2: Portfolio Narrative
 
-### Change 4 — `feat: add editorial About page`
+### `feat: add editorial About page`
 
 - Add `content/about.md`, its validation and loader, `/about`, and `AboutPage`.
 - Render portrait plus editorial intro, full-width Markdown biography, optional Outside of work note, numbered disciplines, and `View experience →`.
@@ -59,7 +59,7 @@ Verification: content updates render on `/`; invalid landing/site content report
 
 Verification: `/about` is fully content-driven; portrait and intro stack correctly; biography returns to full measure; discipline order remains meaningful without colors.
 
-### Change 5 — `feat: add narrative Experience timeline`
+### `feat: add narrative Experience timeline`
 
 - Add timeline JSON and role Markdown content, validation, loader, `/experience`, and timeline CSS.
 - Extend markdown rendering only as needed for role bullets and generated heading IDs.
@@ -68,7 +68,7 @@ Verification: `/about` is fully content-driven; portrait and intro stack correct
 
 Verification: `/experience` is chronological, usable without company colors, readable at narrow widths, and has the documented continuation path.
 
-### Change 6 — `feat: add numbered Projects list`
+### `feat: add numbered Projects list`
 
 - Add projects JSON, validation, loader, `/projects`, Tag component, and Projects CSS.
 - Render decorative order number, title, description, optional challenge, three-to-five tags, and destination-specific external/internal link labels.
@@ -79,7 +79,7 @@ Verification: `/projects` handles absent/present links and challenges, long text
 
 ## Phase 3: Writing and Photography
 
-### Change 7 — `feat: add Writing index and visual fixtures`
+### `feat: add Writing index and visual fixtures`
 
 - Add Writing entry schema, type validation (`essay`, `field-note`, `photo-essay`, `external`), index loader, `/blog`, and Writing CSS.
 - Render text-led type/date/title/excerpt/tags rows with external markers; no author avatars or index images.
@@ -89,7 +89,7 @@ Verification: `/projects` handles absent/present links and challenges, long text
 
 Verification: chronological index, internal/external rows, empty production state, and fixture-only local preview work. No fixture content is exposed in production mode.
 
-### Change 8 — `feat: add Writing posts, TOC, and assets`
+### `feat: add Writing posts, TOC, and assets`
 
 - Extend the existing Markdown renderer with unique heading IDs, H1/H2 extraction, and relative-image rewrite as now required by posts.
 - Add post loader, post validation, dynamic post route, safe co-located image asset route, and post styles.
@@ -99,7 +99,7 @@ Verification: chronological index, internal/external rows, empty production stat
 
 Verification: technical fixture, photo-essay fixture, TOC anchors, duplicate headings, code blocks, image assets, draft/missing 404, and reduced-motion behavior work.
 
-### Change 9 — `feat: add publishing discovery endpoints`
+### `feat: add publishing discovery endpoints`
 
 - Add RSS from published internal Writing posts and sitemap from available routes/published posts.
 - Add reusable Blue Slate Open Graph fallback metadata/template.
@@ -109,7 +109,7 @@ Verification: valid RSS/sitemap output excludes drafts and external-only entries
 
 ## Phase 4: Observation and Release Readiness
 
-### Change 10 — `feat: add optional analytics`
+### `feat: add optional analytics`
 
 - Add gated GA4 pageviews only when `ga4_id` is non-empty and hostname is not localhost.
 - Add `Analytics` island only now, after the routes/events it observes exist.
@@ -118,7 +118,7 @@ Verification: valid RSS/sitemap output excludes drafts and external-only entries
 
 Verification: analytics remains fully disabled when the ID is empty; local requests are suppressed; event names and payload boundaries match `10`.
 
-### Change 11 — `test: run cross-site accessibility and theme verification`
+### `test: run cross-site accessibility and theme verification`
 
 - Add fixed-token contrast tests and theme-preference unit tests now that all consuming components exist.
 - Verify light/dark first paint, persistence, OS preference in system mode, and storage-failure fallback.
@@ -127,7 +127,7 @@ Verification: analytics remains fully disabled when the ID is empty; local reque
 
 Verification: `deno task check` is green; the complete matrix in `12b_testing_strategy.md` passes.
 
-### Change 12 — `build: audit deployment readiness`
+### `build: audit deployment readiness`
 
 - Keep `show_writing_fixtures: false` for production.
 - Resolve production-only values when available: domain, optional GA4 ID, resume, portrait, Bitmoji, SJ favicon, fonts, and deployment configuration.

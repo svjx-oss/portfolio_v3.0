@@ -8,8 +8,9 @@
 
 | Path | Purpose |
 |---|---|
-| `content/site.json` | global metadata |
-| `content/landing.md` | landing page (frontmatter + concise prose) |
+| `content/site.json` | global metadata and navigation |
+| `content/landing/landing.json` | landing metadata and contact registry |
+| `content/landing/landing.md` | landing prose |
 | `content/about.md` | about page (frontmatter + prose) |
 | `content/timeline/timeline.json` | roles metadata |
 | `content/timeline/*.md` | one file per role |
@@ -32,52 +33,43 @@ No `authors.json` — Writing is single-author and the index does not repeat aut
   "url": "https://TODO.example.com",
   "ga4_id": "",
   "nav": [
-    { "label": "Home", "href": "/" },
-    { "label": "About", "href": "/about" },
-    { "label": "Experience", "href": "/experience" },
-    { "label": "Projects", "href": "/projects" },
-    { "label": "Writing", "href": "/blog" }
-  ],
-  "social": {
-    "email": "mailto:dev.sahil.jaganmohan@gmail.com",
-    "linkedin": "https://www.linkedin.com/in/sahil-jaganmohan",
-    "github": "https://github.com/bullpointe"
-  },
-  "resume": "/resume.pdf",
-  "elsewhere": [],
-  "show_writing_fixtures": false
+    { "label": "Home", "href": "/", "accent": "gold" },
+    { "label": "About", "href": "/about", "accent": "blue" },
+    { "label": "Experience", "href": "/experience", "accent": "magenta" },
+    { "label": "Projects", "href": "/projects", "accent": "violet" },
+    { "label": "Writing", "href": "/blog", "accent": "teal" }
+  ]
 }
 ```
 
-Set `url` to the production site origin. An empty `ga4_id` disables analytics. An empty `elsewhere` array hides that section.
+Set `url` to the production site origin. An empty `ga4_id` disables analytics. Each navigation item selects a shared accent class.
 
 ---
 
-## `landing.md`
+## Landing content
 
-Frontmatter: hero text, optional sienna-emphasized phrase, and metadata strip. Body: two short paragraphs and a path link row.
+`landing/landing.json` owns structured metadata and contacts. `landing/landing.md` owns authored prose. `loadLanding()` combines them into one page model.
 
-```markdown
----
-name: "Sahil Jaganmohan"
-tagline: "I build thoughtful software and systems with clear, reliable execution."
-tagline_emphasis: "thoughtful software and systems"
-metadata:
-  - { label: "Focus", value: "Clear systems and experiences" }
-  - { label: "Based", value: "Cupertino, CA" }
-  - { label: "Exploring", value: "Design, photography, and the outdoors" }
----
-
-I like work where the difficult parts are mostly invisible: clear interfaces,
-reliable systems, and details that hold up when people rely on them.
-
-I care about the full path from a rough idea to something finished, useful,
-and easy to understand.
-
-[Projects](/projects) · [Writing](/blog) · [Resume](/resume.pdf)
+```json
+{
+  "name": "Sahil Jaganmohan",
+  "tagline": "I build thoughtful software and systems with clear, reliable execution.",
+  "tagline_emphasis": "thoughtful software and systems",
+  "metadata": [
+    { "label": "Focus", "value": "Clear systems and experiences" }
+  ],
+  "contacts": [
+    {
+      "key": "mail",
+      "label": "dev.sahil.jaganmohan@gmail.com",
+      "href": "mailto:dev.sahil.jaganmohan@gmail.com",
+      "accent": "gold"
+    }
+  ]
+}
 ```
 
-`tagline_emphasis` must occur exactly once within `tagline`; the component renders that phrase in sienna. Metadata is a compact orientation strip with three short factual or curiosity-led values: what the work focuses on, where the person is based, and what they are exploring. The link row gives visitors clear paths into Projects, Writing, and the resume; no featured-content block appears on the landing page.
+`tagline_emphasis` must occur exactly once within `tagline`. Metadata is an ordered, non-empty orientation strip. Contacts have unique keys and use a shared accent name. The Markdown file can contain the landing introduction without a frontmatter parser.
 
 ---
 
@@ -229,26 +221,12 @@ Typed functions: `loadSite()`, `loadLanding()`, `loadAbout()`, `loadTimeline()`,
 
 Hand-rolled (no zod). Collects all errors, prints clear report, exits non-zero. Checks:
 
-- `site.json` — required fields present, `url` is an HTTP(S) origin, `resume` file exists, `ga4_id` is empty or matches a GA4 measurement ID, and `show_writing_fixtures` is boolean.
-- `landing.md` — frontmatter has name/tagline and exactly three metadata rows (`Focus`, `Based`, `Exploring`), body has exactly two non-empty paragraphs plus a Projects/Writing/Resume link row; optional `tagline_emphasis` occurs exactly once in `tagline`.
+- `site.json` — required fields present, `url` is an HTTPS origin, and navigation entries have labels, valid destinations, and supported accents.
+- `landing/landing.json` — name/tagline, non-empty metadata and contacts, unique contact keys, valid destinations, supported accents, and an optional `tagline_emphasis` occurring exactly once in `tagline`.
 - `about.md` — `portrait` file exists; `intro` is non-empty; optional `outside_of_work` is non-empty when present; skillset has three or four groups, each with non-empty label, description, and items.
 - `timeline.json` — `color` is hex, each `md` exists, `summary` is non-empty, and `current` is boolean. Color remains decorative; text never inherits it.
 - `projects.json` — projects non-empty, tags are strings, `link` is empty or a valid root-relative/HTTP(S) URL; `link_label` is required and non-empty when `link` is non-empty, and empty when `link` is empty.
 - `blog.json` — `slug` unique + valid format, `type` is allowed, `md` exists for posts, `external_url` valid for links, `date` is ISO.
-
-### Development Writing Fixtures
-
-`site.json` includes a boolean `show_writing_fixtures`, defaulting to `false`:
-
-```json
-"show_writing_fixtures": false
-```
-
-When `show_writing_fixtures` is `true` and the runtime environment is not production, `loadBlogIndex()` merges valid fixture entries from `content/blog/fixtures/` with real entries. Define production with `Deno.env.get("DENO_DEPLOYMENT_ID")` or `Deno.env.get("APP_ENV") === "production"`; this check is centralized in one `isProduction()` helper. Fixtures include Lorem Ipsum prose, headings, code blocks, captions, and sample images for visual testing.
-
-Production validation requires `show_writing_fixtures: false`. Production loaders must never read or expose fixture entries, regardless of content files present.
-
----
 
 ## Adding content
 
@@ -258,6 +236,8 @@ Production validation requires `show_writing_fixtures: false`. Production loader
 | External link | one entry in `blog.json` with `external_url` |
 | Project | one object in `projects.json` |
 | Timeline role | one entry in `timeline.json` + one `<name>.md` |
-| Nav / social / GA ID / resume | edit `site.json` |
+| Navigation or GA ID | edit `site.json` |
+| Landing metadata or contacts | edit `landing/landing.json` |
+| Landing prose | edit `landing/landing.md` |
 
 All content-only edits. No code.
