@@ -1,32 +1,38 @@
 import type { Site } from "@/lib/types.ts";
+import ThemeToggle from "@/islands/ThemeToggle.tsx";
 
 export default function Footer({ site }: { site: Site }) {
   const year = new Date().getFullYear();
-
+  const pageAccents = [
+    "accent--gold",
+    "accent--blue",
+    "accent--magenta",
+    "accent--violet",
+    "accent--teal",
+    "accent--gold",
+    "accent--green",
+  ];
   return (
     <footer class="site-footer">
-      <p class="footer-links">
-        <a href={site.social.email}>email</a>
-        <span aria-hidden="true">·</span>
-        <a
-          href={site.social.linkedin}
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          linkedin <span aria-hidden="true">↗</span>
-        </a>
-        <span aria-hidden="true">·</span>
-        <a href={site.social.github} target="_blank" rel="noopener noreferrer">
-          github <span aria-hidden="true">↗</span>
-        </a>
-        <span aria-hidden="true">·</span>
-        <a href={site.resume}>resume</a>
-      </p>
-      <p class="footer-contact">
-        Interested in working together?{" "}
-        <a href={site.social.email}>Email me.</a>
-      </p>
-      <p class="footer-copyright">© Sahil Jaganmohan {year}</p>
+      <div class="footer-controls">
+        <nav class="footer-pages" aria-label="Pages">
+          {site.nav.map((item, index) => (
+            <>
+              {index > 0 && (
+                <span class="footer-pages__separator" aria-hidden="true">
+                  /
+                </span>
+              )}
+              <a class={pageAccents[index]} href={item.href}>{item.label}</a>
+            </>
+          ))}
+        </nav>
+      </div>
+      <div class="footer-meta">
+        <p class="footer-copyright">© {year} Sahil Jaganmohan</p>
+        <span class="footer-meta__separator" aria-hidden="true">·</span>
+        <ThemeToggle />
+      </div>
     </footer>
   );
 }

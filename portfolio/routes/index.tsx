@@ -1,10 +1,13 @@
-import { define } from "../utils.ts";
+import Landing from "@/components/Landing.tsx";
+import { loadLanding } from "@/lib/loadContent.ts";
+import { define } from "@/utils.ts";
 
-export default define.page(function Home() {
-  return (
-    <section class="placeholder-page">
-      <h1>Portfolio</h1>
-      <p>Site setup is complete. Content is coming soon.</p>
-    </section>
-  );
+export const handler = define.handlers({
+  async GET() {
+    return { data: { landing: await loadLanding() } };
+  },
+});
+
+export default define.page<typeof handler>(function Home({ data, state }) {
+  return <Landing {...data.landing} site={state.site} />;
 });

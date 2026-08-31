@@ -1,70 +1,51 @@
 import { useEffect, useState } from "preact/hooks";
 
-type Preference = "system" | "light" | "dark";
+type Theme = "light" | "dark";
 
-const preferences: Preference[] = ["system", "light", "dark"];
-
-function resolveTheme(preference: Preference) {
-  return preference === "system"
-    ? (globalThis.matchMedia("(prefers-color-scheme: dark)").matches
-      ? "dark"
-      : "light")
-    : preference;
-}
-
-function getPreference(): Preference {
+function getTheme(): Theme {
   try {
     const value = localStorage.getItem("themePreference");
-    return preferences.includes(value as Preference)
-      ? value as Preference
-      : "system";
+    if (value === "light" || value === "dark") return value;
   } catch {
-    return "system";
+    // Fall through to the system preference when storage is unavailable.
   }
+  return "dark";
 }
 
-function setTheme(preference: Preference) {
-  document.documentElement.dataset.themePreference = preference;
-  document.documentElement.dataset.theme = resolveTheme(preference);
+function setTheme(theme: Theme) {
+  document.documentElement.dataset.theme = theme;
+  document.documentElement.dataset.themePreference = "explicit";
   try {
-    localStorage.setItem("themePreference", preference);
+    localStorage.setItem("themePreference", theme);
   } catch {
     // Theme preference remains active for this page even when storage is unavailable.
   }
 }
 
 export default function ThemeToggle() {
-  const [preference, setPreference] = useState<Preference>("system");
+  const [theme, setCurrentTheme] = useState<Theme>(() => {
+    if (typeof document === "undefined") return "light";
+    return document.documentElement.dataset.theme === "dark" ? "dark" : "light";
+  });
 
   useEffect(() => {
-    const initial = getPreference();
-    setPreference(initial);
+    const initial = getTheme();
+    setCurrentTheme(initial);
     setTheme(initial);
-    const media = globalThis.matchMedia("(prefers-color-scheme: dark)");
-    const onChange = () => {
-      if (document.documentElement.dataset.themePreference === "system") {
-        setTheme("system");
-      }
-    };
-    media.addEventListener("change", onChange);
-    return () => media.removeEventListener("change", onChange);
   }, []);
 
-  const next =
-    preferences[(preferences.indexOf(preference) + 1) % preferences.length];
   return (
     <button
-      class="icon-control"
+      class="theme-toggle"
       type="button"
-      aria-label={`Theme: ${preference}. Activate for ${next} theme.`}
+      aria-label={`Switch to ${theme === "dark" ? "light" : "dark"} theme`}
       onClick={() => {
-        setPreference(next);
+        const next = theme === "light" ? "dark" : "light";
+        setCurrentTheme(next);
         setTheme(next);
       }}
     >
-      <span aria-hidden="true">
-        {preference === "system" ? "◐" : preference === "light" ? "☀" : "◒"}
-      </span>
+      {theme === "dark" ? "Prefer light mode?" : "Prefer dark mode?"}
     </button>
   );
 }

@@ -1,0 +1,17 @@
+.prose {
+  max-width: 70ch;
+}
+
+.prose p {
+  margin: 0 0 var(--space-6);
+}
+
+.prose a {
+  text-decoration: underline;
+}
+
+.landing-links {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--space-2);
+}
