@@ -5,10 +5,14 @@ import { define } from "@/utils.ts";
 export default define.page(function App(ctx) {
   const { site } = ctx.state;
   return (
-    <html lang="en" data-theme="dark" data-theme-preference="system">
+    <html lang="en">
       <head>
         <meta charset="utf-8" />
         <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <link
+          rel="stylesheet"
+          href="https://fonts.googleapis.com/css2?family=Inter:ital,wght@0,400;0,500;0,600;0,700;1,400&display=swap"
+        />
         <Seo site={site} pathname={ctx.url.pathname} />
       </head>
       <body>

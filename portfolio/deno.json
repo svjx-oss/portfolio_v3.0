@@ -16,11 +16,13 @@
     }
   },
   "exclude": [
-    "**/_fresh/*"
+    "**/_fresh/*",
+    "content/**/*.md"
   ],
   "imports": {
     "@/": "./",
     "fresh": "jsr:@fresh/core@^2.3.3",
+    "markdown-it": "npm:markdown-it@^15.0.1",
     "preact": "npm:preact@^10.29.1",
     "@preact/signals": "npm:@preact/signals@^2.9.0",
     "@fresh/plugin-vite": "jsr:@fresh/plugin-vite@^1.1.2",
