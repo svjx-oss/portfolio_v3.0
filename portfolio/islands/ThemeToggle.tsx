@@ -7,7 +7,7 @@ function getTheme(): Theme {
     const value = localStorage.getItem("themePreference");
     if (value === "light" || value === "dark") return value;
   } catch {
-    // Fall through to the system preference when storage is unavailable.
+    // Use the dark default when storage is unavailable.
   }
   return "dark";
 }

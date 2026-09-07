@@ -1,0 +1,37 @@
+{
+  "name": "Sahil Jaganmohan",
+  "tagline": "Software engineer and systems builder.",
+  "metadata": [
+    { "label": "Focus", "value": "Clear systems and experiences" },
+    { "label": "Based", "value": "Cupertino, CA" },
+    { "label": "Exploring", "value": "Design, photography, and the outdoors" }
+  ],
+  "contacts": [
+    {
+      "key": "mail",
+      "label": "dev.sahil.jaganmohan@gmail.com",
+      "href": "mailto:dev.sahil.jaganmohan@gmail.com",
+      "accent": "gold"
+    },
+    {
+      "key": "net",
+      "label": "linkedin.com/in/sahil-jaganmohan",
+      "href": "https://www.linkedin.com/in/sahil-jaganmohan",
+      "accent": "blue",
+      "external": true
+    },
+    {
+      "key": "src",
+      "label": "github.com/bullpointe",
+      "href": "https://github.com/bullpointe",
+      "accent": "magenta",
+      "external": true
+    },
+    {
+      "key": "doc",
+      "label": "resume.pdf",
+      "href": "/resume.pdf",
+      "accent": "violet"
+    }
+  ]
+}

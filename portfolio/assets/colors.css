@@ -1,0 +1,41 @@
+.accent--sienna,
+.accent--sienna:hover {
+  --accent: var(--color-accent-sienna);
+  color: var(--color-accent-sienna);
+}
+
+.accent--blue,
+.accent--blue:hover {
+  --accent: var(--color-accent-blue);
+  color: var(--color-accent-blue);
+}
+
+.accent--magenta,
+.accent--magenta:hover {
+  --accent: var(--color-accent-magenta);
+  color: var(--color-accent-magenta);
+}
+
+.accent--green,
+.accent--green:hover {
+  --accent: var(--color-accent-green);
+  color: var(--color-accent-green);
+}
+
+.accent--violet,
+.accent--violet:hover {
+  --accent: var(--color-accent-violet);
+  color: var(--color-accent-violet);
+}
+
+.accent--teal,
+.accent--teal:hover {
+  --accent: var(--color-accent-teal);
+  color: var(--color-accent-teal);
+}
+
+.accent--gold,
+.accent--gold:hover {
+  --accent: var(--color-accent-gold);
+  color: var(--color-accent-gold);
+}

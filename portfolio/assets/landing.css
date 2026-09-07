@@ -106,8 +106,8 @@
   width: fit-content;
   color: var(--color-text-subtle);
   background-image: linear-gradient(
-    var(--landing-link-accent),
-    var(--landing-link-accent)
+    var(--accent),
+    var(--accent)
   );
   background-position: 0 100%;
   background-repeat: no-repeat;
@@ -129,22 +129,6 @@
 .landing-connect__links a:hover > span:last-child,
 .landing-connect__links a:focus-visible > span:last-child {
   background-size: 100% 1px;
-}
-
-.landing-connect__link--gold {
-  --landing-link-accent: var(--color-accent-gold);
-}
-
-.landing-connect__link--blue {
-  --landing-link-accent: var(--color-accent-blue);
-}
-
-.landing-connect__link--magenta {
-  --landing-link-accent: var(--color-accent-magenta);
-}
-
-.landing-connect__link--violet {
-  --landing-link-accent: var(--color-accent-violet);
 }
 
 @media (max-width: 47.999rem) {

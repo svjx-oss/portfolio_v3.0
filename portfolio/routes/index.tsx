@@ -8,6 +8,6 @@ export const handler = define.handlers({
   },
 });
 
-export default define.page<typeof handler>(function Home({ data, state }) {
-  return <Landing {...data.landing} site={state.site} />;
+export default define.page<typeof handler>(function Home({ data }) {
+  return <Landing {...data.landing} />;
 });
