@@ -30,3 +30,12 @@ export interface Landing {
 export interface LandingContent extends Landing {
   html: string;
 }
+
+export interface About {
+  portrait: string;
+  portrait_alt: string;
+}
+
+export interface AboutContent extends About {
+  html: string;
+}
