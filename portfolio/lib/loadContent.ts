@@ -18,5 +18,8 @@ export async function loadAbout(): Promise<AboutContent> {
     Deno.readTextFile("content/about/about.json"),
     Deno.readTextFile("content/about/about.md"),
   ]);
-  return { ...JSON.parse(about), html: renderMarkdown(body) };
+  return {
+    ...JSON.parse(about),
+    html: renderMarkdown(body),
+  };
 }
