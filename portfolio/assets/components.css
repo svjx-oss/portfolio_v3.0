@@ -9,9 +9,3 @@
 .prose a {
   text-decoration: underline;
 }
-
-.landing-links {
-  display: flex;
-  flex-wrap: wrap;
-  gap: var(--space-2);
-}

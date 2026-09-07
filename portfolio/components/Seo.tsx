@@ -14,16 +14,16 @@ export default function Seo(
       <meta name="description" content={site.description} />
       <meta
         name="theme-color"
-        content="#141619"
+        content="#0C111A"
         media="(prefers-color-scheme: dark)"
       />
       <meta
         name="theme-color"
-        content="#F7F5F0"
+        content="#F2F6FD"
         media="(prefers-color-scheme: light)"
       />
       <link rel="icon" href="/favicon.ico" />
-      {/* Required before paint to resolve the stored or system color theme. */}
+      {/* Set the stored preference or dark default before the first paint. */}
       <script>{themeScript}</script>
     </>
   );

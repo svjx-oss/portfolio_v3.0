@@ -7,7 +7,7 @@ export default function Header(
 
   return (
     <header
-      class={`site-header${isBlogPost ? " site-header--reading" : ""}$${
+      class={`site-header${isBlogPost ? " site-header--reading" : ""}${
         pathname === "/" ? " site-header--home" : ""
       }`}
     >
@@ -33,9 +33,6 @@ export default function Header(
       {pathname !== "/" && (
         <a class="site-logo" href="/" aria-label={`${site.title} home`}>
           <span aria-hidden="true">SJ</span>
-          <span class="visually-hidden">
-            TODO(asset): replace with Bitmoji.png
-          </span>
         </a>
       )}
       <div class="header-end" />
