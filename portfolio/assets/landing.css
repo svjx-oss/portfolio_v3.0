@@ -86,6 +86,35 @@
   content: "";
 }
 
+/* When adding a shared accent in colors.css, add its hover/focus rule here. */
+.landing-connect:has(.accent--sienna:hover, .accent--sienna:focus-visible) .landing-connect__prompt::after {
+  background: var(--color-accent-sienna);
+}
+
+.landing-connect:has(.accent--blue:hover, .accent--blue:focus-visible) .landing-connect__prompt::after {
+  background: var(--color-accent-blue);
+}
+
+.landing-connect:has(.accent--magenta:hover, .accent--magenta:focus-visible) .landing-connect__prompt::after {
+  background: var(--color-accent-magenta);
+}
+
+.landing-connect:has(.accent--green:hover, .accent--green:focus-visible) .landing-connect__prompt::after {
+  background: var(--color-accent-green);
+}
+
+.landing-connect:has(.accent--violet:hover, .accent--violet:focus-visible) .landing-connect__prompt::after {
+  background: var(--color-accent-violet);
+}
+
+.landing-connect:has(.accent--teal:hover, .accent--teal:focus-visible) .landing-connect__prompt::after {
+  background: var(--color-accent-teal);
+}
+
+.landing-connect:has(.accent--gold:hover, .accent--gold:focus-visible) .landing-connect__prompt::after {
+  background: var(--color-accent-gold);
+}
+
 .landing-connect__links {
   display: grid;
   gap: var(--space-1);
@@ -110,6 +139,10 @@
 }
 
 @media (prefers-reduced-motion: no-preference) {
+  .landing-connect__prompt::after {
+    transition: background-color var(--transition-base);
+  }
+
   .landing-connect__links a > span:last-child {
     transition: color var(--transition-base), background-size
       var(--transition-base);
