@@ -23,7 +23,6 @@
 .landing-metadata {
   display: grid;
   gap: var(--space-1);
-  max-width: 36rem;
   margin: 0 0 var(--space-8);
   padding: var(--space-2) 0;
   border-top: 1px solid var(--color-border);
@@ -47,10 +46,7 @@
   color: var(--color-text-muted);
   font-size: var(--text-xs);
   font-weight: 500;
-}
-
-.landing-metadata dt {
-  font-style: italic;
+  letter-spacing: 0.04em;
 }
 
 .landing-metadata dd {
@@ -60,7 +56,7 @@
 }
 
 .landing .prose > p:last-child {
-  margin-bottom: var(--space-8);
+  margin-bottom: var(--space-6);
 }
 
 .landing .prose > p {
@@ -68,8 +64,7 @@
 }
 
 .landing-connect {
-  max-width: 22rem;
-  margin-top: var(--space-6);
+  margin-top: var(--space-4);
   font-size: var(--text-xs);
   line-height: 1.55;
 }
@@ -79,7 +74,7 @@
   color: var(--color-text-muted);
   font-size: var(--text-xs);
   font-weight: 500;
-  letter-spacing: 0.02em;
+  letter-spacing: 0.04em;
 }
 
 .landing-connect__prompt::after {
