@@ -1,4 +1,4 @@
-import { loadLanding, loadSite } from "@/lib/loadContent.ts";
+import { loadAbout, loadLanding, loadSite } from "@/lib/loadContent.ts";
 
 const accents = new Set([
   "sienna",
@@ -22,6 +22,7 @@ function isHref(value: string) {
 export async function validateContent() {
   const site = await loadSite();
   const landing = await loadLanding();
+  const about = await loadAbout();
 
   assert(site.title, "site.json: title is required.");
   assert(site.description, "site.json: description is required.");
@@ -74,4 +75,6 @@ export async function validateContent() {
       "landing.json: tagline_emphasis must occur exactly once in tagline.",
     );
   }
+  assert(about.portrait, "about.json: portrait is required.");
+  assert(about.portrait_alt, "about.json: portrait_alt is required.");
 }
