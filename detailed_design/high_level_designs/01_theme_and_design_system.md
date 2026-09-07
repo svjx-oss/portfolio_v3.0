@@ -182,7 +182,7 @@ Mobile-first; `min-width` media queries: `768px` (tablet), `1024px` (laptop). No
 - **Divided list:** blog and project rows use whitespace and a 1px border, not individual card backgrounds.
 - **Contained card:** timeline and skill groups use `--color-surface`, a visible border, `--radius-md`, and little or no shadow.
 - **Section title:** one H1 plus a short sienna subtitle. Never add decorative eyebrow text above it.
-- **Metadata strip:** compact `<dl>` rows with italic muted labels and normal-font values. A single neutral rule frames the full group. The strip uses the three orientation rows: Focus, Based, and Exploring.
+- **Metadata strip:** compact `<dl>` rows with muted lowercase labels, slight letter-spacing, and normal-font values. A single neutral rule frames the full group. The strip uses the three orientation rows: Focus, Based, and Exploring.
 - **Tag:** compact, low-saturation treatment. Tags support scanning but never dominate titles.
 - **Link:** underlined in prose; elsewhere its shape or placement must still make interactivity clear. Link accents follow the deterministic usage rules; focus uses the semantic focus token.
 - **Continuation link:** a short, text-led link at the end of a page section that directs the visitor to the most relevant next page. It uses its stable assigned accent, never a filled button.
