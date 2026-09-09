@@ -127,7 +127,7 @@
 
 @media (prefers-reduced-motion: no-preference) {
   .footer-pages a {
-    transition: background-size 400ms ease;
+    transition: background-size var(--transition-base);
   }
 }
 
