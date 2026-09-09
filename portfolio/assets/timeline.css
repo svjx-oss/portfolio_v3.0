@@ -1,0 +1,73 @@
+.timeline {
+  padding-top: var(--space-6);
+}
+
+.timeline__title {
+  margin: 0 0 var(--space-6);
+  font-size: var(--text-xl);
+  font-weight: 400;
+  line-height: 1.5;
+}
+
+.timeline__rail {
+  display: grid;
+  gap: var(--space-6);
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.timeline-entry {
+  border-bottom: 1px solid var(--color-border);
+  padding-bottom: var(--space-6);
+}
+
+.timeline-entry__year,
+.timeline-entry__role,
+.timeline-entry__dates {
+  margin: 0;
+  color: var(--color-text-muted);
+  font-size: var(--text-xs);
+}
+
+.timeline-entry__year {
+  margin-bottom: var(--space-1);
+  font-weight: 500;
+  letter-spacing: 0.04em;
+}
+
+.timeline-entry__company {
+  margin: 0;
+  color: var(--color-text);
+  font-size: var(--text-base);
+  font-weight: 400;
+  line-height: 1.5;
+}
+
+.timeline-entry__summary {
+  margin: var(--space-3) 0;
+  color: var(--color-text-subtle);
+  font-size: var(--text-sm);
+}
+
+.timeline-entry .prose p,
+.timeline-entry .prose ul {
+  margin-bottom: 0;
+}
+
+@media (min-width: 48rem) {
+  .timeline__rail {
+    gap: var(--space-8);
+  }
+
+  .timeline-entry {
+    display: grid;
+    grid-template-columns: 5rem minmax(0, 1fr);
+    column-gap: var(--space-4);
+  }
+
+  .timeline-entry__year {
+    margin: 0;
+    padding-top: var(--space-1);
+  }
+}
