@@ -18,6 +18,11 @@ export default function AboutPage(
         class="prose"
         dangerouslySetInnerHTML={{ __html: html }}
       />
+      <p class="page-continuation">
+        <a class="accent-link accent--magenta" href="/experience">
+          View experience →
+        </a>
+      </p>
     </article>
   );
 }

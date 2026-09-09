@@ -11,3 +11,5 @@ I build software across embedded systems, developer tools, and product infrastru
 I am drawn to projects that move between close technical detail and the larger product context. A useful tool should respect the environment it runs in, the people maintaining it, and the changing conditions it will encounter over time.
 
 This additional placeholder paragraph tests a long, uninterrupted reading flow. It should be replaced with specific experience, perspective, and personal context before the page is published.
+
+Outside work, I make time for photography, the outdoors, and following new curiosities wherever they lead.

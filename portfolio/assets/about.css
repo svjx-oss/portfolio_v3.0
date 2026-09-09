@@ -21,6 +21,35 @@
   line-height: 1.5;
 }
 
+.page-continuation {
+  margin: var(--space-6) 0 0;
+  font-size: var(--text-sm);
+}
+
+.page-continuation a {
+  color: var(--color-text-subtle);
+  background-image: linear-gradient(
+    var(--color-accent-magenta),
+    var(--color-accent-magenta)
+  );
+  background-position: 0 100%;
+  background-repeat: no-repeat;
+  background-size: 0 1px;
+  text-decoration: none;
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  .page-continuation a {
+    transition: background-size var(--transition-base);
+  }
+}
+
+.page-continuation a:hover,
+.page-continuation a:focus-visible {
+  color: var(--color-text-subtle);
+  background-size: 100% 1px;
+}
+
 @media (min-width: 48rem) {
   .about {
     --about-image-size: 17rem;

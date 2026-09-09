@@ -127,7 +127,7 @@
 }
 
 .landing-connect__links a > span:last-child {
-  width: fit-content;
+  display: inline-block;
   color: var(--color-text-subtle);
   background-image: linear-gradient(
     var(--accent),
