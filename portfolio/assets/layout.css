@@ -82,17 +82,6 @@
   padding: clamp(2rem, 4vw, 3rem) var(--gutter);
 }
 
-.placeholder-page h1 {
-  margin: 0 0 var(--space-4);
-  font-size: var(--text-2xl);
-  line-height: 1.2;
-}
-
-.placeholder-page p {
-  margin: 0;
-  color: var(--color-text-subtle);
-}
-
 .site-footer {
   width: min(100%, var(--content-max));
   margin: 0 auto;
