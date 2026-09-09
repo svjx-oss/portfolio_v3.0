@@ -1,0 +1,2 @@
+- Placeholder academic or technical accomplishment.
+- Placeholder project or learning outcome.
