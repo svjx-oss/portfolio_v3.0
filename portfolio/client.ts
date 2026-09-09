@@ -5,4 +5,4 @@ import "./assets/layout.css";
 import "./assets/components.css";
 import "./assets/about.css";
 import "./assets/landing.css";
-import "./assets/timeline.css";
+import "./assets/experience.css";

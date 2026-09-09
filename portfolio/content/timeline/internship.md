@@ -1,0 +1,2 @@
+- Placeholder accomplishment for an internship or early-career role.
+- Placeholder technical contribution or learning outcome.

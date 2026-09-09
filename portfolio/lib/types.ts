@@ -40,7 +40,7 @@ export interface AboutContent extends About {
   html: string;
 }
 
-export interface TimelineEntry {
+export interface ExperienceEntry {
   year: string;
   company: string;
   role: string;
@@ -53,6 +53,6 @@ export interface TimelineEntry {
   html: string;
 }
 
-export interface Timeline {
-  entries: TimelineEntry[];
+export interface Experience {
+  entries: ExperienceEntry[];
 }
