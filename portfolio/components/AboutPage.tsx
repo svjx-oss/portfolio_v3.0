@@ -1,5 +1,4 @@
-// deno-lint-ignore-file react-no-danger
-
+import Markdown from "@/components/Markdown.tsx";
 import type { AboutContent } from "@/lib/types.ts";
 
 export default function AboutPage(
@@ -14,10 +13,7 @@ export default function AboutPage(
         width="800"
         height="800"
       />
-      <div
-        class="prose"
-        dangerouslySetInnerHTML={{ __html: html }}
-      />
+      <Markdown html={html} />
       <p class="page-continuation">
         <a class="accent-link accent--magenta" href="/experience">
           View experience →
