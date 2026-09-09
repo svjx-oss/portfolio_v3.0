@@ -1,4 +1,9 @@
-import { loadAbout, loadLanding, loadSite } from "@/lib/loadContent.ts";
+import {
+  loadAbout,
+  loadLanding,
+  loadSite,
+  loadTimeline,
+} from "@/lib/loadContent.ts";
 
 const accents = new Set([
   "sienna",
@@ -23,6 +28,7 @@ export async function validateContent() {
   const site = await loadSite();
   const landing = await loadLanding();
   const about = await loadAbout();
+  const timeline = await loadTimeline();
 
   assert(site.title, "site.json: title is required.");
   assert(site.description, "site.json: description is required.");
@@ -77,4 +83,24 @@ export async function validateContent() {
   }
   assert(about.portrait, "about.json: portrait is required.");
   assert(about.portrait_alt, "about.json: portrait_alt is required.");
+  assert(
+    timeline.entries.length > 0,
+    "timeline.json: entries must not be empty.",
+  );
+  for (const entry of timeline.entries) {
+    assert(entry.year, "timeline.json: entry year is required.");
+    assert(entry.company, "timeline.json: entry company is required.");
+    assert(entry.role, "timeline.json: entry role is required.");
+    assert(entry.location, "timeline.json: entry location is required.");
+    assert(entry.dates, "timeline.json: entry dates is required.");
+    assert(entry.summary, "timeline.json: entry summary is required.");
+    assert(
+      /^#[0-9A-Fa-f]{6}$/.test(entry.color),
+      "timeline.json: entry color must be a hex color.",
+    );
+    assert(
+      entry.content.endsWith(".md"),
+      "timeline.json: entry content must be a Markdown file.",
+    );
+  }
 }

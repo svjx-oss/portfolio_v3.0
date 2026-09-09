@@ -1,0 +1,2 @@
+- Placeholder accomplishment for the current role.
+- Placeholder systems or product outcome.

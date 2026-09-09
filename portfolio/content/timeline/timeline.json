@@ -1,0 +1,25 @@
+{
+  "entries": [
+    {
+      "year": "2023",
+      "company": "Apple",
+      "role": "Embedded Software Engineer",
+      "location": "Cupertino, CA",
+      "dates": "Jan 2023 - Present",
+      "summary": "Building dependable systems where performance and clarity matter.",
+      "color": "#90F1EF",
+      "current": true,
+      "content": "apple.md"
+    },
+    {
+      "year": "2022",
+      "company": "Purdue University",
+      "role": "Computer Engineering Student",
+      "location": "West Lafayette, IN",
+      "dates": "Aug 2019 - Dec 2022",
+      "summary": "Developing a foundation across systems, hardware, and software.",
+      "color": "#FF8066",
+      "content": "purdue.md"
+    }
+  ]
+}

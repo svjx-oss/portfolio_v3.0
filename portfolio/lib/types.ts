@@ -39,3 +39,20 @@ export interface About {
 export interface AboutContent extends About {
   html: string;
 }
+
+export interface TimelineEntry {
+  year: string;
+  company: string;
+  role: string;
+  location: string;
+  dates: string;
+  summary: string;
+  color: string;
+  current?: boolean;
+  content: string;
+  html: string;
+}
+
+export interface Timeline {
+  entries: TimelineEntry[];
+}
