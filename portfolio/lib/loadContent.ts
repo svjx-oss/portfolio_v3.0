@@ -1,9 +1,9 @@
 import { renderMarkdown } from "@/lib/markdown.ts";
 import type {
   AboutContent,
+  Experience,
   LandingContent,
   Site,
-  Timeline,
 } from "@/lib/types.ts";
 
 export async function loadSite(): Promise<Site> {
@@ -29,13 +29,13 @@ export async function loadAbout(): Promise<AboutContent> {
   };
 }
 
-export async function loadTimeline(): Promise<Timeline> {
-  const raw = await Deno.readTextFile("content/timeline/timeline.json");
-  const timeline = JSON.parse(raw) as Pick<Timeline, "entries">;
-  const entries = await Promise.all(timeline.entries.map(async (entry) => ({
+export async function loadExperience(): Promise<Experience> {
+  const raw = await Deno.readTextFile("content/experience/experience.json");
+  const experience = JSON.parse(raw) as Pick<Experience, "entries">;
+  const entries = await Promise.all(experience.entries.map(async (entry) => ({
     ...entry,
     html: renderMarkdown(
-      await Deno.readTextFile(`content/timeline/${entry.content}`),
+      await Deno.readTextFile(`content/experience/${entry.content}`),
     ),
   })));
   return { entries };
