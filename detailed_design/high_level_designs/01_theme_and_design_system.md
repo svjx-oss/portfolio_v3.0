@@ -89,7 +89,7 @@ Pop colors are decorative supporting accents only: timeline dots and tag borders
 `--color-pop-green: #7BF1A8` · `--color-pop-blue: #90F1EF` · `--color-pop-purple: #bdb2ff` · `--color-pop-pink: #e82eb3` · `--color-pop-yellow: #f4e409` · `--color-pop-orange: #fe8277`
 
 ### Company colors (timeline)
-Driven by `timeline.json`'s per-entry `color` hex and used only for the dot and a short border detail. Year and company text use semantic text tokens so arbitrary brand colors never become required reading contrast. The company name remains present next to every dot.
+Driven by `experience.json`'s per-entry `color` hex and used only for the short bar before the company name. Year and company text use semantic text tokens so arbitrary brand colors never become required reading contrast.
 
 ### Tag colors
 Fixed CSS classes in `assets/components.css` (`.tag--yellow`, `.tag--blue`, `.tag--green`, etc.). `Tag.tsx` maps tag names to classes. To add a new tag color: add a CSS class + one line in the map.
@@ -246,7 +246,7 @@ Server-rendered markdown wrapped in `.prose`. Styles cover `h2`/`h3` (small acce
 | Background (dark) | `theme.css` `:root --color-bg` |
 | Background (light) | `theme.css` `[data-theme="light"] --color-bg` |
 | Accent palette | `theme.css` `--color-accent-*` tokens and deterministic assignment rules |
-| Company dot color | `timeline.json` → entry `color` |
+| Company dot color | `experience.json` → entry `color` |
 | Tag color | `assets/components.css` → add `.tag--<name>` + one line in `Tag.tsx` |
 | Mosaic | `theme.css` `--bg-mosaic-opacity` + SVG in `_app.tsx` |
 

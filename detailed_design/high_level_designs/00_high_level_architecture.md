@@ -103,8 +103,8 @@ portfolio/
 │   ├── site.json           # title, nav, contact registry, GA ID
 │   ├── landing.md          # landing (frontmatter: name, tagline, metadata)
 │   ├── about.md            # about (frontmatter: portrait, skillset)
-│   ├── timeline/
-│   │   ├── timeline.json   # roles
+│   ├── experience/
+│   │   ├── experience.json # roles
 │   │   └── *.md            # per-role bullets
 │   ├── projects/
 │   │   └── projects.json   # projects (flat list)
@@ -123,7 +123,7 @@ portfolio/
 ├── components/            # server-only Preact (no JS shipped)
 │   ├── Layout.tsx  Header.tsx  Footer.tsx  Seo.tsx
 │   ├── SectionTitle.tsx  Markdown.tsx
-│   ├── ProjectList.tsx  TimelineEntry.tsx  BlogList.tsx
+│   ├── ProjectList.tsx  ExperiencePage.tsx  BlogList.tsx
 │   └── Tag.tsx
 │
 ├── islands/               # client-hydrated (minimal)
@@ -131,7 +131,7 @@ portfolio/
 │
 ├── assets/                # plain CSS
 │   ├── theme.css  global.css  layout.css  components.css
-│   └── landing.css  about.css  timeline.css  projects.css  blog.css
+│   └── landing.css  about.css  experience.css  projects.css  blog.css
 │
 └── routes/
     ├── _app.tsx  _middleware.ts  _error.tsx
@@ -156,7 +156,7 @@ portfolio/
 |---|---|---|
 | `/` | `routes/index.tsx` | `content/landing.md` |
 | `/about` | `routes/about.tsx` | `content/about.md` |
-| `/experience` | `routes/experience.tsx` | `content/timeline/timeline.json` + `*.md` |
+| `/experience` | `routes/experience.tsx` | `content/experience/experience.json` + `*.md` |
 | `/projects` | `routes/projects.tsx` | `content/projects/projects.json` |
 | `/blog` | `routes/blog/index.tsx` | Writing index: `content/blog/blog.json` |
 | `/blog/{slug}` | `routes/blog/[slug].tsx` | `content/blog/posts/<slug>/<slug>.md` |

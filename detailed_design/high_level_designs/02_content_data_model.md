@@ -12,8 +12,8 @@
 | `content/landing/landing.json` | landing metadata and contact registry |
 | `content/landing/landing.md` | landing prose |
 | `content/about.md` | about page (frontmatter + prose) |
-| `content/timeline/timeline.json` | roles metadata |
-| `content/timeline/*.md` | one file per role |
+| `content/experience/experience.json` | roles metadata |
+| `content/experience/*.md` | one file per role |
 | `content/projects/projects.json` | projects (flat list) |
 | `content/blog/blog.json` | Writing entries (post or external link) |
 | `content/blog/posts/<slug>/<slug>.md` | technical essay, field note, or photo essay body |
@@ -105,7 +105,7 @@ Continue with additional biography paragraphs as needed.
 
 ---
 
-## `timeline.json` + per-role `*.md`
+## `experience.json` + per-role `*.md`
 
 ```json
 {
@@ -213,7 +213,7 @@ Post body is pure markdown (no frontmatter). Co-located images in same folder.
 
 ## Loaders (`lib/loadContent.ts`)
 
-Typed functions: `loadSite()`, `loadLanding()`, `loadAbout()`, `loadTimeline()`, `loadProjects()`, `loadBlogIndex()`, `loadBlogPost(slug)`. Each reads from `content/`, calls `renderMarkdown` where needed, returns typed objects.
+Typed functions: `loadSite()`, `loadLanding()`, `loadAbout()`, `loadExperience()`, `loadProjects()`, `loadBlogIndex()`, `loadBlogPost(slug)`. Each reads from `content/`, calls `renderMarkdown` where needed, returns typed objects.
 
 ---
 
@@ -224,7 +224,7 @@ Hand-rolled (no zod). Collects all errors, prints clear report, exits non-zero. 
 - `site.json` — required fields present, `url` is an HTTPS origin, and navigation entries have labels, valid destinations, and supported accents.
 - `landing/landing.json` — name/tagline, non-empty metadata and contacts, unique contact keys, valid destinations, supported accents, and an optional `tagline_emphasis` occurring exactly once in `tagline`.
 - `about.md` — `portrait` file exists; `intro` is non-empty; optional `outside_of_work` is non-empty when present; skillset has three or four groups, each with non-empty label, description, and items.
-- `timeline.json` — `color` is hex, each `md` exists, `summary` is non-empty, and `current` is boolean. Color remains decorative; text never inherits it.
+- `experience.json` — `color` is hex, each `md` exists, `summary` is non-empty, and `current` is boolean. Color remains decorative; text never inherits it.
 - `projects.json` — projects non-empty, tags are strings, `link` is empty or a valid root-relative/HTTP(S) URL; `link_label` is required and non-empty when `link` is non-empty, and empty when `link` is empty.
 - `blog.json` — `slug` unique + valid format, `type` is allowed, `md` exists for posts, `external_url` valid for links, `date` is ISO.
 
@@ -235,7 +235,7 @@ Hand-rolled (no zod). Collects all errors, prints clear report, exits non-zero. 
 | Writing post | `posts/<slug>/<slug>.md` + one entry in `blog.json` |
 | External link | one entry in `blog.json` with `external_url` |
 | Project | one object in `projects.json` |
-| Timeline role | one entry in `timeline.json` + one `<name>.md` |
+| Experience role | one entry in `experience.json` + one `<name>.md` |
 | Navigation or GA ID | edit `site.json` |
 | Landing metadata or contacts | edit `landing/landing.json` |
 | Landing prose | edit `landing/landing.md` |
