@@ -22,8 +22,8 @@ The landing page answers: who is this person, what do they care about, and where
 - **Tagline:** one concise point of view, not a job-title inventory. The optional sienna phrase should identify the idea worth remembering.
 - **Metadata:** use exactly three concise orientation rows: `Focus`, `Based`, and `Exploring`. Values should be short, human, and stable rather than live-status updates.
 - **Introduction:** exactly two short point-of-view paragraphs. Explain the kind of work, decisions, or outcomes that matter to you; do not summarize the resume or repeat the About page.
-- **Link row:** follow the paragraphs with `Projects · Writing · Resume`. It is a compact path selector, not a list of social links.
-- End after the Projects/Writing/Resume link row. Do not add a featured-work preview, content feed, or additional call to action; whitespace is intentional.
+- **Link row:** follow the paragraphs with `Things · Resume`. It is a compact path selector, not a list of social links.
+- End after the Things/Resume link row. Do not add a featured-work preview, content feed, or additional call to action; whitespace is intentional.
 
 ### About
 
@@ -51,23 +51,13 @@ For each role, write one summary sentence followed by two to four bullets:
 
 Avoid duplicating every resume bullet. The timeline should be readable as a narrative of increasing responsibility.
 
-## 4. Projects and Case Studies
+## 4. Things
 
-The project list is intentionally concise. It should make visitors want to open the most interesting work, not explain every detail inline.
+Things gathers built work, writing, photographs, and thoughts in one index. Include older work only when a concise retrospective still offers useful context or reflection.
 
-### Project row
+### Built work
 
-- **Title:** specific and memorable.
-- **Description:** one or two sentences covering problem, approach, and meaningful outcome.
-- **Challenge:** optional one sentence about a constraint, question, or difficult part that adds context beyond the description.
-- **Tags:** three to five technologies or domains that help scanning. Tags do not replace the description.
-- **Link:** use an external demo/repository when it provides real depth. Label the destination specifically (`Repository`, `Demo`, `Project site`, `Read case study`) rather than using “more.” Do not link to unfinished or low-signal destinations.
-
-### Strong-project case study
-
-Select two or three projects for deeper treatment. A case study can initially be a Writing post; introduce `/projects/{slug}` routes only if several projects warrant a consistent internal format.
-
-Use this structure:
+For a project reflection, use this structure:
 
 1. **Context:** what problem, audience, or opportunity existed?
 2. **Role and constraints:** what did you own, and what limitations mattered?
@@ -80,16 +70,16 @@ Use screenshots, diagrams, or code only when they clarify a decision. Every imag
 
 ## 5. Writing and Photography
 
-Writing demonstrates depth of thought and gives the portfolio a personal voice. Publish technical essays, field notes, and photo essays when there is a useful perspective, result, observation, or visual story, not to maintain an artificial cadence.
+Writing and photography demonstrate depth of thought and give Things a personal voice. Publish technical essays, field notes, and photo essays when there is a useful perspective, result, observation, or visual story, not to maintain an artificial cadence.
 
 ### Types
 
-- **Essay:** a developed technical, design, or reflective argument.
-- **Field note:** a shorter observation from work, travel, outdoors, photography, or a creative experiment.
-- **Photo essay:** a short visual narrative with a purposeful image sequence and enough text to orient the reader.
+- **Written:** a developed technical, design, or reflective argument.
+- **Thought:** a shorter observation from work, travel, outdoors, photography, or a creative experiment.
+- **Photographed:** a short visual narrative with a purposeful image sequence and enough text to orient the reader.
 - **External:** a worthwhile piece published elsewhere.
 
-Keep all types in the same Writing index. The type label gives context; it does not create separate navigation sections at launch.
+Keep all types in the same Things index. The type label gives context; it does not create separate navigation sections at launch.
 
 - Use a title that states the subject or argument.
 - Open with the problem, question, or conclusion within the first few paragraphs.

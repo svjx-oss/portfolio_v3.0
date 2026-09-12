@@ -65,7 +65,7 @@ export default function Landing({ frontmatter, html }: Landing) {
 ```
 
 - No island. Fully static HTML.
-- The Markdown body is exactly two short point-of-view paragraphs followed by one text link row: Projects · Writing · Resume. It is not a resume summary or a second About page.
+- The Markdown body is exactly two short point-of-view paragraphs followed by one text link row: Things · Resume. It is not a resume summary or a second About page.
 - Resume link in the link row is a direct path to `/resume.pdf`.
 
 ## CSS

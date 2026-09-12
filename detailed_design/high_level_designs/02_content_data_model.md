@@ -14,11 +14,10 @@
 | `content/about.md` | about page (frontmatter + prose) |
 | `content/experience/experience.json` | roles metadata |
 | `content/experience/*.md` | one file per role |
-| `content/projects/projects.json` | projects (flat list) |
-| `content/blog/blog.json` | Writing entries (post or external link) |
-| `content/blog/posts/<slug>/<slug>.md` | technical essay, field note, or photo essay body |
-| `content/blog/posts/<slug>/*.{png,jpg,webp}` | co-located post images |
-| `content/blog/fixtures/` | development-only Writing fixtures |
+| `content/things/things.json` | Things entries (post or external link) |
+| `content/things/posts/<slug>/<slug>.md` | Thing body: writing, project reflection, photography, or note |
+| `content/things/posts/<slug>/*.{png,jpg,webp}` | co-located post images |
+| `content/things/fixtures/` | development-only Things fixtures |
 
 No `authors.json` — Writing is single-author and the index does not repeat author information.
 
@@ -36,8 +35,7 @@ No `authors.json` — Writing is single-author and the index does not repeat aut
     { "label": "Home", "href": "/", "accent": "gold" },
     { "label": "About", "href": "/about", "accent": "blue" },
     { "label": "Experience", "href": "/experience", "accent": "magenta" },
-    { "label": "Projects", "href": "/projects", "accent": "violet" },
-    { "label": "Writing", "href": "/blog", "accent": "teal" }
+    { "label": "Things", "href": "/things", "accent": "teal" }
   ]
 }
 ```
@@ -129,71 +127,29 @@ Each `*.md` is pure Markdown with two to four bullet points. No frontmatter.
 
 ---
 
-## `projects.json`
-
-```json
-{
-  "projects": [
-    {
-      "title": "MapReduce",
-      "description": "Developed a full MapReduce implementation for multi-core machines...",
-      "challenge": "Making parallel work predictable across different workloads.",
-      "tags": ["C", "OpenMP", "MPI"],
-      "link": "",
-      "link_label": ""
-    },
-    {
-      "title": "Mood Music",
-      "description": "A web interface that suggests music based on heart rate...",
-      "challenge": "Turning noisy input signals into a simple, useful recommendation experience.",
-      "tags": ["JavaScript", "Fitbit", "Spotify"],
-      "link": "https://devpost.com/software/mood-music-0g7f6u",
-      "link_label": "Project site"
-    }
-  ]
-}
-```
-
-Project conventions:
-- **One `link` field** — a root-relative path stays in the site; an HTTP(S) URL opens externally; an empty value renders no link. `link_label` describes the destination (`Repository`, `Demo`, `Project site`, or `Read case study`) rather than using a generic label.
-- **Optional `challenge` field** — one concise sentence describing the constraint, question, or difficult part of a strong project. Omit it when it would repeat the description.
-- **No project images** — projects are concise divided-list entries.
-- **Fixed tag classes** — tag colors come from a small CSS tag-to-class mapping in `components.css`, not JSON-driven inline styles. Add a CSS class and mapping entry for a new tag color.
-
----
-
-## `blog.json`
+## `things.json`
 
 ```json
 {
   "entries": [
     {
-      "title": "Designing a low-latency dashboard",
-      "date": "2026-08-20",
-      "updated_at": "2026-08-24",
-      "reading_time": "6 min read",
-      "type": "essay",
-      "slug": "designing-a-dashboard",
-      "excerpt": "A short teaser.",
-      "tags": ["engineering", "performance"],
+      "title": "MapReduce",
+      "date": "2022-05-01",
+      "type": "built",
+      "excerpt": "A university systems project revisited with a short retrospective.",
+      "tags": ["C", "OpenMP", "MPI"],
       "status": "published",
-      "md": "posts/designing-a-dashboard/designing-a-dashboard.md"
-    },
-    {
-      "title": "My essay on Medium",
-      "date": "2026-09-01",
-      "type": "external",
-      "excerpt": "Teaser shown on the index.",
-      "external_url": "https://medium.com/@sahil/example"
+      "slug": "mapreduce",
+      "md": "posts/mapreduce/mapreduce.md"
     }
   ]
 }
 ```
 
-Simplified:
-- `type` is one of `essay`, `field-note`, `photo-essay`, or `external`. It provides a small human-readable category label on the Writing index and does not change routing.
+Things conventions:
+- `type` is one of `built`, `written`, `photographed`, `thought`, or `external`. It provides a small human-readable category label on the Things index and does not change routing.
 - If `external_url` is present, the entry is an external link (opens new tab). If `md` is present, it is an internal post. If `status: "draft"`, exclude it from the index and return 404 for its slug.
-- **No `author` field** — Writing is single-author and the index does not display author information.
+- **No `author` field** — Things is single-author and the index does not display author information.
 - **Required for posts:** title, date, type, slug, excerpt, tags, status, md. **Required for links:** title, date, type, excerpt, external_url. `updated_at` and `reading_time` are optional; include them only when they are accurate.
 
 Post body is pure markdown (no frontmatter). Co-located images in same folder.
@@ -206,14 +162,14 @@ Post body is pure markdown (no frontmatter). Co-located images in same folder.
 - `markdown-it` for parsing.
 - **Heading IDs** generated by a 10-line slugify function (no `markdown-it-anchor` dependency).
 - Raw HTML is disabled in `markdown-it`. Content uses Markdown only; no HTML allowlist or color spans are accepted. This avoids a custom sanitizer and keeps styling in components rather than authored content.
-- Writing post relative images rewritten to `/blog/<slug>/<file>`.
-- `headings` includes authored H1/H2 headings. Writing bodies are H2-led; `PostView` prepends the separately rendered post-title H1 to the TOC.
+- Things post relative images are rewritten to `/things/<slug>/<file>`.
+- `headings` includes authored H1/H2 headings. Things bodies are H2-led; `ThingsPost` prepends the separately rendered post-title H1 to the TOC.
 
 ---
 
 ## Loaders (`lib/loadContent.ts`)
 
-Typed functions: `loadSite()`, `loadLanding()`, `loadAbout()`, `loadExperience()`, `loadProjects()`, `loadBlogIndex()`, `loadBlogPost(slug)`. Each reads from `content/`, calls `renderMarkdown` where needed, returns typed objects.
+Typed functions: `loadSite()`, `loadLanding()`, `loadAbout()`, `loadExperience()`, `loadThingsIndex()`, `loadThingsPost(slug)`. Each reads from `content/`, calls `renderMarkdown` where needed, returns typed objects.
 
 ---
 
@@ -225,16 +181,14 @@ Hand-rolled (no zod). Collects all errors, prints clear report, exits non-zero. 
 - `landing/landing.json` — name/tagline, non-empty metadata and contacts, unique contact keys, valid destinations, supported accents, and an optional `tagline_emphasis` occurring exactly once in `tagline`.
 - `about.md` — `portrait` file exists; `intro` is non-empty; optional `outside_of_work` is non-empty when present; skillset has three or four groups, each with non-empty label, description, and items.
 - `experience.json` — `color` is hex, each `md` exists, `summary` is non-empty, and `current` is boolean. Color remains decorative; text never inherits it.
-- `projects.json` — projects non-empty, tags are strings, `link` is empty or a valid root-relative/HTTP(S) URL; `link_label` is required and non-empty when `link` is non-empty, and empty when `link` is empty.
-- `blog.json` — `slug` unique + valid format, `type` is allowed, `md` exists for posts, `external_url` valid for links, `date` is ISO.
+- `things.json` — `slug` is unique and valid, `type` is allowed, `md` exists for internal entries, `external_url` is valid for links, and `date` is ISO.
 
 ## Adding content
 
 | To add | Do |
 |---|---|
-| Writing post | `posts/<slug>/<slug>.md` + one entry in `blog.json` |
-| External link | one entry in `blog.json` with `external_url` |
-| Project | one object in `projects.json` |
+| Thing | `posts/<slug>/<slug>.md` + one entry in `things.json` |
+| External thing | one entry in `things.json` with `external_url` |
 | Experience role | one entry in `experience.json` + one `<name>.md` |
 | Navigation or GA ID | edit `site.json` |
 | Landing metadata or contacts | edit `landing/landing.json` |

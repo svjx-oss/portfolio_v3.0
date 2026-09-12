@@ -69,7 +69,7 @@ Minimal hero + metadata strip + short prose + path link row.
 │   idea to something finished, useful, and    │
 │   easy to understand.                        │
 │                                              │
-│   Projects · Writing · Resume                 │ ← compact path selector
+│   Things · Resume                             │ ← compact path selector
 │                                              │
 │                                              │ ← intentional ending whitespace
 ├──────────────────────────────────────────────┤
@@ -317,4 +317,4 @@ TOC shows H1 + H2.
 8. **Color is supporting information** — text labels and structure remain understandable without accent colors.
 9. **Controls are explicit** — 44px targets, visible keyboard focus, and accessible names for icon controls.
 10. **Landing color moment** — one sienna phrase and metadata rule create visual interest; no multicolor status panel.
-11. **Landing progression** — identity → three-row orientation strip → two short point-of-view paragraphs → Projects/Writing/Resume → intentional whitespace.
+11. **Landing progression** — identity → three-row orientation strip → two short point-of-view paragraphs → Things/Resume → intentional whitespace.

@@ -41,7 +41,7 @@ Verification: themed landing placeholder, no-JS nav fallback, theme preference, 
 - Add markdown-it with raw HTML disabled; implement only the heading-free landing Markdown rendering needed here.
 - Add `site.json`, `landing.md`, `lib/types.ts`, landing loader, and hand-written landing/site validation.
 - Replace static shell links with navigation from `site.json`.
-- Render the complete landing: hero with optional sienna emphasis, Focus/Based/Exploring metadata strip, two point-of-view paragraphs, and Projects/Writing/Resume link row.
+- Render the complete landing: hero with optional sienna emphasis, Focus/Based/Exploring metadata strip, two point-of-view paragraphs, and Things/Resume link row.
 - Add the base `.prose` styles because landing prose renders in this change; extend them only when a later page introduces new Markdown elements.
 - Add `MobileNav` enhancement because the navigation is now driven by the real site map.
 - Do not add future-page loaders, schemas, tags, blog routes, or analytics.
@@ -63,45 +63,36 @@ Verification: `/about` is fully content-driven; portrait and intro stack correct
 
 - Add experience JSON and role Markdown content, validation, loader, `/experience`, and experience CSS.
 - Extend markdown rendering only as needed for role bullets and generated heading IDs.
-- Render rail years, company/role/dates, summary, two-to-four bullets, current `Present` label, and `View selected projects →`.
-- Add no project or Writing infrastructure.
+- Render years, company/role/dates, summary, two-to-four bullets, and current `Present` label.
+- Add no Things infrastructure.
 
-Verification: `/experience` is chronological, usable without company colors, readable at narrow widths, and has the documented continuation path.
+Verification: `/experience` is chronological, usable without company colors, and readable at narrow widths.
 
-### `feat: add numbered Projects list`
+## Phase 3: Things
 
-- Add projects JSON, validation, loader, `/projects`, Tag component, and Projects CSS.
-- Render decorative order number, title, description, optional challenge, three-to-five tags, and destination-specific external/internal link labels.
-- Add `Read writing and notes →` continuation.
-- Create fixed tag CSS classes only now, when tags first render.
+### `feat: add Things index and visual fixtures`
 
-Verification: `/projects` handles absent/present links and challenges, long text wrapping, external-link semantics, tag contrast, and both themes.
+- Add Things entry schema and type validation (`built`, `written`, `photographed`, `thought`, `external`), index loader, `/things`, and Things CSS.
+- Use the approved heading `Things` and tagline `Things I’ve built, written, photographed, and thought about.`
+- The page’s visual design is defined in its dedicated page document before implementation.
+- Add `content/things/fixtures/` with development-only fixtures spanning the supported entry types.
+- Add the centralized `isProduction()` helper (`DENO_DEPLOYMENT_ID` or `APP_ENV=production`) and implement `show_things_fixtures`; local/non-production preview may use it, production validation requires `false` and production loaders never read fixtures.
 
-## Phase 3: Writing and Photography
+Verification: chronological index, internal/external entries, empty production state, and fixture-only local preview work. No fixture content is exposed in production mode.
 
-### `feat: add Writing index and visual fixtures`
+### `feat: add Things posts, TOC, and assets`
 
-- Add Writing entry schema, type validation (`essay`, `field-note`, `photo-essay`, `external`), index loader, `/blog`, and Writing CSS.
-- Render text-led type/date/title/excerpt/tags rows with external markers; no author avatars or index images.
-- Add optional Elsewhere links; hide empty sections in production.
-- Add `content/blog/fixtures/` with Lorem Ipsum technical, field-note, and photo-essay entries including code, captions, and sample images.
-- Add the centralized `isProduction()` helper (`DENO_DEPLOYMENT_ID` or `APP_ENV=production`) and implement `show_writing_fixtures`; local/non-production preview may use it, production validation requires `false` and production loaders never read fixtures.
-
-Verification: chronological index, internal/external rows, empty production state, and fixture-only local preview work. No fixture content is exposed in production mode.
-
-### `feat: add Writing posts, TOC, and assets`
-
-- Extend the existing Markdown renderer with unique heading IDs, H1/H2 extraction, and relative-image rewrite as now required by posts.
+- Extend the existing Markdown renderer with unique heading IDs, H1/H2 extraction, and relative-image rewrite as now required by Things posts.
 - Add post loader, post validation, dynamic post route, safe co-located image asset route, and post styles.
-- Render title, date, title plus H2 TOC, prose, optional one related continuation, and return-to-Writing link.
-- Support photo essays as normal posts with deliberate image sequence, dimensions, alt text, captions, and responsive behavior. No gallery, masonry layout, slideshow, or lightbox.
+- Render title, date, title plus H2 TOC, prose, optional one related continuation, and return-to-Things link.
+- Support photographs and photo essays as normal Things posts with deliberate image sequence, dimensions, alt text, captions, and responsive behavior. No gallery, masonry layout, slideshow, or lightbox.
 - Missing and draft posts render the shared 404 page.
 
-Verification: technical fixture, photo-essay fixture, TOC anchors, duplicate headings, code blocks, image assets, draft/missing 404, and reduced-motion behavior work.
+Verification: writing, project, and photography fixtures; TOC anchors; duplicate headings; code blocks; image assets; draft/missing 404; and reduced-motion behavior work.
 
 ### `feat: add publishing discovery endpoints`
 
-- Add RSS from published internal Writing posts and sitemap from available routes/published posts.
+- Add RSS from published internal Things posts and sitemap from available routes/published posts.
 - Add reusable Blue Slate Open Graph fallback metadata/template.
 - Add RSS/sitemap tests and XML escaping.
 
@@ -113,7 +104,7 @@ Verification: valid RSS/sitemap output excludes drafts and external-only entries
 
 - Add gated GA4 pageviews only when `ga4_id` is non-empty and hostname is not localhost.
 - Add `Analytics` island only now, after the routes/events it observes exist.
-- Implement documented aggregate events for navigation, external links, resume, Writing, TOC, scroll depth, and explicit theme changes.
+- Implement documented aggregate events for navigation, external links, resume, Things, TOC, scroll depth, and explicit theme changes.
 - Do not add a consent banner or privacy page. Do not send personal data or free-form content.
 
 Verification: analytics remains fully disabled when the ID is empty; local requests are suppressed; event names and payload boundaries match `10`.
@@ -129,7 +120,7 @@ Verification: `deno task check` is green; the complete matrix in `12b_testing_st
 
 ### `build: audit deployment readiness`
 
-- Keep `show_writing_fixtures: false` for production.
+- Keep `show_things_fixtures: false` for production.
 - Resolve production-only values when available: domain, optional GA4 ID, resume, portrait, Bitmoji, SJ favicon, fonts, and deployment configuration.
 - Remove dead scaffold assets and verify all public links/assets.
 - Run production build and preview, then document the deployment command.
@@ -138,9 +129,8 @@ Verification: every route works in both themes without fixture exposure, missing
 
 ## Content Growth Decisions
 
-- Start with a concise project list and link the strongest work to an external destination or a Writing case study.
-- Add internal `/projects/{slug}` routes only when at least two projects need the same deeper case-study format. Follow `addons/13_content_authoring_guide.md` §4.
-- Add search only when chronological lists, tags, and RSS no longer support Writing discovery.
+- Things unifies built work, writing, photographs, and thoughts; projects do not receive a separate route or data model.
+- Add search only when chronological lists, tags, and RSS no longer support Things discovery.
 - Add reading time only when generated reliably; display an update date only after a material revision.
 - Prepare photography with responsive AVIF/WebP derivatives, dimensions, alt text, and compression review before publication. This is asset preparation, not a runtime image service.
 
@@ -149,7 +139,7 @@ Verification: every route works in both themes without fixture exposure, missing
 - Every delivered route is content-driven, styled, validated, and visually reviewed when its change lands.
 - Shared code exists only because a currently delivered feature uses it.
 - The only islands are `MobileNav`, `ThemeToggle`, and optional `Analytics`.
-- Landing is concise; About, Experience, Projects, and Writing follow the documented editorial reading paths.
+- Landing is concise; About, Experience, and Things follow the documented editorial reading paths.
 - Sienna is the interaction accent; pop/company/discipline colors are decorative and labeled.
 - `deno task check` and production build pass.
 - Every completed change is marked approved in Linear before work begins on its successor.
