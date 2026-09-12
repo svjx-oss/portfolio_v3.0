@@ -61,7 +61,7 @@ Verification: `/about` is fully content-driven; portrait and intro stack correct
 
 ### `feat: add narrative Experience timeline`
 
-- Add timeline JSON and role Markdown content, validation, loader, `/experience`, and timeline CSS.
+- Add experience JSON and role Markdown content, validation, loader, `/experience`, and experience CSS.
 - Extend markdown rendering only as needed for role bullets and generated heading IDs.
 - Render rail years, company/role/dates, summary, two-to-four bullets, current `Present` label, and `View selected projects →`.
 - Add no project or Writing infrastructure.

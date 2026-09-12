@@ -90,8 +90,8 @@ Edit `content/landing.md`:
 - Three metadata rows: `Focus`, `Based`, and `Exploring`.
 - Two point-of-view paragraphs and the `Projects · Writing · Resume` link row.
 
-## Add a timeline role
-Add one entry to `timeline.json` + one `<name>.md` in `content/timeline/`.
+## Add an experience role
+Add one entry to `experience.json` + one `<name>.md` in `content/experience/`.
 
 ## Edit nav / social / GA id / resume
 Edit `site.json`.
@@ -107,7 +107,7 @@ Before publishing material content, use the release checklist in `13_content_aut
 
 ## Change a color
 - Background/accent: update both theme blocks in `assets/theme.css`, then run contrast tests
-- Company dot: `timeline.json` → entry `color`
+- Experience company bar: `experience.json` → entry `color`
 - Tag: `assets/components.css` → add a `.tag--<name>` class + one line in `Tag.tsx` map
 
 Color maintenance rules:

@@ -135,38 +135,35 @@ Mobile: portrait stacks above the editorial intro; biography, personal note, and
 
 ---
 
-## 3. Timeline `/experience`
+## 3. Experience `/experience`
 
-Left-aligned rail. Large year on rail, narrative entry to the right.
+Desktop uses a narrow year column and a narrative entry column. A short colored bar prefixes the organization name; mobile places the year above its entry.
 
 ```
 ┌──────────────────────────────────────────────┐
 │ [◐]                                ◑  ≡    │
 ├──────────────────────────────────────────────┤
 │   Experience                                 │
-│   full-time & education                      │
 │                                              │
-│   │                                          │
-│   ● 2023  Apple                      Present │ ← rail + narrative entry
-│   │       Embedded Software Engineer · CA     │
-│   │       Jan 2023 – Present                  │
-│   │       Building dependable systems where   │ ← role summary first
-│   │       performance and clarity matter.     │
-│   │       • Led design and development of... │
-│   │       • Improved...                       │
-│   │                                          │
-│   │       ─────────────────────────────       │
-│   │                                          │
-│   ● 2022  Purdue University                   │
-│   │       Student · West Lafayette, IN        │
-│   │       Developing a foundation in...       │
+│   2023  │ Apple                      Present │ ← year + narrative entry
+│         │ Embedded Software Engineer · CA     │
+│         │ Jan 2023 – Present                  │
+│         │ Building dependable systems where   │ ← role summary first
+│         │ performance and clarity matter.     │
+│         │ • Led design and development of... │
+│         │ • Improved...                       │
+│         │ ─────────────────────────────       │
+│                                              │
+│   2022  │ Purdue University                   │
+│         │ Student · West Lafayette, IN        │
+│         │ Developing a foundation in...       │
 │   ⋮                                          │
 ├──────────────────────────────────────────────┤
 │   email · linkedin · github · resume        │
 └──────────────────────────────────────────────┘
 ```
 
-`●` = company color. The `Present` marker is text, not a live badge. Same reading order mobile → desktop.
+`│` before the company name = short company-color bar. The `Present` marker is text, not a live badge. Same reading order mobile → desktop.
 
 ---
 
