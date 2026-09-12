@@ -1,15 +1,15 @@
-.timeline {
+.experience {
   padding-top: var(--space-6);
 }
 
-.timeline__title {
+.experience__title {
   margin: 0 0 var(--space-6);
   font-size: var(--text-xl);
   font-weight: 400;
   line-height: 1.5;
 }
 
-.timeline__rail {
+.experience__list {
   display: grid;
   gap: var(--space-6);
   margin: 0;
@@ -17,79 +17,91 @@
   list-style: none;
 }
 
-.timeline-entry {
-  border-bottom: 1px solid var(--color-border);
+.experience-entry {
+  border-bottom: 1px solid color-mix(in srgb, var(--color-border) 65%,
+    transparent);
   padding-bottom: var(--space-6);
 }
 
-.timeline-entry:last-child {
+.experience-entry:last-child {
   border-bottom: 0;
   padding-bottom: 0;
 }
 
-.timeline-entry__year,
-.timeline-entry__role,
-.timeline-entry__dates {
+@media (max-width: 47.999rem) {
+  .experience-entry:last-child {
+    padding-bottom: calc(var(--space-6) - var(--space-4));
+  }
+}
+
+.experience-entry__year,
+.experience-entry__role,
+.experience-entry__dates {
   margin: 0;
   color: var(--color-text-muted);
   font-size: var(--text-xs);
   font-variant-numeric: tabular-nums;
 }
 
-.timeline-entry__year {
+.experience-entry__year {
   margin-bottom: var(--space-1);
   font-weight: 500;
   letter-spacing: 0.04em;
 }
 
-.timeline-entry__company {
+.experience-entry__company {
   margin: 0 0 var(--space-1);
   color: var(--color-text);
-  font-size: var(--text-base);
-  font-weight: 400;
+  font-size: clamp(1.12rem, 1.05rem + 0.35vw, 1.25rem);
+  font-weight: 500;
   line-height: 1.5;
 }
 
-.timeline-entry__company::before {
+.experience-entry__company::before {
   display: inline-block;
-  inline-size: 2px;
+  inline-size: 3px;
   block-size: 1em;
   margin-right: var(--space-2);
-  background: var(--node-color);
+  background: var(--experience-accent);
   vertical-align: -0.15em;
   content: "";
 }
 
-.timeline-entry__current {
+.experience-entry__current {
   margin-left: var(--space-2);
   color: var(--color-text-muted);
   font-size: var(--text-xs);
   letter-spacing: 0.04em;
 }
 
-.timeline-entry__summary {
-  margin: var(--space-3) 0;
+.experience-entry__summary {
+  margin: var(--space-2) 0;
   color: var(--color-text-subtle);
-  font-size: var(--text-sm);
+  font-size: var(--text-xs);
 }
 
-.timeline-entry .prose p,
-.timeline-entry .prose ul {
+.experience-entry .prose p,
+.experience-entry .prose ul {
   margin-bottom: 0;
 }
 
+.experience-entry .prose ul {
+  padding-left: 1.1em;
+  list-style-type: "– ";
+}
+
 @media (min-width: 48rem) {
-  .timeline__rail {
+  .experience__list {
     gap: var(--space-8);
   }
 
-  .timeline-entry {
+  .experience-entry {
     display: grid;
     grid-template-columns: 5rem minmax(0, 1fr);
-    column-gap: var(--space-4);
+    column-gap: var(--space-3);
   }
 
-  .timeline-entry__year {
+  .experience-entry__year {
     margin: 0;
     padding-top: var(--space-1);
   }
