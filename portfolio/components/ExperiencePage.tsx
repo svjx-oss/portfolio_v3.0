@@ -3,27 +3,27 @@ import type { Experience } from "@/lib/types.ts";
 
 export default function ExperiencePage({ entries }: Experience) {
   return (
-    <article class="timeline">
-      <h1 class="timeline__title">Experience</h1>
-      <ol class="timeline__rail">
+    <article class="experience">
+      <h1 class="experience__title">Experience</h1>
+      <ol class="experience__list">
         {entries.map((entry) => (
           <li
-            class="timeline-entry"
-            style={{ "--node-color": entry.color }}
+            class="experience-entry"
+            style={{ "--experience-accent": entry.color }}
           >
-            <p class="timeline-entry__year">{entry.year}</p>
-            <section class="timeline-entry__content">
-              <h2 class="timeline-entry__company">
+            <p class="experience-entry__year">{entry.year}</p>
+            <section class="experience-entry__content">
+              <h2 class="experience-entry__company">
                 {entry.company}
                 {entry.current && (
-                  <span class="timeline-entry__current">Present</span>
+                  <span class="experience-entry__current">Present</span>
                 )}
               </h2>
-              <p class="timeline-entry__role">
+              <p class="experience-entry__role">
                 {entry.role} · {entry.location}
               </p>
-              <p class="timeline-entry__dates">{entry.dates}</p>
-              <p class="timeline-entry__summary">{entry.summary}</p>
+              <p class="experience-entry__dates">{entry.dates}</p>
+              <p class="experience-entry__summary">{entry.summary}</p>
               <Markdown html={entry.html} />
             </section>
           </li>
