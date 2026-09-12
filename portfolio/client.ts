@@ -6,3 +6,4 @@ import "./assets/components.css";
 import "./assets/about.css";
 import "./assets/landing.css";
 import "./assets/experience.css";
+import "./assets/things.css";
