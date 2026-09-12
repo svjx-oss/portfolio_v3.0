@@ -4,6 +4,7 @@ import type {
   Experience,
   LandingContent,
   Site,
+  Things,
 } from "@/lib/types.ts";
 
 export async function loadSite(): Promise<Site> {
@@ -39,4 +40,12 @@ export async function loadExperience(): Promise<Experience> {
     ),
   })));
   return { entries };
+}
+
+export async function loadThingsIndex(): Promise<Things> {
+  const raw = await Deno.readTextFile("content/things/things.json");
+  const things = JSON.parse(raw) as Things;
+  return {
+    entries: things.entries.filter((entry) => entry.status === "published"),
+  };
 }

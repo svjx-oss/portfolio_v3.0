@@ -56,3 +56,26 @@ export interface ExperienceEntry {
 export interface Experience {
   entries: ExperienceEntry[];
 }
+
+export type ThingsEntryType =
+  | "built"
+  | "written"
+  | "photographed"
+  | "thought"
+  | "external";
+
+export interface ThingsEntry {
+  title: string;
+  date: string;
+  type: ThingsEntryType;
+  excerpt: string;
+  tags: string[];
+  status: "published" | "draft";
+  slug?: string;
+  md?: string;
+  external_url?: string;
+}
+
+export interface Things {
+  entries: ThingsEntry[];
+}
