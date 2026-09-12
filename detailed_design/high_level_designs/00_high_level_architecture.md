@@ -1,8 +1,8 @@
 # 00 — High-Level Architecture
 
-> A personal portfolio + Writing publication on Deno + Fresh. Minimal, fast, maintainable.
+> A personal portfolio + Things publication on Deno + Fresh. Minimal, fast, maintainable.
 
-**Site purpose:** Present a body of work, experience, writing, and photography through an intentionally designed, easy-to-read portfolio. The visual system should make a visitor infer care for design and execution before they encounter technical depth in projects and experience, and personal curiosity through writing and visual work.
+**Site purpose:** Present experience and Things built, written, photographed, and thought about through an intentionally designed, easy-to-read portfolio. The visual system should make a visitor infer care for design and execution before they encounter technical depth in experience and past work, and personal curiosity through writing and visual work.
 
 **Engagement principle:** Earn attention through progressive disclosure, clear editorial paths, and substantive content. Each page answers one visitor question and ends with one relevant next step; the site does not use novelty animation, live-status widgets, or interruptive prompts to increase time on site.
 
@@ -48,7 +48,7 @@ That's it. No zod, no sanitize-html, no markdown-it-anchor. We generate heading 
 | **increment.com** | Editorial structure, clear hierarchy, magazine-like layout |
 | **joshwcomeau.com** | Article-focused content, rich footer, personality in copy |
 
-**Net:** an editorial portfolio with a human point of view: calm light/dark foundations, stable link accents, generous whitespace, and typography-led hierarchy. The landing uses a minimal hero, a three-row Focus/Based/Exploring strip, two short point-of-view paragraphs, and a compact contact registry sourced from `site.json`. Projects and Writing use divided lists rather than card grids. Writing holds technical essays, personal field notes, and photo essays. The footer uses direct text links. No decorative animation or icon boxes.
+**Net:** an editorial portfolio with a human point of view: calm light/dark foundations, stable link accents, generous whitespace, and typography-led hierarchy. The landing uses a minimal hero, a three-row Focus/Based/Exploring strip, two short point-of-view paragraphs, and a compact contact registry sourced from `site.json`. Things is a unified home for work, writing, photography, and thoughts. The footer uses direct text links. No decorative animation or icon boxes.
 
 ---
 
@@ -106,10 +106,8 @@ portfolio/
 │   ├── experience/
 │   │   ├── experience.json # roles
 │   │   └── *.md            # per-role bullets
-│   ├── projects/
-│   │   └── projects.json   # projects (flat list)
-│   └── blog/
-│       ├── blog.json       # Writing entries (post or external link — flat)
+│   └── things/
+│       ├── things.json     # Things entries (post or external link — flat)
 │       └── posts/<slug>/
 │           ├── <slug>.md
 │           └── *.png       # co-located images
@@ -123,7 +121,7 @@ portfolio/
 ├── components/            # server-only Preact (no JS shipped)
 │   ├── Layout.tsx  Header.tsx  Footer.tsx  Seo.tsx
 │   ├── SectionTitle.tsx  Markdown.tsx
-│   ├── ProjectList.tsx  ExperiencePage.tsx  BlogList.tsx
+│   ├── ExperiencePage.tsx  ThingsIndex.tsx  ThingsPost.tsx
 │   └── Tag.tsx
 │
 ├── islands/               # client-hydrated (minimal)
@@ -131,22 +129,22 @@ portfolio/
 │
 ├── assets/                # plain CSS
 │   ├── theme.css  global.css  layout.css  components.css
-│   └── landing.css  about.css  experience.css  projects.css  blog.css
+│   └── landing.css  about.css  experience.css  things.css
 │
 └── routes/
     ├── _app.tsx  _middleware.ts  _error.tsx
-    ├── index.tsx  about.tsx  experience.tsx  projects.tsx
-    └── blog/
+    ├── index.tsx  about.tsx  experience.tsx
+    └── things/
         ├── index.tsx  [slug].tsx  [slug]/[asset].tsx
         └── feed.xml.ts
 ```
 
 **Intentional architecture choices:**
-- No `authors.json` — Writing is single-author and the index does not repeat author information. Drops a file + schema + cross-file validation check.
+- No `authors.json` — Things is single-author and the index does not repeat author information. Drops a file + schema + cross-file validation check.
 - No `analytics.ts` lib — analytics is just a `<script>` snippet in Seo + a tiny inline event delegator. No separate module.
 - No `paths.ts` — loaders resolve paths directly. One-liner.
-- No `Toc.tsx` component — TOC is rendered inline in the Writing post component from `headings`.
-- No `BlogCard.tsx`, `AuthorBadge.tsx`, `ProjectCard.tsx` — the Writing index is a text-led simple list (no cards or repeated avatars); projects are a simple list. Fewer components, fewer files.
+- No `Toc.tsx` component — TOC is rendered inline in the Things post component from `headings`.
+- No `ThingsCard.tsx` or `AuthorBadge.tsx` — the Things index is a text-led simple list with no cards or repeated avatars. Fewer components, fewer files.
 
 ---
 
@@ -157,11 +155,10 @@ portfolio/
 | `/` | `routes/index.tsx` | `content/landing.md` |
 | `/about` | `routes/about.tsx` | `content/about.md` |
 | `/experience` | `routes/experience.tsx` | `content/experience/experience.json` + `*.md` |
-| `/projects` | `routes/projects.tsx` | `content/projects/projects.json` |
-| `/blog` | `routes/blog/index.tsx` | Writing index: `content/blog/blog.json` |
-| `/blog/{slug}` | `routes/blog/[slug].tsx` | `content/blog/posts/<slug>/<slug>.md` |
-| `/blog/{slug}/{asset}` | `routes/blog/[slug]/[asset].tsx` | co-located image |
-| `/blog/feed.xml` | `routes/blog/feed.xml.ts` | RSS |
+| `/things` | `routes/things/index.tsx` | Things index: `content/things/things.json` |
+| `/things/{slug}` | `routes/things/[slug].tsx` | `content/things/posts/<slug>/<slug>.md` |
+| `/things/{slug}/{asset}` | `routes/things/[slug]/[asset].tsx` | co-located image |
+| `/things/feed.xml` | `routes/things/feed.xml.ts` | RSS |
 | 404 + 500 | `routes/_error.tsx` | unified error page |
 
 ---

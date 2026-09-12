@@ -65,30 +65,25 @@ Use jj only. Before creating or describing a change, load `.agents/skills/commit
 
 All recipes are content-only. Run `deno task check` after, then `jj git push`.
 
-## Add a Writing post
-1. Create `content/blog/posts/<slug>/<slug>.md` (pure markdown, `## H2` for sections).
-2. Add one entry to `content/blog/blog.json` with `slug`, `date`, `title`, `excerpt`, `tags`, `status: "published"`, `md`.
+## Add a Thing
+1. Create `content/things/posts/<slug>/<slug>.md` (pure markdown, `## H2` for sections).
+2. Add one entry to `content/things/things.json` with `slug`, `date`, `type`, `title`, `excerpt`, `tags`, `status: "published"`, `md`.
 3. `deno task check` → `jj git push`.
 
 Follow `13_content_authoring_guide.md` for post structure, excerpts, code/media treatment, and the publishing checklist.
 
-## Test Writing fixtures
+## Test Things fixtures
 
-Set `site.json → show_writing_fixtures` to `true` only in local development or a non-production preview. The centralized `isProduction()` helper treats `DENO_DEPLOYMENT_ID` or `APP_ENV=production` as production. Fixtures render Lorem Ipsum, headings, code blocks, captions, and sample images for visual review. Production validation requires the flag to be `false`; fixtures are never exposed in production.
+Set `site.json → show_things_fixtures` to `true` only in local development or a non-production preview. The centralized `isProduction()` helper treats `DENO_DEPLOYMENT_ID` or `APP_ENV=production` as production. Fixtures render Lorem Ipsum, headings, code blocks, captions, and sample images for visual review. Production validation requires the flag to be `false`; fixtures are never exposed in production.
 
-## Add an external blog link
-Add one entry to `blog.json` with `external_url` (no `slug`/`md`/`status`).
-
-## Add a project
-Add one object to `projects.json` (`title`, `description`, `tags`, `link`).
-
-Use `13_content_authoring_guide.md` §4 to write the row. For deeper work, begin with a case-study post; add an internal project-detail route only after the case-study format is needed for multiple projects.
+## Add an external Thing
+Add one entry to `things.json` with `type: "external"` and `external_url` (no `slug`/`md`/`status`).
 
 ## Update landing orientation
 Edit `content/landing.md`:
 - `tagline` and optional `tagline_emphasis` for the hero statement.
 - Three metadata rows: `Focus`, `Based`, and `Exploring`.
-- Two point-of-view paragraphs and the `Projects · Writing · Resume` link row.
+- Two point-of-view paragraphs and the `Things · Resume` link row.
 
 ## Add an experience role
 Add one entry to `experience.json` + one `<name>.md` in `content/experience/`.
@@ -127,5 +122,5 @@ Drop new PDF in `static/`, update `site.json → resume`.
 
 ## Debugging
 - **Build fails** → `validate.ts` prints the file + reason.
-- **Writing 404** → entry missing, slug mismatch, or `status: "draft"`.
+- **Things 404** → entry missing, slug mismatch, or `status: "draft"`.
 - **Local won't start** → `deno task dev`; Deno ≥ 2.x; port 5173 free.
