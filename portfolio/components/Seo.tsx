@@ -1,7 +1,5 @@
 import type { Site } from "@/lib/types.ts";
-
-const themeScript =
-  `(function(){try{var p=localStorage.getItem("themePreference");document.documentElement.dataset.theme=p==="light"||p==="dark"?p:"dark"}catch(e){document.documentElement.dataset.theme="dark"}})();`;
+import { themeInitScript } from "@/lib/theme.ts";
 
 export default function Seo(
   { site, pathname, hostname }: {
@@ -49,7 +47,7 @@ export default function Seo(
       />
       <link rel="icon" href="/favicon.ico" />
       {/* Set the stored preference or dark default before the first paint. */}
-      <script>{themeScript}</script>
+      <script>{themeInitScript}</script>
     </>
   );
 }
