@@ -13,11 +13,19 @@ export default define.page(function App(ctx) {
           rel="stylesheet"
           href="https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&display=swap"
         />
-        <Seo site={site} pathname={ctx.url.pathname} />
+        <Seo
+          site={site}
+          pathname={ctx.url.pathname}
+          hostname={ctx.url.hostname}
+        />
       </head>
       <body>
         <a class="skip-link" href="#main-content">Skip to content</a>
-        <Layout site={site} pathname={ctx.url.pathname}>
+        <Layout
+          site={site}
+          pathname={ctx.url.pathname}
+          hostname={ctx.url.hostname}
+        >
           <ctx.Component />
         </Layout>
       </body>
