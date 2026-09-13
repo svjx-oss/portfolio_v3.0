@@ -34,7 +34,9 @@ export default function ThingsPostPage(
         <ol>
           {headings.map((heading) => (
             <li class={`things-post__toc-item--h${heading.level}`}>
-              <a href={`#${heading.id}`}>{heading.text}</a>
+              <a href={`#${heading.id}`} data-event="toc_click">
+                {heading.text}
+              </a>
             </li>
           ))}
         </ol>

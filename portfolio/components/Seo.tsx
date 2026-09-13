@@ -4,11 +4,16 @@ const themeScript =
   `(function(){try{var p=localStorage.getItem("themePreference");document.documentElement.dataset.theme=p==="light"||p==="dark"?p:"dark"}catch(e){document.documentElement.dataset.theme="dark"}})();`;
 
 export default function Seo(
-  { site, pathname }: { site: Site; pathname: string },
+  { site, pathname, hostname }: {
+    site: Site;
+    pathname: string;
+    hostname: string;
+  },
 ) {
   const title = pathname === "/" ? site.title : `${site.title} | Portfolio`;
   const url = `${site.url}${pathname}`;
   const image = `${site.url}/sample.jpeg`;
+  const analyticsEnabled = Boolean(site.ga4_id) && hostname !== "localhost";
 
   return (
     <>
@@ -21,6 +26,17 @@ export default function Seo(
       <meta property="og:type" content="website" />
       <meta property="og:site_name" content={site.title} />
       <meta property="og:image" content={image} />
+      {analyticsEnabled && (
+        <>
+          <script
+            async
+            src={`https://www.googletagmanager.com/gtag/js?id=${site.ga4_id}`}
+          />
+          <script>
+            {`window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments)}gtag("js",new Date());gtag("config","${site.ga4_id}");`}
+          </script>
+        </>
+      )}
       <meta
         name="theme-color"
         content="#0C111A"

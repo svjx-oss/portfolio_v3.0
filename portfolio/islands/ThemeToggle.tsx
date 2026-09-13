@@ -1,5 +1,9 @@
 import { useEffect, useState } from "preact/hooks";
 
+const analytics = globalThis as typeof globalThis & {
+  gtag?: (...args: unknown[]) => void;
+};
+
 type Theme = "light" | "dark";
 
 function getTheme(): Theme {
@@ -43,6 +47,7 @@ export default function ThemeToggle() {
         const next = theme === "light" ? "dark" : "light";
         setCurrentTheme(next);
         setTheme(next);
+        analytics.gtag?.("event", "theme_change", { theme: next });
       }}
     >
       {theme === "dark" ? "Prefer light mode?" : "Prefer dark mode?"}
