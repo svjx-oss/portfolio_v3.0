@@ -1,6 +1,8 @@
 // deno-lint-ignore-file react-no-danger
 
-export default function Markdown({ html }: { html: string }) {
+export default function Markdown(
+  { html, className = "prose" }: { html: string; className?: string },
+) {
   // Markdown-it runs with raw HTML disabled before this SSR-only insertion.
-  return <div class="prose" dangerouslySetInnerHTML={{ __html: html }} />;
+  return <div class={className} dangerouslySetInnerHTML={{ __html: html }} />;
 }

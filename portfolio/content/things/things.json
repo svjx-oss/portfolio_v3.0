@@ -1,3 +1,24 @@
 {
-  "entries": []
+  "entries": [
+    {
+      "title": "A Tiny Compiler",
+      "date": "2026-08-01",
+      "type": "built",
+      "excerpt": "A compact compiler built to understand parsing, transformation, and code generation.",
+      "tags": ["Rust", "Compilers"],
+      "status": "published",
+      "slug": "a-tiny-compiler",
+      "md": "posts/a-tiny-compiler/a-tiny-compiler.md"
+    },
+    {
+      "title": "Why I Like Boring Software",
+      "date": "2026-07-15",
+      "type": "written",
+      "excerpt": "A reflection on why predictable systems often outlast clever abstractions.",
+      "tags": ["Software"],
+      "status": "published",
+      "slug": "why-i-like-boring-software",
+      "md": "posts/why-i-like-boring-software/why-i-like-boring-software.md"
+    }
+  ]
 }
