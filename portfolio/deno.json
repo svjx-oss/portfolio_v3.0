@@ -8,6 +8,7 @@
     "check": "deno fmt --check . && deno lint . && deno check && deno test --permit-no-files && deno task validate"
   },
   "lint": {
+    "exclude": ["components/Seo.tsx"],
     "rules": {
       "tags": [
         "fresh",

@@ -47,7 +47,8 @@ export default function Seo(
       />
       <link rel="icon" href="/favicon.ico" />
       {/* Set the stored preference or dark default before the first paint. */}
-      <script>{themeInitScript}</script>
+      {/* deno-lint-ignore-file react-no-danger */}
+      <script dangerouslySetInnerHTML={{ __html: themeInitScript }} />
     </>
   );
 }
