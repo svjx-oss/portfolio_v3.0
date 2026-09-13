@@ -79,3 +79,14 @@ export interface ThingsEntry {
 export interface Things {
   entries: ThingsEntry[];
 }
+
+export interface Heading {
+  id: string;
+  level: 1 | 2;
+  text: string;
+}
+
+export interface ThingsPost extends ThingsEntry {
+  html: string;
+  headings: Heading[];
+}

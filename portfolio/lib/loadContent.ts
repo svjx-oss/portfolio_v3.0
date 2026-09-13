@@ -1,10 +1,11 @@
-import { renderMarkdown } from "@/lib/markdown.ts";
+import { renderMarkdown, renderPostMarkdown } from "@/lib/markdown.ts";
 import type {
   AboutContent,
   Experience,
   LandingContent,
   Site,
   Things,
+  ThingsPost,
 } from "@/lib/types.ts";
 
 export async function loadSite(): Promise<Site> {
@@ -47,5 +48,21 @@ export async function loadThingsIndex(): Promise<Things> {
   const things = JSON.parse(raw) as Things;
   return {
     entries: things.entries.filter((entry) => entry.status === "published"),
+  };
+}
+
+export async function loadThingsPost(slug: string): Promise<ThingsPost | null> {
+  const raw = await Deno.readTextFile("content/things/things.json");
+  const things = JSON.parse(raw) as Things;
+  const entry = things.entries.find((item) =>
+    item.slug === slug && item.status === "published" && item.md
+  );
+
+  if (!entry?.md) return null;
+  return {
+    ...entry,
+    ...renderPostMarkdown(
+      await Deno.readTextFile(`content/things/${entry.md}`),
+    ),
   };
 }
