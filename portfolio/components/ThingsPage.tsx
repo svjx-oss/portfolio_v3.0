@@ -8,6 +8,14 @@ const typeLabels = {
   external: "External",
 };
 
+const typeAccents = {
+  project: "violet",
+  writing: "blue",
+  photography: "gold",
+  notes: "green",
+  external: "teal",
+};
+
 function formatDate(date: string) {
   return new Intl.DateTimeFormat("en", {
     day: "numeric",
@@ -32,7 +40,7 @@ export default function ThingsPage({ entries }: Things) {
         : (
           <ol class="things__list">
             {entries.map((entry) => (
-              <li class="things-entry">
+              <li class={`things-entry accent--${typeAccents[entry.type]}`}>
                 <a
                   class="things-entry__link"
                   href={entry.external_url ?? `/things/${entry.slug}`}
@@ -46,7 +54,12 @@ export default function ThingsPage({ entries }: Things) {
                     </span>
                   </span>
                   <span class="things-entry__metadata">
-                    {[typeLabels[entry.type], ...entry.tags].join(" · ")}
+                    <span class="things-entry__type">
+                      {typeLabels[entry.type]}
+                    </span>
+                    {entry.tags.map((tag) => (
+                      <span class="things-entry__tag">{tag}</span>
+                    ))}
                   </span>
                   <span class="things-entry__date">
                     {formatDate(entry.date)}
