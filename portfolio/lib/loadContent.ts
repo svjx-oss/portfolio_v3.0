@@ -12,6 +12,19 @@ export async function loadSite(): Promise<Site> {
   return JSON.parse(await Deno.readTextFile("content/site.json"));
 }
 
+async function loadThings(): Promise<Things> {
+  return JSON.parse(
+    await Deno.readTextFile("content/things/things.json"),
+  ) as Things;
+}
+
+export async function loadPublishedThingsPosts() {
+  const things = await loadThings();
+  return things.entries.filter((entry) =>
+    entry.status === "published" && entry.md && entry.slug
+  );
+}
+
 export async function loadLanding(): Promise<LandingContent> {
   const [landing, body] = await Promise.all([
     Deno.readTextFile("content/landing/landing.json"),
@@ -44,16 +57,14 @@ export async function loadExperience(): Promise<Experience> {
 }
 
 export async function loadThingsIndex(): Promise<Things> {
-  const raw = await Deno.readTextFile("content/things/things.json");
-  const things = JSON.parse(raw) as Things;
+  const things = await loadThings();
   return {
     entries: things.entries.filter((entry) => entry.status === "published"),
   };
 }
 
 export async function loadThingsPost(slug: string): Promise<ThingsPost | null> {
-  const raw = await Deno.readTextFile("content/things/things.json");
-  const things = JSON.parse(raw) as Things;
+  const things = await loadThings();
   const entry = things.entries.find((item) =>
     item.slug === slug && item.status === "published" && item.md
   );
