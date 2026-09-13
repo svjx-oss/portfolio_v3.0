@@ -1,4 +1,4 @@
-import { escapeXml } from "@/lib/xml.ts";
+import { escapeXml } from "@/lib/shared/xml.ts";
 
 Deno.test("escapeXml escapes XML special characters", () => {
   const actual = escapeXml(`A & B < C > D "quote" 'apostrophe'`);

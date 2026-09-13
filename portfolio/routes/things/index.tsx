@@ -1,6 +1,6 @@
 import ThingsPage from "@/components/ThingsPage.tsx";
-import { loadThingsIndex } from "@/lib/loadContent.ts";
-import type { ThingsFilter } from "@/lib/types.ts";
+import { loadThingsIndex } from "@/lib/content/loadContent.ts";
+import type { ThingsFilter } from "@/lib/shared/types.ts";
 import { define } from "@/utils.ts";
 
 const filters = new Set<ThingsFilter>([

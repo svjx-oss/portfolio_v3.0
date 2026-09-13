@@ -1,4 +1,4 @@
-import type { Site } from "@/lib/types.ts";
+import type { Site } from "@/lib/shared/types.ts";
 import ThemeToggle from "@/islands/ThemeToggle.tsx";
 
 export default function Footer({ site }: { site: Site }) {

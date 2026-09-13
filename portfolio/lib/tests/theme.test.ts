@@ -1,4 +1,4 @@
-import { resolveTheme, themeInitScript } from "@/lib/theme.ts";
+import { resolveTheme, themeInitScript } from "@/lib/shared/theme.ts";
 
 Deno.test("resolveTheme accepts light and dark preferences", () => {
   if (resolveTheme("light") !== "light") throw new Error("Expected light");

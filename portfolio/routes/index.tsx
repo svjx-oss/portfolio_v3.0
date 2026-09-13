@@ -1,5 +1,5 @@
 import Landing from "@/components/Landing.tsx";
-import { loadLanding } from "@/lib/loadContent.ts";
+import { loadLanding } from "@/lib/content/loadContent.ts";
 import { define } from "@/utils.ts";
 
 export const handler = define.handlers({

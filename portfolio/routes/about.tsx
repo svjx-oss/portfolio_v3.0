@@ -1,5 +1,5 @@
 import AboutPage from "@/components/AboutPage.tsx";
-import { loadAbout } from "@/lib/loadContent.ts";
+import { loadAbout } from "@/lib/content/loadContent.ts";
 import { define } from "@/utils.ts";
 
 export const handler = define.handlers({

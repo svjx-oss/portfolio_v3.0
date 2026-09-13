@@ -1,5 +1,5 @@
 import Markdown from "@/components/Markdown.tsx";
-import type { Experience } from "@/lib/types.ts";
+import type { Experience } from "@/lib/shared/types.ts";
 
 export default function ExperiencePage({ entries }: Experience) {
   return (

@@ -1,4 +1,4 @@
-import type { LandingContent as LandingData } from "@/lib/types.ts";
+import type { LandingContent as LandingData } from "@/lib/shared/types.ts";
 import Markdown from "@/components/Markdown.tsx";
 
 function renderTagline(tagline: string, emphasis?: string) {

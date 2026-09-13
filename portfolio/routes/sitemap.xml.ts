@@ -1,5 +1,8 @@
-import { loadPublishedThingsPosts, loadSite } from "@/lib/loadContent.ts";
-import { escapeXml } from "@/lib/xml.ts";
+import {
+  loadPublishedThingsPosts,
+  loadSite,
+} from "@/lib/content/loadContent.ts";
+import { escapeXml } from "@/lib/shared/xml.ts";
 
 export const handler = {
   async GET() {

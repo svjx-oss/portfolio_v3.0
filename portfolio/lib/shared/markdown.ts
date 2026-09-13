@@ -1,5 +1,5 @@
 import MarkdownIt from "markdown-it";
-import type { Heading, ThingsImage } from "@/lib/types.ts";
+import type { Heading, ThingsImage } from "@/lib/shared/types.ts";
 
 const markdown = new MarkdownIt({ html: false });
 

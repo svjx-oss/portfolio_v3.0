@@ -1,5 +1,5 @@
 import Markdown from "@/components/Markdown.tsx";
-import type { AboutContent } from "@/lib/types.ts";
+import type { AboutContent } from "@/lib/shared/types.ts";
 
 export default function AboutPage(
   { portrait, portrait_alt, html }: AboutContent,
