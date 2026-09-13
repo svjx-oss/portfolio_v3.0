@@ -1,4 +1,4 @@
-import type { Things } from "@/lib/types.ts";
+import type { Things, ThingsFilter } from "@/lib/types.ts";
 
 const typeLabels = {
   project: "Project",
@@ -24,13 +24,38 @@ function formatDate(date: string) {
   }).format(new Date(`${date}T00:00:00`));
 }
 
-export default function ThingsPage({ entries }: Things) {
+const filters: Array<{ label: string; value: ThingsFilter }> = [
+  { label: "All Things", value: "all" },
+  { label: "Writing", value: "writing" },
+  { label: "Projects", value: "projects" },
+  { label: "Photography", value: "photography" },
+  { label: "Notes", value: "notes" },
+];
+
+export default function ThingsPage({ entries, filter }: {
+  entries: Things["entries"];
+  filter: ThingsFilter;
+}) {
   return (
     <article class="things">
       <h1 class="things__title">Things</h1>
       <p class="things__tagline">
         Things I've built, written, photographed, and thought about.
       </p>
+      <nav class="things-filter" aria-label="Filter Things">
+        {filters.map((item, index) => (
+          <>
+            {index > 0 && <span aria-hidden="true">/</span>}
+            <a
+              class={`things-filter__option things-filter__option--${item.value}`}
+              href={`/things?type=${item.value}`}
+              aria-current={item.value === filter ? "page" : undefined}
+            >
+              {item.label}
+            </a>
+          </>
+        ))}
+      </nav>
       {entries.length === 0
         ? (
           <p class="things__empty" role="status">
