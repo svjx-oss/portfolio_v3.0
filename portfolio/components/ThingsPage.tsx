@@ -1,5 +1,13 @@
 import type { Things } from "@/lib/types.ts";
 
+const typeLabels = {
+  built: "Making",
+  written: "Writing",
+  photographed: "Photography",
+  thought: "Note",
+  external: "Elsewhere",
+};
+
 export default function ThingsPage({ entries }: Things) {
   return (
     <article class="things">
@@ -14,21 +22,30 @@ export default function ThingsPage({ entries }: Things) {
           </p>
         )
         : (
-          <ol>
+          <ol class="things__list">
             {entries.map((entry) => (
-              <li>
-                {entry.external_url
-                  ? (
-                    <a
-                      href={entry.external_url}
-                      target="_blank"
-                      rel="noopener noreferrer"
-                    >
-                      {entry.title}
-                    </a>
-                  )
-                  : <span>{entry.title}</span>}
-                <p>{entry.excerpt}</p>
+              <li class="things-entry">
+                <a
+                  class="things-entry__link"
+                  href={entry.external_url ?? `/things/${entry.slug}`}
+                  target={entry.external_url ? "_blank" : undefined}
+                  rel={entry.external_url ? "noopener noreferrer" : undefined}
+                >
+                  <span class="things-entry__title-row">
+                    <span class="things-entry__title">{entry.title}</span>
+                    <span class="things-entry__cue" aria-hidden="true">
+                      {entry.external_url ? "↗" : "→"}
+                    </span>
+                  </span>
+                  <span class="things-entry__metadata">
+                    {[
+                      typeLabels[entry.type],
+                      ...entry.tags,
+                      entry.date.slice(0, 4),
+                    ].join(" · ")}
+                  </span>
+                  <span class="things-entry__excerpt">{entry.excerpt}</span>
+                </a>
               </li>
             ))}
           </ol>
