@@ -3,7 +3,7 @@
     {
       "title": "A Tiny Compiler",
       "date": "2026-08-01",
-      "type": "built",
+      "type": "project",
       "excerpt": "A compact compiler built to understand parsing, transformation, and code generation.",
       "tags": ["Rust", "Compilers"],
       "status": "published",
@@ -13,7 +13,7 @@
     {
       "title": "Why I Like Boring Software",
       "date": "2026-07-15",
-      "type": "written",
+      "type": "writing",
       "excerpt": "A reflection on why predictable systems often outlast clever abstractions.",
       "tags": ["Software"],
       "status": "published",

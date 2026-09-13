@@ -58,10 +58,10 @@ export interface Experience {
 }
 
 export type ThingsEntryType =
-  | "built"
-  | "written"
-  | "photographed"
-  | "thought"
+  | "project"
+  | "writing"
+  | "photography"
+  | "notes"
   | "external";
 
 export interface ThingsEntry {
