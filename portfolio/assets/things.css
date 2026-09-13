@@ -26,10 +26,75 @@
   font-size: var(--text-sm);
 }
 
+.things-filter {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--space-2);
+  margin: var(--space-6) 0 0;
+  padding: 0 0 var(--space-3);
+  color: var(--color-text-muted);
+  font-size: var(--text-xs);
+  border-bottom: 1px solid var(--color-border);
+}
+
+.things-filter__option {
+  color: inherit;
+  background-image: linear-gradient(var(--filter-accent), var(--filter-accent));
+  background-position: 0 100%;
+  background-repeat: no-repeat;
+  background-size: 0 1px;
+  text-decoration: none;
+}
+
+.things-filter__option--all {
+  --filter-accent: var(--color-accent-sienna);
+}
+
+.things-filter__option--writing {
+  --filter-accent: var(--color-accent-blue);
+}
+
+.things-filter__option--projects {
+  --filter-accent: var(--color-accent-violet);
+}
+
+.things-filter__option--photography {
+  --filter-accent: var(--color-accent-gold);
+}
+
+.things-filter__option--notes {
+  --filter-accent: var(--color-accent-green);
+}
+
+.things-filter__option[aria-current="page"] {
+  background-size: 100% 1px;
+}
+
+.things-filter__option:not([aria-current="page"]) {
+  background-size: 0 1px;
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  .things-filter__option {
+    transition: color var(--transition-base), background-size
+      var(--transition-base);
+  }
+}
+
+.things-filter__option:focus-visible {
+  background-size: 100% 1px;
+}
+
+.things-filter__option:hover,
+.things-filter__option:focus-visible {
+  color: var(--filter-accent);
+  background-size: 100% 1px;
+}
+
 .things__list {
   display: grid;
   gap: 0;
-  margin: var(--space-6) 0 0;
+  margin: var(--space-3) 0 0;
   padding: 0;
   list-style: none;
 }

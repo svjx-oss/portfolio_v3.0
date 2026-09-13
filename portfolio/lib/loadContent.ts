@@ -5,6 +5,7 @@ import type {
   LandingContent,
   Site,
   Things,
+  ThingsFilter,
   ThingsPost,
 } from "@/lib/types.ts";
 
@@ -56,10 +57,17 @@ export async function loadExperience(): Promise<Experience> {
   return { entries };
 }
 
-export async function loadThingsIndex(): Promise<Things> {
+export async function loadThingsIndex(
+  filter: ThingsFilter = "all",
+): Promise<Things> {
   const things = await loadThings();
   return {
-    entries: things.entries.filter((entry) => entry.status === "published"),
+    entries: things.entries.filter((entry) =>
+      entry.status === "published" &&
+      (filter === "all" ||
+        (filter === "projects" && entry.type === "project") ||
+        entry.type === filter)
+    ),
   };
 }
 

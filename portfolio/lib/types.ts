@@ -80,6 +80,13 @@ export interface Things {
   entries: ThingsEntry[];
 }
 
+export type ThingsFilter =
+  | "all"
+  | "writing"
+  | "projects"
+  | "photography"
+  | "notes";
+
 export interface Heading {
   id: string;
   level: 1 | 2;
