@@ -7,11 +7,20 @@ export default function Seo(
   { site, pathname }: { site: Site; pathname: string },
 ) {
   const title = pathname === "/" ? site.title : `${site.title} | Portfolio`;
+  const url = `${site.url}${pathname}`;
+  const image = `${site.url}/sample.jpeg`;
 
   return (
     <>
       <title>{title}</title>
       <meta name="description" content={site.description} />
+      <link rel="canonical" href={url} />
+      <meta property="og:title" content={title} />
+      <meta property="og:description" content={site.description} />
+      <meta property="og:url" content={url} />
+      <meta property="og:type" content="website" />
+      <meta property="og:site_name" content={site.title} />
+      <meta property="og:image" content={image} />
       <meta
         name="theme-color"
         content="#0C111A"
