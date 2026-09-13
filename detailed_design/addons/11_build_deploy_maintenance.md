@@ -6,8 +6,8 @@
 
 ## Prerequisites
 
-- Deno ≥ 2.x. Project at `Portfolio_1.0/portfolio/`.
-- Deno Deploy account.
+- Deno ≥ 2.x. Project at `Portfolio_v3.0/portfolio/`.
+- Deno Deploy account and the production organization/app identifiers.
 
 ## `deno.json`
 
@@ -17,7 +17,7 @@
     "dev":      "vite",
     "build":    "vite build && deno task validate",
     "preview":  "deno serve -A _fresh/server.js",
-    "validate": "deno run -A lib/validate.ts",
+    "validate": "deno run -A lib/content/validate.ts",
     "check":    "deno fmt --check . && deno lint . && deno check && deno test && deno task validate"
   },
   "deploy": { "org": "<ORG>", "app": "<APP>", "entrypoint": "main.ts" },
@@ -46,10 +46,10 @@ deno task check     # fmt + lint + types + tests + validate
 
 ## Deploy
 ```bash
-# One-time:
+# One-time, after replacing `<org>` and `<app>` with the production identifiers:
 deno deploy create --org <org> --app <app> --source local --build-timeout 5 --build-memory-limit 1024 --region us
 
-# Then:
+# Then, from `portfolio/`:
 deno task build && deno deploy --prod
 ```
 
@@ -101,7 +101,7 @@ Before publishing material content, use the release checklist in `13_content_aut
 `assets/theme.css` → `--font-body` (one line).
 
 ## Change a color
-- Background/accent: update both theme blocks in `assets/theme.css`, then run contrast tests
+- Background/accent: update both theme blocks in `assets/theme.css`, then review the resulting foreground/background pairs with an accessibility checker
 - Experience company bar: `experience.json` → entry `color`
 - Tag: `assets/components.css` → add a `.tag--<name>` class + one line in `Tag.tsx` map
 
