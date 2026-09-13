@@ -11,7 +11,7 @@ export default function Layout(
   },
 ) {
   return (
-    <div class="site-shell">
+    <div class={`site-shell${pathname === "/" ? " site-shell--home" : ""}`}>
       <Header site={site} pathname={pathname} />
       <main id="main-content" class="site-main">{children}</main>
       <Footer site={site} />
