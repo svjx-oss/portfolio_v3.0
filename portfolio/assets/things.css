@@ -64,12 +64,27 @@
   font-size: var(--text-base);
   font-weight: 500;
   line-height: 1.5;
+  background-image: linear-gradient(var(--accent), var(--accent));
+  background-position: 0 100%;
+  background-repeat: no-repeat;
+  background-size: 0 1px;
 }
 
 .things-entry__cue {
   flex: none;
   color: var(--color-text-muted);
   font-size: var(--text-base);
+}
+
+.things-entry__type {
+  color: var(--accent);
+}
+
+.things-entry__type::after,
+.things-entry__tag + .things-entry__tag::before {
+  margin-inline: var(--space-1);
+  color: var(--color-text-muted);
+  content: "·";
 }
 
 .things-entry__metadata,
@@ -114,6 +129,10 @@
 
 .things-post__back a {
   color: var(--color-text-subtle);
+  background-image: linear-gradient(var(--accent), var(--accent));
+  background-position: 100% 100%;
+  background-repeat: no-repeat;
+  background-size: 0 1px;
   text-decoration: none;
 }
 
@@ -122,11 +141,16 @@
 }
 
 .things-post__toc summary {
+  display: inline-block;
   min-height: 1.5rem;
   color: var(--color-text-muted);
   font-size: var(--text-xs);
   letter-spacing: 0.04em;
   list-style: none;
+  background-image: linear-gradient(var(--accent), var(--accent));
+  background-position: 0 100%;
+  background-repeat: no-repeat;
+  background-size: 0 1px;
 }
 
 .things-post__toc summary::-webkit-details-marker {
@@ -157,6 +181,10 @@
 .things-post__toc a {
   color: var(--color-text-subtle);
   font-size: var(--text-xs);
+  background-image: linear-gradient(var(--accent), var(--accent));
+  background-position: 0 100%;
+  background-repeat: no-repeat;
+  background-size: 0 1px;
   line-height: 1.4;
   text-decoration: none;
 }
@@ -174,6 +202,40 @@
   color: var(--color-text);
   line-height: 1.5;
   scroll-margin-top: var(--space-12);
+}
+
+.things-post__prose a {
+  color: var(--color-text-subtle);
+  text-decoration-color: var(--accent);
+}
+
+@media (hover: hover) and (prefers-reduced-motion: no-preference) {
+  .things-entry__title,
+  .things-entry__cue,
+  .things-post__back a,
+  .things-post__toc summary,
+  .things-post__toc a {
+    transition: color var(--transition-base), background-size
+      var(--transition-base),
+      transform var(--transition-base);
+  }
+
+  .things-entry__link:hover .things-entry__title,
+  .things-entry__link:focus-visible .things-entry__title,
+  .things-post__back a:hover,
+  .things-post__back a:focus-visible,
+  .things-post__toc summary:hover,
+  .things-post__toc summary:focus-visible,
+  .things-post__toc a:hover,
+  .things-post__toc a:focus-visible {
+    background-size: 100% 1px;
+  }
+
+  .things-entry__link:hover .things-entry__cue,
+  .things-entry__link:focus-visible .things-entry__cue {
+    color: var(--accent);
+    transform: translateX(0.2rem);
+  }
 }
 
 .things-post__prose h2 {
