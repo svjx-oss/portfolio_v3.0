@@ -1,5 +1,5 @@
 import MarkdownIt from "markdown-it";
-import type { Heading } from "@/lib/types.ts";
+import type { Heading, ThingsImage } from "@/lib/types.ts";
 
 const markdown = new MarkdownIt({ html: false });
 
@@ -14,7 +14,11 @@ function slugify(value: string) {
   );
 }
 
-export function renderPostMarkdown(raw: string) {
+export function renderPostMarkdown(
+  raw: string,
+  slug: string,
+  images: Record<string, ThingsImage> = {},
+) {
   const headings: Heading[] = [];
   const usedIds = new Map<string, number>();
   const tokens = markdown.parse(raw, {});
@@ -32,6 +36,25 @@ export function renderPostMarkdown(raw: string) {
     const id = count === 0 ? baseId : `${baseId}-${count + 1}`;
     token.attrSet("id", id);
     headings.push({ id, level, text });
+  }
+
+  for (const token of tokens) {
+    if (token.type !== "inline" || !token.children) continue;
+    for (const child of token.children) {
+      if (child.type !== "image") continue;
+      const src = child.attrGet("src");
+      if (
+        typeof src !== "string" || src.startsWith("/") || /^https?:/.test(src)
+      ) {
+        continue;
+      }
+      const image = images[src];
+      child.attrSet("src", `/things/${slug}/${src}`);
+      if (image) {
+        child.attrSet("width", String(image.width));
+        child.attrSet("height", String(image.height));
+      }
+    }
   }
 
   return {

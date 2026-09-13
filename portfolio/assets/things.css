@@ -201,6 +201,11 @@
   text-decoration: none;
 }
 
+.things-post__back a:hover,
+.things-post__back a:focus-visible {
+  color: var(--accent);
+}
+
 .things-post__toc {
   margin: var(--space-3) 0;
 }
@@ -272,6 +277,31 @@
 .things-post__prose a {
   color: var(--color-text-subtle);
   text-decoration-color: var(--accent);
+}
+
+.things-post__prose img {
+  display: block;
+  width: 100%;
+  height: auto;
+  margin: 0 0 var(--space-2);
+}
+
+.things-post__prose p:has(img) {
+  margin-bottom: var(--space-8);
+}
+
+.things-post__prose img[title] {
+  margin-bottom: var(--space-2);
+}
+
+.things-post__prose img[title]::after {
+  content: attr(title);
+}
+
+.things-post__prose img + em {
+  color: var(--color-text-muted);
+  font-size: var(--text-xs);
+  line-height: 1.5;
 }
 
 @media (hover: hover) and (prefers-reduced-motion: no-preference) {

@@ -11,6 +11,16 @@
       "md": "posts/a-tiny-compiler/a-tiny-compiler.md"
     },
     {
+      "title": "A Placeholder Walk",
+      "date": "2026-06-15",
+      "type": "photography",
+      "excerpt": "A placeholder photo essay for establishing the photography reading flow.",
+      "tags": ["Photography", "Placeholder"],
+      "status": "published",
+      "slug": "a-placeholder-walk",
+      "md": "posts/a-placeholder-walk/a-placeholder-walk.md"
+    },
+    {
       "title": "Why I Like Boring Software",
       "date": "2026-07-15",
       "type": "writing",

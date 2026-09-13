@@ -6,6 +6,7 @@ import type {
   Site,
   Things,
   ThingsFilter,
+  ThingsImage,
   ThingsPost,
 } from "@/lib/types.ts";
 
@@ -77,11 +78,20 @@ export async function loadThingsPost(slug: string): Promise<ThingsPost | null> {
     item.slug === slug && item.status === "published" && item.md
   );
 
-  if (!entry?.md) return null;
+  if (!entry?.md || !entry.slug) return null;
+  const postDir = `content/things/posts/${entry.slug}`;
+  const images = await Deno.readTextFile(`${postDir}/images.json`)
+    .then((raw) => JSON.parse(raw) as Record<string, ThingsImage>)
+    .catch((error) => {
+      if (error instanceof Deno.errors.NotFound) return {};
+      throw error;
+    });
   return {
     ...entry,
     ...renderPostMarkdown(
-      await Deno.readTextFile(`content/things/${entry.md}`),
+      await Deno.readTextFile(`${postDir}/${entry.slug}.md`),
+      entry.slug,
+      images,
     ),
   };
 }
