@@ -25,7 +25,7 @@ function formatDate(date: string) {
 }
 
 const filters: Array<{ label: string; value: ThingsFilter }> = [
-  { label: "All Things", value: "all" },
+  { label: "All", value: "all" },
   { label: "Writing", value: "writing" },
   { label: "Projects", value: "projects" },
   { label: "Photography", value: "photography" },
