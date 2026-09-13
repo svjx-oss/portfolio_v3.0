@@ -1,11 +1,11 @@
 import type { Things } from "@/lib/types.ts";
 
 const typeLabels = {
-  built: "Making",
-  written: "Writing",
-  photographed: "Photography",
-  thought: "Note",
-  external: "Elsewhere",
+  project: "Project",
+  writing: "Writing",
+  photography: "Photography",
+  notes: "Notes",
+  external: "External",
 };
 
 function formatDate(date: string) {
