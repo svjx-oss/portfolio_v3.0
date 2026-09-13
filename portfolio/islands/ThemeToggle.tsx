@@ -1,41 +1,25 @@
 import { useEffect, useState } from "preact/hooks";
+import {
+  applyTheme,
+  readStoredTheme,
+  resolveTheme,
+  type Theme,
+} from "@/lib/theme.ts";
 
 const analytics = globalThis as typeof globalThis & {
   gtag?: (...args: unknown[]) => void;
 };
 
-type Theme = "light" | "dark";
-
-function getTheme(): Theme {
-  try {
-    const value = localStorage.getItem("themePreference");
-    if (value === "light" || value === "dark") return value;
-  } catch {
-    // Use the dark default when storage is unavailable.
-  }
-  return "dark";
-}
-
-function setTheme(theme: Theme) {
-  document.documentElement.dataset.theme = theme;
-  document.documentElement.dataset.themePreference = "explicit";
-  try {
-    localStorage.setItem("themePreference", theme);
-  } catch {
-    // Theme preference remains active for this page even when storage is unavailable.
-  }
-}
-
 export default function ThemeToggle() {
   const [theme, setCurrentTheme] = useState<Theme>(() => {
-    if (typeof document === "undefined") return "light";
-    return document.documentElement.dataset.theme === "dark" ? "dark" : "light";
+    if (typeof document === "undefined") return "dark";
+    return resolveTheme(document.documentElement.dataset.theme ?? null);
   });
 
   useEffect(() => {
-    const initial = getTheme();
+    const initial = readStoredTheme();
     setCurrentTheme(initial);
-    setTheme(initial);
+    applyTheme(initial);
   }, []);
 
   return (
@@ -46,7 +30,7 @@ export default function ThemeToggle() {
       onClick={() => {
         const next = theme === "light" ? "dark" : "light";
         setCurrentTheme(next);
-        setTheme(next);
+        applyTheme(next);
         analytics.gtag?.("event", "theme_change", { theme: next });
       }}
     >
