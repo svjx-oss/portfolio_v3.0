@@ -1,5 +1,5 @@
-import type { Site } from "@/lib/types.ts";
-import { themeInitScript } from "@/lib/theme.ts";
+import type { Site } from "@/lib/shared/types.ts";
+import { themeInitScript } from "@/lib/shared/theme.ts";
 
 export default function Seo(
   { site, pathname, hostname }: {

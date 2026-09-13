@@ -1,4 +1,4 @@
-import { renderMarkdown, renderPostMarkdown } from "@/lib/markdown.ts";
+import { renderMarkdown, renderPostMarkdown } from "@/lib/shared/markdown.ts";
 import type {
   AboutContent,
   Experience,
@@ -8,7 +8,7 @@ import type {
   ThingsFilter,
   ThingsImage,
   ThingsPost,
-} from "@/lib/types.ts";
+} from "@/lib/shared/types.ts";
 
 export async function loadSite(): Promise<Site> {
   return JSON.parse(await Deno.readTextFile("content/site.json"));

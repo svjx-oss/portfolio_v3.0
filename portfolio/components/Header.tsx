@@ -1,4 +1,4 @@
-import type { Site } from "@/lib/types.ts";
+import type { Site } from "@/lib/shared/types.ts";
 
 export default function Header(
   { site, pathname }: { site: Site; pathname: string },

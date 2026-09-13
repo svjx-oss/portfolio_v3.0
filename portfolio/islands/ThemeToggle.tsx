@@ -4,7 +4,7 @@ import {
   readStoredTheme,
   resolveTheme,
   type Theme,
-} from "@/lib/theme.ts";
+} from "@/lib/shared/theme.ts";
 
 const analytics = globalThis as typeof globalThis & {
   gtag?: (...args: unknown[]) => void;

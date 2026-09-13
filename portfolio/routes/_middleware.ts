@@ -1,4 +1,4 @@
-import { loadSite } from "@/lib/loadContent.ts";
+import { loadSite } from "@/lib/content/loadContent.ts";
 import { define } from "@/utils.ts";
 
 export default define.middleware(async (ctx) => {

@@ -1,5 +1,5 @@
 import Markdown from "@/components/Markdown.tsx";
-import type { ThingsPost } from "@/lib/types.ts";
+import type { ThingsPost } from "@/lib/shared/types.ts";
 
 function formatDate(date: string) {
   return new Intl.DateTimeFormat("en", {

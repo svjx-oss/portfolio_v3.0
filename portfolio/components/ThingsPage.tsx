@@ -1,4 +1,4 @@
-import type { Things, ThingsFilter } from "@/lib/types.ts";
+import type { Things, ThingsFilter } from "@/lib/shared/types.ts";
 
 const typeLabels = {
   project: "Project",

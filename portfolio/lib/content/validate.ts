@@ -3,7 +3,7 @@ import {
   loadExperience,
   loadLanding,
   loadSite,
-} from "@/lib/loadContent.ts";
+} from "@/lib/content/loadContent.ts";
 import type {
   AboutContent,
   Experience,
@@ -11,7 +11,7 @@ import type {
   Site,
   Things,
   ThingsImage,
-} from "@/lib/types.ts";
+} from "@/lib/shared/types.ts";
 
 const accents = new Set([
   "sienna",

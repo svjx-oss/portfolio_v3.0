@@ -4,7 +4,7 @@
     "dev": "vite",
     "build": "vite build && deno task validate",
     "preview": "deno serve -A _fresh/server.js",
-    "validate": "deno run -A lib/validate.ts",
+    "validate": "deno run -A lib/content/validate.ts",
     "check": "deno fmt --check . && deno lint . && deno check && deno test --permit-no-files && deno task validate"
   },
   "lint": {

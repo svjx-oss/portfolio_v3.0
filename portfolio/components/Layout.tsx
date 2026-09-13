@@ -1,5 +1,5 @@
 import type { ComponentChildren } from "preact";
-import type { Site } from "@/lib/types.ts";
+import type { Site } from "@/lib/shared/types.ts";
 import Analytics from "@/islands/Analytics.tsx";
 import Footer from "./Footer.tsx";
 import Header from "./Header.tsx";

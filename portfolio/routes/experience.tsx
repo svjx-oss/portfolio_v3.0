@@ -1,5 +1,5 @@
 import ExperiencePage from "@/components/ExperiencePage.tsx";
-import { loadExperience } from "@/lib/loadContent.ts";
+import { loadExperience } from "@/lib/content/loadContent.ts";
 import { define } from "@/utils.ts";
 
 export const handler = define.handlers({

@@ -1,5 +1,5 @@
 import ThingsPostPage from "@/components/ThingsPostPage.tsx";
-import { loadThingsPost } from "@/lib/loadContent.ts";
+import { loadThingsPost } from "@/lib/content/loadContent.ts";
 import { define } from "@/utils.ts";
 
 export const handler = define.handlers({
