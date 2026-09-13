@@ -4,6 +4,7 @@ import {
   loadLanding,
   loadSite,
 } from "@/lib/loadContent.ts";
+import type { Things } from "@/lib/types.ts";
 
 const accents = new Set([
   "sienna",
@@ -13,6 +14,14 @@ const accents = new Set([
   "violet",
   "teal",
   "gold",
+]);
+
+const thingsTypes = new Set([
+  "project",
+  "writing",
+  "photography",
+  "notes",
+  "external",
 ]);
 
 function assert(condition: unknown, message: string): asserts condition {
@@ -103,4 +112,50 @@ export async function validateContent() {
       "experience.json: entry content must be a Markdown file.",
     );
   }
+
+  const things = JSON.parse(
+    await Deno.readTextFile("content/things/things.json"),
+  ) as Things;
+  const slugs = new Set<string>();
+  for (const entry of things.entries) {
+    assert(entry.title, "things.json: entry title is required.");
+    assert(
+      /^\d{4}-\d{2}-\d{2}$/.test(entry.date),
+      "things.json: entry date must be ISO.",
+    );
+    assert(thingsTypes.has(entry.type), "things.json: entry type is invalid.");
+    assert(entry.excerpt, "things.json: entry excerpt is required.");
+    assert(entry.tags.length > 0, "things.json: entry tags must not be empty.");
+    assert(
+      entry.status === "published" || entry.status === "draft",
+      "things.json: entry status is invalid.",
+    );
+    assert(
+      Boolean(entry.md) !== Boolean(entry.external_url),
+      "things.json: each entry needs exactly one of md or external_url.",
+    );
+    if (entry.external_url) {
+      assert(
+        /^https:\/\//.test(entry.external_url),
+        "things.json: external_url must be HTTPS.",
+      );
+      continue;
+    }
+    assert(entry.slug, "things.json: post slug is required.");
+    assert(
+      /^[a-z0-9]+(?:-[a-z0-9]+)*$/.test(entry.slug),
+      "things.json: post slug is invalid.",
+    );
+    assert(!slugs.has(entry.slug), "things.json: post slugs must be unique.");
+    slugs.add(entry.slug);
+    assert(
+      entry.md?.endsWith(".md"),
+      "things.json: post md must be a Markdown file.",
+    );
+    await Deno.stat(`content/things/${entry.md}`);
+  }
+}
+
+if (import.meta.main) {
+  await validateContent();
 }
