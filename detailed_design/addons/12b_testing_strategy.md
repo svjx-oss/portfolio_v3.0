@@ -8,13 +8,11 @@
 
 | Module | Test file | Key cases |
 |---|---|---|
-| `lib/validate.ts` | `validate.test.ts` | valid fixture passes; each malformed variant rejects (bad hex, missing file, duplicate slug, etc.) |
-| `lib/markdown.ts` | `markdown.test.ts` | plain md → HTML; H1/H2 get stable unique IDs; headings extracted; raw HTML not rendered; relative image rewrite |
-| `lib/loadContent.ts` | `loadContent.test.ts` | all loaders return correct shapes; blog sorts newest-first; drafts excluded; missing/draft slug → null |
-| Theme helpers | `theme.test.ts` | preference resolution (`system/light/dark`), storage failure fallback, OS change behavior |
-| Fixed theme tokens | `contrast.test.ts` | primary, subtle, muted, every accent, focus, and card-border pairing meets its required contrast |
-
-**Fixtures:** `test/fixtures/content/` — a valid minimal content tree shared by validate + loaders tests.
+| `lib/content/validate.ts` | `deno task validate` | content validation runs against the authored content tree |
+| `lib/shared/markdown.ts` | Dev server review | Markdown behavior is verified through rendered routes |
+| `lib/content/loadContent.ts` | Dev server review | Loaders are verified through rendered routes |
+| Theme helpers | `lib/tests/theme.test.ts` | preference resolution and theme initialization behavior |
+| Fixed theme tokens | Manual accessibility review | Review foreground/background pairs with an accessibility checker |
 
 ## What the dev server covers (manual, per commit)
 
@@ -50,21 +48,23 @@
 
 ```
 deno test                         # all tests
-deno test lib/validate.test.ts    # one file
+deno test lib/tests/theme.test.ts # one file
 ```
 
 `deno test` is folded into `deno task check` (the pre-push gate) and CI.
 
 ## File layout
 
-Tests live next to the module (Deno convention):
+Tests live in the dedicated test directory:
 ```
-lib/validate.ts        →  lib/validate.test.ts
-lib/markdown.ts        →  lib/markdown.test.ts
-lib/loadContent.ts     →  lib/loadContent.test.ts
-lib/theme.ts           →  lib/theme.test.ts
-lib/contrast.ts        →  lib/contrast.test.ts
-test/fixtures/content/    ← shared valid fixture tree
+lib/content/validate.ts
+lib/content/loadContent.ts
+lib/shared/markdown.ts
+lib/shared/theme.ts
+lib/shared/types.ts
+lib/shared/xml.ts
+lib/tests/theme.test.ts
+lib/tests/xml.test.ts
 ```
 
 Tests ship with each logic commit (not a separate phase). `deno test` is green from the first logic commit onward.
