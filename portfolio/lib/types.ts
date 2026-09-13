@@ -76,6 +76,11 @@ export interface ThingsEntry {
   external_url?: string;
 }
 
+export interface ThingsImage {
+  width: number;
+  height: number;
+}
+
 export interface Things {
   entries: ThingsEntry[];
 }
