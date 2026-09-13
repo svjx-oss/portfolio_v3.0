@@ -4,7 +4,14 @@ import {
   loadLanding,
   loadSite,
 } from "@/lib/loadContent.ts";
-import type { Things } from "@/lib/types.ts";
+import type {
+  AboutContent,
+  Experience,
+  LandingContent,
+  Site,
+  Things,
+  ThingsImage,
+} from "@/lib/types.ts";
 
 const accents = new Set([
   "sienna",
@@ -33,12 +40,18 @@ function isHref(value: string) {
     /^https:\/\//.test(value);
 }
 
-export async function validateContent() {
-  const site = await loadSite();
-  const landing = await loadLanding();
-  const about = await loadAbout();
-  const experience = await loadExperience();
+async function readImages(postDir: string) {
+  try {
+    return JSON.parse(
+      await Deno.readTextFile(`${postDir}/images.json`),
+    ) as Record<string, ThingsImage>;
+  } catch (error) {
+    if (error instanceof Deno.errors.NotFound) return {};
+    throw error;
+  }
+}
 
+function validateSite(site: Site) {
   assert(site.title, "site.json: title is required.");
   assert(site.description, "site.json: description is required.");
   assert(
@@ -54,6 +67,9 @@ export async function validateContent() {
     );
     assert(accents.has(item.accent), "site.json: nav accent is not supported.");
   }
+}
+
+function validateLanding(landing: LandingContent) {
   assert(landing.name, "landing.json: name is required.");
   assert(landing.tagline, "landing.json: tagline is required.");
   assert(
@@ -90,8 +106,14 @@ export async function validateContent() {
       "landing.json: tagline_emphasis must occur exactly once in tagline.",
     );
   }
+}
+
+function validateAbout(about: AboutContent) {
   assert(about.portrait, "about.json: portrait is required.");
   assert(about.portrait_alt, "about.json: portrait_alt is required.");
+}
+
+function validateExperience(experience: Experience) {
   assert(
     experience.entries.length > 0,
     "experience.json: entries must not be empty.",
@@ -112,7 +134,9 @@ export async function validateContent() {
       "experience.json: entry content must be a Markdown file.",
     );
   }
+}
 
+async function validateThings() {
   const things = JSON.parse(
     await Deno.readTextFile("content/things/things.json"),
   ) as Things;
@@ -152,8 +176,47 @@ export async function validateContent() {
       entry.md?.endsWith(".md"),
       "things.json: post md must be a Markdown file.",
     );
-    await Deno.stat(`content/things/${entry.md}`);
+    const postDir = `content/things/posts/${entry.slug}`;
+    const markdown = await Deno.readTextFile(`content/things/${entry.md}`);
+    const images = await readImages(postDir);
+    for (const [filename, image] of Object.entries(images)) {
+      assert(
+        !filename.includes("/") && !filename.startsWith("."),
+        `images.json: ${filename} must be a local image filename.`,
+      );
+      assert(
+        Number.isInteger(image.width) && image.width > 0,
+        `images.json: ${filename} width must be a positive integer.`,
+      );
+      assert(
+        Number.isInteger(image.height) && image.height > 0,
+        `images.json: ${filename} height must be a positive integer.`,
+      );
+      await Deno.stat(`${postDir}/${filename}`);
+    }
+    for (const match of markdown.matchAll(/!\[[^\]]*\]\(([^\s)]+)/g)) {
+      const src = match[1];
+      if (!src || src.startsWith("/") || /^https?:/.test(src)) continue;
+      assert(
+        images[src],
+        `images.json: ${src} is used by ${entry.md} but has no dimensions.`,
+      );
+    }
   }
+}
+
+export async function validateContent() {
+  const [site, landing, about, experience] = await Promise.all([
+    loadSite(),
+    loadLanding(),
+    loadAbout(),
+    loadExperience(),
+  ]);
+  validateSite(site);
+  validateLanding(landing);
+  validateAbout(about);
+  validateExperience(experience);
+  await validateThings();
 }
 
 if (import.meta.main) {
