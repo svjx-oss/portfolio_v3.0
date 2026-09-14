@@ -15,7 +15,7 @@ export default function AboutPage(
       />
       <Markdown html={html} />
       <p class="page-continuation">
-        <a class="accent-link accent--magenta" href="/experience">
+        <a class="accent-link accent-underline accent--blue" href="/experience">
           View experience →
         </a>
       </p>

@@ -27,10 +27,11 @@
 }
 
 .page-continuation a {
+  display: inline-block;
   color: var(--color-text-subtle);
   background-image: linear-gradient(
-    var(--color-accent-magenta),
-    var(--color-accent-magenta)
+    var(--color-accent-blue),
+    var(--color-accent-blue)
   );
   background-position: 0 100%;
   background-repeat: no-repeat;
@@ -38,16 +39,17 @@
   text-decoration: none;
 }
 
-@media (prefers-reduced-motion: no-preference) {
-  .page-continuation a {
-    transition: background-size var(--transition-base);
-  }
-}
-
 .page-continuation a:hover,
 .page-continuation a:focus-visible {
-  color: var(--color-text-subtle);
+  color: var(--color-accent-blue);
   background-size: 100% 1px;
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  .page-continuation a {
+    transition: color var(--transition-base), background-size
+      var(--transition-base);
+  }
 }
 
 @media (min-width: 48rem) {
