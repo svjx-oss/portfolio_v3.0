@@ -64,6 +64,16 @@ export type ThingsEntryType =
   | "notes"
   | "external";
 
+export type Accent =
+  | "sienna"
+  | "coral"
+  | "blue"
+  | "magenta"
+  | "green"
+  | "violet"
+  | "teal"
+  | "gold";
+
 export interface ThingsEntry {
   title: string;
   date: string;
@@ -99,6 +109,7 @@ export interface Heading {
 }
 
 export interface ThingsPost extends ThingsEntry {
+  accent: Accent;
   html: string;
   headings: Heading[];
 }

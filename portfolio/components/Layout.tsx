@@ -5,18 +5,19 @@ import Footer from "./Footer.tsx";
 import Header from "./Header.tsx";
 
 export default function Layout(
-  { children, hostname, site, pathname }: {
+  { children, hostname, site, pathname, accent }: {
     children: ComponentChildren;
     hostname: string;
     site: Site;
     pathname: string;
+    accent?: string;
   },
 ) {
   const isThingsPost = /^\/things\/[^/]+$/.test(pathname);
 
   return (
     <div class={`site-shell${pathname === "/" ? " site-shell--home" : ""}`}>
-      <Header site={site} pathname={pathname} />
+      <Header site={site} pathname={pathname} accent={accent} />
       <main id="main-content" class="site-main">
         {pathname !== "/" && !isThingsPost && (
           <a

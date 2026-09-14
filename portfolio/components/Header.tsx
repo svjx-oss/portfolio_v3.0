@@ -2,11 +2,10 @@ import Logo from "@/components/Logo.tsx";
 import type { Site } from "@/lib/shared/types.ts";
 
 export default function Header(
-  { site, pathname }: { site: Site; pathname: string },
+  { site, pathname, accent }: { site: Site; pathname: string; accent?: string },
 ) {
-  const isThingsPost = /^\/things\/[^/]+$/.test(pathname);
-  const accentPath = isThingsPost ? "/things" : pathname;
-  const accent = site.nav.find((item) => item.href === accentPath)?.accent ??
+  const pageAccent = accent ??
+    site.nav.find((item) => item.href === pathname)?.accent ??
     "sienna";
 
   return (
@@ -15,7 +14,7 @@ export default function Header(
     >
       {pathname !== "/" && (
         <a
-          class={`site-logo site-logo--${accent}`}
+          class={`site-logo site-logo--${pageAccent}`}
           href="/"
           aria-label={`${site.title} home`}
         >

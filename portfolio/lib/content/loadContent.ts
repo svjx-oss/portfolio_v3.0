@@ -1,14 +1,24 @@
 import { renderMarkdown, renderPostMarkdown } from "@/lib/shared/markdown.ts";
 import type {
   AboutContent,
+  Accent,
   Experience,
   LandingContent,
   Site,
   Things,
+  ThingsEntryType,
   ThingsFilter,
   ThingsImage,
   ThingsPost,
 } from "@/lib/shared/types.ts";
+
+export const thingsAccentByType: Record<ThingsEntryType, Accent> = {
+  project: "magenta",
+  writing: "green",
+  photography: "blue",
+  notes: "gold",
+  external: "teal",
+};
 
 export async function loadSite(): Promise<Site> {
   return JSON.parse(await Deno.readTextFile("content/site.json"));
@@ -88,6 +98,7 @@ export async function loadThingsPost(slug: string): Promise<ThingsPost | null> {
     });
   return {
     ...entry,
+    accent: thingsAccentByType[entry.type],
     ...renderPostMarkdown(
       await Deno.readTextFile(`${postDir}/${entry.slug}.md`),
       entry.slug,

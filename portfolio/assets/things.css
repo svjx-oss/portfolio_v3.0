@@ -1,7 +1,10 @@
-.things,
-.things-post {
+.things {
   max-width: var(--content-max);
   padding-top: var(--space-6);
+}
+
+.things-post {
+  max-width: var(--content-max);
 }
 
 .things__title,
@@ -185,6 +188,17 @@
   color: var(--color-text-muted);
   font-size: var(--text-xs);
   font-variant-numeric: tabular-nums;
+}
+
+.things-post__type {
+  color: var(--accent);
+}
+
+.things-post__type::after,
+.things-post__tag + .things-post__tag::before {
+  margin-inline: var(--space-1);
+  color: var(--color-text-muted);
+  content: "·";
 }
 
 .things-post__back {
