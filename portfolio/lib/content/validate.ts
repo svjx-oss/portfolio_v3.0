@@ -15,6 +15,7 @@ import type {
 
 const accents = new Set([
   "sienna",
+  "coral",
   "blue",
   "magenta",
   "green",

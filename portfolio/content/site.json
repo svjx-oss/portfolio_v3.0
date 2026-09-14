@@ -6,7 +6,7 @@
   "nav": [
     { "label": "Home", "href": "/", "accent": "gold" },
     { "label": "About", "href": "/about", "accent": "blue" },
-    { "label": "Experience", "href": "/experience", "accent": "magenta" },
-    { "label": "Things", "href": "/things", "accent": "violet" }
+    { "label": "Experience", "href": "/experience", "accent": "violet" },
+    { "label": "Things", "href": "/things", "accent": "coral" }
   ]
 }

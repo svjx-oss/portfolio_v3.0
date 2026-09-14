@@ -13,10 +13,10 @@ export default function ThingsPostPage(
   { title, date, html, headings, type }: ThingsPost,
 ) {
   const accentByType = {
-    project: "violet",
-    writing: "blue",
-    photography: "gold",
-    notes: "green",
+    project: "magenta",
+    writing: "green",
+    photography: "blue",
+    notes: "gold",
     external: "teal",
   };
 

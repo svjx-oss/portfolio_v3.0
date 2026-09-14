@@ -11,6 +11,8 @@
   --color-focus: #FFD166;
   --color-accent-sienna: #FF8066;
   --color-accent-sienna-hover: #FFAA98;
+  --color-accent-coral: #FF9A7A;
+  --color-accent-coral-hover: #FFB69E;
   --color-accent-blue: #90C8FF;
   --color-accent-blue-hover: #C0E0FF;
   --color-accent-magenta: #FF8DCF;
@@ -64,10 +66,12 @@
   --color-focus: #8A6500;
   --color-accent-sienna: #C15F32;
   --color-accent-sienna-hover: #914724;
+  --color-accent-coral: #B84A2A;
+  --color-accent-coral-hover: #B84A2A;
   --color-accent-blue: #1769B0;
   --color-accent-blue-hover: #104D83;
-  --color-accent-magenta: #B01868;
-  --color-accent-magenta-hover: #7F104B;
+  --color-accent-magenta: #8C0F50;
+  --color-accent-magenta-hover: #630A39;
   --color-accent-green: #27804F;
   --color-accent-green-hover: #1B5D39;
   --color-accent-violet: #6B55B5;
