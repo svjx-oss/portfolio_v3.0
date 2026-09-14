@@ -44,7 +44,9 @@
     "npm:preact-render-to-string@^6.6.3": "6.7.0_preact@10.29.8",
     "npm:preact@^10.28.2": "10.29.8_preact-render-to-string@6.7.0",
     "npm:preact@^10.29.1": "10.29.8_preact-render-to-string@6.7.0",
-    "npm:rollup@^4.55.1": "4.62.4"
+    "npm:rollup@^4.55.1": "4.62.4",
+    "npm:vite@^7.1.4": "7.3.6",
+    "npm:vite@^7.3.6": "7.3.6"
   },
   "jsr": {
     "@deno/esbuild-plugin@1.2.1": {
@@ -107,7 +109,8 @@
         "npm:@prefresh/vite",
         "npm:@remix-run/node-fetch-server",
         "npm:@types/babel__core",
-        "npm:rollup"
+        "npm:rollup",
+        "npm:vite@^7.1.4"
       ]
     },
     "@std/bytes@1.0.6": {

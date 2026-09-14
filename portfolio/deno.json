@@ -6,7 +6,7 @@
     "preview": "deno serve -A _fresh/server.js",
     "validate": "deno run -A lib/content/validate.ts",
     "update": "deno update && deno task check",
-    "check": "deno fmt --check . && deno lint . && deno check && deno test --permit-no-files && deno task validate"
+    "check": "deno install --frozen=true --lock=deno.lock && deno fmt --check . && deno lint . && deno check && deno test --permit-no-files && deno task validate"
   },
   "lint": {
     "exclude": ["components/Seo.tsx"],
