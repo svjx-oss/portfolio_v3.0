@@ -92,12 +92,12 @@ portfolio/
 ├── vite.config.ts
 │
 ├── static/                # served verbatim
-│   ├── favicon.ico        # SJ monogram with a small sienna dot
+│   ├── favicon.svg        # SJ monogram on a rounded charcoal field
 │   ├── Bitmoji.png        # header logo
 │   ├── portrait.jpg        # about portrait
 │   ├── fonts/             # self-hosted fonts
 │   ├── resume.pdf
-│   └── projects/<slug>/   # per-project images
+│   └── things/<slug>/     # per-Thing images
 │
 ├── content/               # ★ THE EDIT LAYER
 │   ├── site.json           # title, nav, contact registry, GA ID
@@ -113,19 +113,20 @@ portfolio/
 │           └── *.png       # co-located images
 │
 ├── lib/                   # server-side logic
-│   ├── types.ts            # shared interfaces
-│   ├── markdown.ts         # markdown → {html, headings} + heading IDs + sanitization
-│   ├── loadContent.ts      # typed loaders
+│   ├── shared/types.ts     # shared interfaces
+│   ├── shared/markdown.ts  # markdown → {html, headings} + heading IDs
+│   ├── content/loadContent.ts # typed loaders
 │   └── validate.ts         # hand-rolled validation (no zod)
 │
 ├── components/            # server-only Preact (no JS shipped)
 │   ├── Layout.tsx  Header.tsx  Footer.tsx  Seo.tsx
-│   ├── SectionTitle.tsx  Markdown.tsx
-│   ├── ExperiencePage.tsx  ThingsIndex.tsx  ThingsPost.tsx
-│   └── Tag.tsx
+│   ├── Markdown.tsx  Landing.tsx  AboutPage.tsx
+│   ├── ExperiencePage.tsx  ThingsPage.tsx  ThingsPostPage.tsx
+│   └── Logo.tsx
 │
 ├── islands/               # client-hydrated (minimal)
-│   └── ThemeToggle.tsx    # light/dark mode toggle
+│   ├── ThemeToggle.tsx    # light/dark mode toggle
+│   └── Analytics.tsx      # optional gated analytics
 │
 ├── assets/                # plain CSS
 │   ├── theme.css  global.css  layout.css  components.css
@@ -168,8 +169,8 @@ portfolio/
 ```
 content/*.md / *.json
     │
-    ▼  lib/loadContent.ts — read file, return typed object
-    ▼  lib/markdown.ts    — render → sanitized HTML + headings (with IDs)
+    ▼  lib/content/loadContent.ts — read file, return typed object
+    ▼  lib/shared/markdown.ts    — render → HTML + headings (with IDs)
     ▼  route handler      — return page(data) → SSR HTML
 ```
 
@@ -216,7 +217,7 @@ Failed builds keep the last good deploy live. Details → `11`.
 
 1. **Content is data.** Edit `content/` to update the site. No code changes for content.
 2. **One pipeline.** load → render → SSR. New page = new route + new content file.
-3. **Three focused islands.** Navigation, theme preference, and analytics are the only client-side behaviors. Content remains static HTML.
+3. **Three focused islands.** Mobile navigation, theme preference, and optional analytics are the only client-side behaviors. Content remains static HTML.
 4. **Minimal deps.** Four packages total. No validation library, no sanitization library, no anchor plugin.
 5. **Plain semantic CSS.** No utility framework.
 6. **One visual system, two themes.** Components consume semantic tokens; light and dark modes change tokens, not layout or component structure.

@@ -31,9 +31,9 @@
 - About portrait and editorial intro align at desktop and stack on mobile; Markdown biography returns to full reading width below the intro rather than remaining in a narrow image-adjacent column.
 - Experience entries show a summary before two to four bullets; a current role uses visible `Present` text and remains understandable without the decorative company bar color.
 - Project rows render decorative sequential numbers, wrap cleanly, show an optional challenge only when present, and use destination-specific link labels rather than generic “more.”
-- Each non-landing page has one relevant continuation link after its primary content; Writing posts have at most one related-post continuation plus the return-to-index link
-- Writing entries display the correct human-readable type. Photo essays remain readable and image-led without masonry layouts, lightboxes, page-level horizontal overflow, or missing alt text/captions.
-- Writing index rows contain no author avatar or post image; photographs render only in their individual post context.
+- Each non-landing page has one relevant continuation link after its primary content; Things posts have at most one related-post continuation plus the return-to-index link
+- Things entries display the correct human-readable type. Photo essays remain readable and image-led without masonry layouts, lightboxes, page-level horizontal overflow, or missing alt text/captions.
+- Things index rows contain no author avatar or post image; photographs render only in their individual post context.
 - Things fixtures render only in local/non-production preview when `show_things_fixtures` is enabled; `DENO_DEPLOYMENT_ID` or `APP_ENV=production` is production, where configuration rejects the flag and loaders never expose fixtures.
 - Reduced-motion and forced-colors modes preserve all content and controls
 - Accent assignments remain stable across reloads, restart per documented visual group or prose paragraph, and never depend on client-side randomness

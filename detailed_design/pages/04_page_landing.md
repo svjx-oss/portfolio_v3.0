@@ -5,7 +5,7 @@
 
 **Goal:** introduce a point of view and direct the visitor into the portfolio. Minimal hero + metadata strip + two short point-of-view paragraphs + link row.
 
-**Visitor path:** identity → orientation → point of view → clear paths into Projects, Writing, and the resume. The page ends with generous whitespace.
+**Visitor path:** identity → orientation → point of view → clear paths into Things and the resume. The page ends with generous whitespace.
 
 ---
 

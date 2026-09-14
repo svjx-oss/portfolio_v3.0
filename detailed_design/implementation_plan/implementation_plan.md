@@ -71,7 +71,7 @@ skip link, keyboard focus, mobile header, 404 page, and both color schemes work.
 
 - Add markdown-it with raw HTML disabled; implement only the heading-free
   landing Markdown rendering needed here.
-- Add `site.json`, `landing.md`, `lib/types.ts`, landing loader, and
+- Add `site.json`, `landing.md`, `lib/shared/types.ts`, landing loader, and
   hand-written landing/site validation.
 - Replace static shell links with navigation from `site.json`.
 - Render the complete landing: hero with optional sienna emphasis,
