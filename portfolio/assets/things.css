@@ -47,23 +47,23 @@
 }
 
 .things-filter__option--all {
-  --filter-accent: var(--color-accent-sienna);
+  --filter-accent: var(--color-accent-coral);
 }
 
 .things-filter__option--writing {
-  --filter-accent: var(--color-accent-blue);
+  --filter-accent: var(--color-accent-green);
 }
 
 .things-filter__option--projects {
-  --filter-accent: var(--color-accent-violet);
+  --filter-accent: var(--color-accent-magenta);
 }
 
 .things-filter__option--photography {
-  --filter-accent: var(--color-accent-gold);
+  --filter-accent: var(--color-accent-blue);
 }
 
 .things-filter__option--notes {
-  --filter-accent: var(--color-accent-green);
+  --filter-accent: var(--color-accent-gold);
 }
 
 .things-filter__option[aria-current="page"] {

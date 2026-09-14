@@ -4,6 +4,12 @@
   color: var(--color-accent-sienna);
 }
 
+.accent--coral,
+.accent--coral:hover {
+  --accent: var(--color-accent-coral);
+  color: var(--color-accent-coral);
+}
+
 .accent--blue,
 .accent--blue:hover {
   --accent: var(--color-accent-blue);
