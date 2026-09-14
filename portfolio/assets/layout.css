@@ -6,11 +6,12 @@
 
 .site-header {
   display: grid;
-  grid-template-columns: 1fr auto 1fr;
+  grid-template-columns: auto 1fr;
   align-items: center;
+  width: min(100%, var(--content-max));
+  margin: 0 auto;
   min-height: 4rem;
-  padding: var(--space-6) max(var(--gutter), calc((100% - var(--content-max)) /
-    2));
+  padding: var(--space-6) var(--gutter);
 }
 
 .site-header--reading {
@@ -181,7 +182,6 @@
   }
 
   .site-header {
-    grid-template-columns: 1fr auto;
     padding-block: var(--space-4);
   }
 
