@@ -1,3 +1,4 @@
+import { thingsAccentByType } from "@/lib/content/loadContent.ts";
 import type { Things, ThingsFilter } from "@/lib/shared/types.ts";
 
 const typeLabels = {
@@ -6,14 +7,6 @@ const typeLabels = {
   photography: "Photography",
   notes: "Notes",
   external: "External",
-};
-
-const typeAccents = {
-  project: "magenta",
-  writing: "green",
-  photography: "blue",
-  notes: "gold",
-  external: "teal",
 };
 
 function formatDate(date: string) {
@@ -65,7 +58,9 @@ export default function ThingsPage({ entries, filter }: {
         : (
           <ol class="things__list">
             {entries.map((entry) => (
-              <li class={`things-entry accent--${typeAccents[entry.type]}`}>
+              <li
+                class={`things-entry accent--${thingsAccentByType[entry.type]}`}
+              >
                 <a
                   class="things-entry__link"
                   href={entry.external_url ?? `/things/${entry.slug}`}

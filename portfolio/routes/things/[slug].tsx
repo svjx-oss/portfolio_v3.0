@@ -6,6 +6,7 @@ export const handler = define.handlers({
   async GET(ctx) {
     const post = await loadThingsPost(ctx.params.slug);
     if (!post) return new Response(null, { status: 404 });
+    ctx.state.accent = post.accent;
     return { data: { post } };
   },
 });

@@ -25,6 +25,7 @@ export default define.page(function App(ctx) {
           site={site}
           pathname={ctx.url.pathname}
           hostname={ctx.url.hostname}
+          accent={ctx.state.accent}
         >
           <ctx.Component />
         </Layout>

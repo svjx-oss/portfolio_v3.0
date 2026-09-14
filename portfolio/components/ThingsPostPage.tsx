@@ -10,18 +10,10 @@ function formatDate(date: string) {
 }
 
 export default function ThingsPostPage(
-  { title, date, html, headings, type }: ThingsPost,
+  { title, date, html, headings, accent }: ThingsPost,
 ) {
-  const accentByType = {
-    project: "magenta",
-    writing: "green",
-    photography: "blue",
-    notes: "gold",
-    external: "teal",
-  };
-
   return (
-    <article class={`things-post accent--${accentByType[type]}`}>
+    <article class={`things-post accent--${accent}`}>
       <p class="things-post__back">
         <a href="/things">← Back to Things</a>
       </p>
