@@ -4,7 +4,9 @@ import type { Site } from "@/lib/shared/types.ts";
 export default function Header(
   { site, pathname }: { site: Site; pathname: string },
 ) {
-  const accent = site.nav.find((item) => item.href === pathname)?.accent ??
+  const isThingsPost = /^\/things\/[^/]+$/.test(pathname);
+  const accentPath = isThingsPost ? "/things" : pathname;
+  const accent = site.nav.find((item) => item.href === accentPath)?.accent ??
     "sienna";
 
   return (
