@@ -386,7 +386,6 @@
 }
 
 @media (max-width: 47.999rem) {
-  .things,
   .things-post {
     padding-top: 0;
   }

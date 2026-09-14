@@ -11,7 +11,6 @@ export default function Header(
     <header
       class={`site-header${pathname === "/" ? " site-header--home" : ""}`}
     >
-      <div class="header-start" />
       {pathname !== "/" && (
         <a
           class={`site-logo site-logo--${accent}`}
