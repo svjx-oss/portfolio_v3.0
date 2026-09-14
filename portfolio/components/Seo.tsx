@@ -45,7 +45,7 @@ export default function Seo(
         content="#F2F6FD"
         media="(prefers-color-scheme: light)"
       />
-      <link rel="icon" href="/favicon.ico" />
+      <link rel="icon" href="/favicon.svg" type="image/svg+xml" />
       {/* Set the stored preference or dark default before the first paint. */}
       {/* deno-lint-ignore-file react-no-danger */}
       <script dangerouslySetInnerHTML={{ __html: themeInitScript }} />

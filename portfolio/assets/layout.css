@@ -45,11 +45,37 @@
 }
 
 .site-logo {
+  width: 3.25rem;
+  height: 3.25rem;
+  padding: 0;
   color: var(--color-text-muted);
-  font-size: var(--text-sm);
-  font-weight: 700;
-  letter-spacing: 0.04em;
   text-decoration: none;
+}
+
+.site-logo__mark {
+  display: block;
+  width: 100%;
+  height: 100%;
+}
+
+.site-logo--gold:hover,
+.site-logo--gold:focus-visible {
+  color: var(--color-accent-gold);
+}
+
+.site-logo--blue:hover,
+.site-logo--blue:focus-visible {
+  color: var(--color-accent-blue);
+}
+
+.site-logo--magenta:hover,
+.site-logo--magenta:focus-visible {
+  color: var(--color-accent-magenta);
+}
+
+.site-logo--violet:hover,
+.site-logo--violet:focus-visible {
+  color: var(--color-accent-violet);
 }
 
 .theme-toggle {
