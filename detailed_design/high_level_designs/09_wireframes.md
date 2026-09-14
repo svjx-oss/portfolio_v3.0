@@ -39,8 +39,7 @@ Nav dropdown (all breakpoints, localized, right-aligned):
 │ Home      │
 │ About      │
 │ Experience │
-│ Projects  │
-│ Writing    │
+│ Things     │
 └──────────┘
 ```
 
