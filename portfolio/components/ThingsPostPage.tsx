@@ -9,8 +9,16 @@ function formatDate(date: string) {
   }).format(new Date(`${date}T00:00:00`));
 }
 
+const typeLabels = {
+  project: "Project",
+  writing: "Writing",
+  photography: "Photography",
+  notes: "Notes",
+  external: "External",
+};
+
 export default function ThingsPostPage(
-  { title, date, html, headings, accent }: ThingsPost,
+  { title, date, html, headings, accent, type, tags }: ThingsPost,
 ) {
   return (
     <article class={`things-post accent--${accent}`}>
@@ -19,7 +27,13 @@ export default function ThingsPostPage(
       </p>
       <header class="things-post__header">
         <h1>{title}</h1>
-        <p>{formatDate(date)}</p>
+        <p>
+          <span class="things-post__type">{typeLabels[type]}</span>
+          {tags.map((tag) => (
+            <span class="things-post__tag" key={tag}>{tag}</span>
+          ))}
+        </p>
+        <p class="things-post__date">{formatDate(date)}</p>
       </header>
       <details class="things-post__toc">
         <summary>On this page</summary>
