@@ -59,24 +59,24 @@
   height: 100%;
 }
 
-.site-logo--gold:hover,
-.site-logo--gold:focus-visible {
+.site-logo--gold {
   color: var(--color-accent-gold);
 }
 
-.site-logo--blue:hover,
-.site-logo--blue:focus-visible {
+.site-logo--blue {
   color: var(--color-accent-blue);
 }
 
-.site-logo--magenta:hover,
-.site-logo--magenta:focus-visible {
+.site-logo--magenta {
   color: var(--color-accent-magenta);
 }
 
-.site-logo--violet:hover,
-.site-logo--violet:focus-visible {
+.site-logo--violet {
   color: var(--color-accent-violet);
+}
+
+.site-logo--coral {
+  color: var(--color-accent-coral);
 }
 
 .theme-toggle {
