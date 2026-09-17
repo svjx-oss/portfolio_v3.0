@@ -46,7 +46,7 @@ export interface ExperienceEntry {
   role: string;
   location: string;
   dates: string;
-  summary: string;
+  summary?: string;
   color: string;
   current?: boolean;
   content: string;

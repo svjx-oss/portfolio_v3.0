@@ -1,3 +1,6 @@
+**M.S. Computer Engineering** - 2022  
+**B.S. Computer Engineering** - 2021 
+
 **Teaching assistant roles**
 
 - ECE 469 GTA, Operating Systems

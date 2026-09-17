@@ -86,8 +86,36 @@
 }
 
 .experience-entry .prose ul {
-  padding-left: 1.1em;
-  list-style-type: "– ";
+  padding-left: 1rem;
+  list-style-type: disc;
+}
+
+.experience-entry .prose li::marker {
+  color: var(--color-text-muted);
+  font-size: 0.7em;
+}
+
+.experience-entry .prose strong {
+  color: var(--color-text);
+  font-weight: 600;
+}
+
+.experience-entry .prose p + p {
+  margin-top: var(--space-4);
+}
+
+.experience-entry .prose > p:first-child {
+  margin-top: var(--space-2);
+  color: var(--color-text-subtle);
+  font-size: var(--text-xs);
+}
+
+.experience-entry .prose ul + p {
+  margin-top: var(--space-4);
+}
+
+.experience-entry .prose p:first-child + ul {
+  margin-bottom: var(--space-4);
 }
 
 @media (min-width: 48rem) {

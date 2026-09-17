@@ -125,7 +125,6 @@ function validateExperience(experience: Experience) {
     assert(entry.role, "experience.json: entry role is required.");
     assert(entry.location, "experience.json: entry location is required.");
     assert(entry.dates, "experience.json: entry dates is required.");
-    assert(entry.summary, "experience.json: entry summary is required.");
     assert(
       /^#[0-9A-Fa-f]{6}$/.test(entry.color),
       "experience.json: entry color must be a hex color.",

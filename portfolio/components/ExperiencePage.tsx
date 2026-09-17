@@ -23,7 +23,9 @@ export default function ExperiencePage({ entries }: Experience) {
                 {entry.role} · {entry.location}
               </p>
               <p class="experience-entry__dates">{entry.dates}</p>
-              <p class="experience-entry__summary">{entry.summary}</p>
+              {entry.summary && (
+                <p class="experience-entry__summary">{entry.summary}</p>
+              )}
               <Markdown html={entry.html} />
             </section>
           </li>
