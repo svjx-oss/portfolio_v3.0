@@ -1,16 +1,19 @@
 {
   "name": "Sahil Jaganmohan",
-  "tagline": "Software engineer and systems builder.",
+  "tagline": "End-to-end systems software engineer.",
   "metadata": [
-    { "label": "Focus", "value": "Clear systems and experiences" },
-    { "label": "Based", "value": "Cupertino, CA" },
-    { "label": "Exploring", "value": "Design, photography, and the outdoors" }
+    {
+      "label": "Focus",
+      "value": "Software co-design, and custom hardware accelerators"
+    },
+    { "label": "Based", "value": "San Francisco, CA" },
+    { "label": "Interests", "value": "Outdoor sports, photography, and gaming" }
   ],
   "contacts": [
     {
       "key": "mail",
-      "label": "dev.sahil.jaganmohan@gmail.com",
-      "href": "mailto:dev.sahil.jaganmohan@gmail.com",
+      "label": "dev.svjx@gmail.com",
+      "href": "mailto:dev.svjx@gmail.com",
       "accent": "gold"
     },
     {
@@ -22,15 +25,15 @@
     },
     {
       "key": "src",
-      "label": "github.com/bullpointe",
-      "href": "https://github.com/bullpointe",
+      "label": "github.com/svjx-oss",
+      "href": "https://github.com/svjx-oss",
       "accent": "magenta",
       "external": true
     },
     {
       "key": "doc",
       "label": "resume.pdf",
-      "href": "/resume.pdf",
+      "href": "/Sahil_Jaganmohan_Resume.pdf",
       "accent": "violet"
     }
   ]
