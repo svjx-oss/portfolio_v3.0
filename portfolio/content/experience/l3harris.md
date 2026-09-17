@@ -1,0 +1,4 @@
+- Developed **embedded solutions** on an **ARM controller** for upcoming product releases, **optimizing features** for product performance.
+- Integrated custom **FPGA hardware** with **embedded software**.
+- Produced **design reviews** and **conducted code reviews**.
+- Further technical details are confidential under US Title 18.

@@ -1,0 +1,4 @@
+- Developed a wrapper and **fault tolerance** across Market Segment Gateway instances with fault-tolerance daemons in the GLOBEX Order Entry division.
+- Implemented **dynamic state synchronization** across **client systems**, **order-entry systems**, and the **matching engine**, improving the team's SDLC by over `30%`.
+- Developed programs to reduce regression-report runtime on **AWS EC2**.
+- Placed third in the 2019 CME CodeUp for an **efficient derivatives-market trading algorithm**.

@@ -1,0 +1,3 @@
+- Worked on AMP, an internal metadata search engine for applications, reports, and data.
+- Used **predictive analysis** and **machine-learning models** to classify users into personas and improve search-result relevancy.
+- Developed an **NLP model** to identify abstract topics from searches, **improving user experience and search efficiency**.

@@ -1,2 +1,0 @@
-- Placeholder early academic or technical foundation.
-- Placeholder coursework, organization, or project outcome.

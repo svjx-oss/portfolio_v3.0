@@ -1,2 +1,4 @@
-- Placeholder accomplishment for the current role.
-- Placeholder systems or product outcome.
+- Built an embedded application that **dynamically predicts latencies** of critical hardware IP blocks in real time, detecting bandwidth starvation, surges, and idling for key workflows.
+- Improved caching by `15%` for key end-user use cases and eased bandwidth bottlenecks by `20%` through software prefetching and hardware design changes.
+- Designed a **live on-device dashboard** for concurrent performance metrics across hardware IPs and replay capabilities for SoC debugging.
+- Led hardware bring-up for multiple IP blocks across SoCs and accelerated a custom data engineering platform, improving visualization speed by `500%` and memory use by up to `4000%`.
