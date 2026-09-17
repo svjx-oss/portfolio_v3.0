@@ -7,7 +7,7 @@
       "location": "Cupertino, CA",
       "dates": "Jan 2023 - Present",
       "summary": "Performance optimization on next-gen Apple SoCs.",
-      "color": "#FFFFFF",
+      "color": "linear-gradient(to bottom, #5EBD3E 0 16.667%, #FFB900 16.667% 33.334%, #F78200 33.334% 50%, #E23838 50% 66.667%, #973999 66.667% 83.334%, #009CDF 83.334%)",
       "current": true,
       "content": "apple.md"
     },

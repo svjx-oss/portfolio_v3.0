@@ -126,8 +126,9 @@ function validateExperience(experience: Experience) {
     assert(entry.location, "experience.json: entry location is required.");
     assert(entry.dates, "experience.json: entry dates is required.");
     assert(
-      /^#[0-9A-Fa-f]{6}$/.test(entry.color),
-      "experience.json: entry color must be a hex color.",
+      /^#[0-9A-Fa-f]{6}$/.test(entry.color) ||
+        /^linear-gradient\([^\n]+\)$/.test(entry.color),
+      "experience.json: entry color must be a hex color or linear gradient.",
     );
     assert(
       entry.content.endsWith(".md"),
