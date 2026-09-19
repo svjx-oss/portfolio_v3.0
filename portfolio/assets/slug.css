@@ -104,7 +104,32 @@
 
 .things-post__prose pre code {
   padding: 0;
+  color: var(--color-text-subtle);
   background: transparent;
+}
+
+.things-post__prose .hljs-keyword,
+.things-post__prose .hljs-title.function_ {
+  color: var(--color-accent-violet);
+}
+
+.things-post__prose .hljs-params,
+.things-post__prose .hljs-number {
+  color: var(--color-accent-gold);
+}
+
+.things-post__prose .hljs-title,
+.things-post__prose .hljs-function {
+  color: var(--color-accent-blue);
+}
+
+.things-post__prose .hljs-string,
+.things-post__prose .hljs-template-variable {
+  color: var(--color-accent-green);
+}
+
+.things-post__prose .hljs-comment {
+  color: var(--color-text-muted);
 }
 
 .things-post__prose img {

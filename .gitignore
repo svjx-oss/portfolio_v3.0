@@ -1,4 +1,9 @@
 .DS_Store
-.zed/*
-*/node_modules
-*/_fresh
+.zed/
+node_modules/
+_fresh/
+.venv/
+.env
+.env.local
+.playwright-mcp/
+.playwright*/

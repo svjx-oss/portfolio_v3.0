@@ -1,7 +1,14 @@
+import hljs from "highlight.js";
 import MarkdownIt from "markdown-it";
 import type { Heading, ThingsImage } from "@/lib/shared/types.ts";
 
-const markdown = new MarkdownIt({ html: false });
+const markdown = new MarkdownIt({
+  html: false,
+  highlight(code, language) {
+    if (!language || !hljs.getLanguage(language)) return "";
+    return hljs.highlight(code, { language }).value;
+  },
+});
 const calloutTypes = new Set([
   "NOTE",
   "TIP",
