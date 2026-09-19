@@ -1,34 +1,44 @@
 {
   "entries": [
     {
-      "title": "A Tiny Compiler",
-      "date": "2026-08-01",
+      "title": "Portfolio 1.0 to 2.0",
+      "date": "2019-01-01",
       "type": "project",
-      "excerpt": "A compact compiler built to understand parsing, transformation, and code generation.",
-      "tags": ["Rust", "Compilers"],
+      "excerpt": "A first Jekyll site gave way to a Gatsby rebuild for a deeper look at React and full-stack web development.",
+      "tags": ["Jekyll", "React", "Gatsby", "GraphQL"],
       "status": "published",
-      "slug": "a-tiny-compiler",
-      "md": "posts/a-tiny-compiler/a-tiny-compiler.md"
+      "slug": "portfolio-1-to-2",
+      "md": "posts/portfolio-1-to-2/portfolio-1-to-2.md"
     },
     {
-      "title": "A Placeholder Walk",
-      "date": "2026-06-15",
-      "type": "photography",
-      "excerpt": "A placeholder photo essay for establishing the photography reading flow.",
-      "tags": ["Photography", "Placeholder"],
+      "title": "MapReduce with OpenMP and MPI",
+      "date": "2019-01-01",
+      "type": "project",
+      "excerpt": "A distributed word-indexing implementation built to coordinate work across multi-core machines.",
+      "tags": ["C", "OpenMP", "MPI"],
       "status": "published",
-      "slug": "a-placeholder-walk",
-      "md": "posts/a-placeholder-walk/a-placeholder-walk.md"
+      "slug": "mapreduce-openmp-mpi",
+      "md": "posts/mapreduce-openmp-mpi/mapreduce-openmp-mpi.md"
     },
     {
-      "title": "Why I Like Boring Software",
-      "date": "2026-07-15",
-      "type": "writing",
-      "excerpt": "A reflection on why predictable systems often outlast clever abstractions.",
-      "tags": ["Software"],
+      "title": "Purdue Projects: Hardware, Firmware, and Data",
+      "date": "2019-01-01",
+      "type": "project",
+      "excerpt": "A USB SoC peripheral, an STM32 2048 game, and a MOOCs performance-prediction project.",
+      "tags": ["SystemVerilog", "C", "Python"],
       "status": "published",
-      "slug": "why-i-like-boring-software",
-      "md": "posts/why-i-like-boring-software/why-i-like-boring-software.md"
+      "slug": "purdue-projects",
+      "md": "posts/purdue-projects/purdue-projects.md"
+    },
+    {
+      "title": "Biology Research: Metagenomics and Waksman",
+      "date": "2018-01-01",
+      "type": "project",
+      "excerpt": "Early research spanning soil metagenomics, antimicrobial screening, engineered plasmids, and plant-protein study.",
+      "tags": ["Research", "Metagenomics", "Biology"],
+      "status": "published",
+      "slug": "biology-research",
+      "md": "posts/biology-research/biology-research.md"
     }
   ]
 }

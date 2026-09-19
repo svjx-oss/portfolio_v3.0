@@ -12,15 +12,18 @@ const imageTypes = {
 export const handler = define.handlers({
   async GET(ctx) {
     const { asset, slug } = ctx.params;
+    const filename = `images/${asset}`;
     const extension = asset.split(".").pop()?.toLowerCase();
     const contentType = extension &&
       imageTypes[extension as keyof typeof imageTypes];
-    if (!contentType || asset.includes("/")) {
+    if (!contentType || !/^[a-zA-Z0-9][a-zA-Z0-9._-]*$/.test(asset)) {
       return new Response(null, { status: 404 });
     }
 
     try {
-      const body = await Deno.readFile(`content/things/posts/${slug}/${asset}`);
+      const body = await Deno.readFile(
+        `content/things/posts/${slug}/${filename}`,
+      );
       return new Response(body, {
         headers: {
           "cache-control": "public, max-age=31536000, immutable",

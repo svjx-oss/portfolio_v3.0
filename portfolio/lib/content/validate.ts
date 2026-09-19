@@ -182,8 +182,8 @@ async function validateThings() {
     const images = await readImages(postDir);
     for (const [filename, image] of Object.entries(images)) {
       assert(
-        !filename.includes("/") && !filename.startsWith("."),
-        `images.json: ${filename} must be a local image filename.`,
+        /^images\/[a-zA-Z0-9][a-zA-Z0-9._-]*$/.test(filename),
+        `images.json: ${filename} must be an image filename under images/.`,
       );
       assert(
         Number.isInteger(image.width) && image.width > 0,

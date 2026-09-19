@@ -49,7 +49,8 @@ export function renderPostMarkdown(
         continue;
       }
       const image = images[src];
-      child.attrSet("src", `/things/${slug}/${src}`);
+      const filename = src.split("/").at(-1);
+      child.attrSet("src", `/things/${slug}/${filename}`);
       if (image) {
         child.attrSet("width", String(image.width));
         child.attrSet("height", String(image.height));
