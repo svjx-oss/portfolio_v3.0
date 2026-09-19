@@ -14,6 +14,12 @@ function retryDelay(attempt: number) {
 }
 ```
 
+```c++ title="retry.cc"
+void retry(int number) {
+  return number * 5;
+}
+```
+
 > [!NOTE]
 > This is a callout example for highlighting an important detail without interrupting the flow.
 
