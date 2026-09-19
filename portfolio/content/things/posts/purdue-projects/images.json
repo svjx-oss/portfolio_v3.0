@@ -1,5 +1,17 @@
 {
-  "images/usb-rtl.png": { "width": 1224, "height": 696 },
-  "images/stm32-2048.png": { "width": 922, "height": 691 },
-  "images/moocs.jpg": { "width": 2501, "height": 1309 }
+  "images/usb-rtl.png": {
+    "width": 1224,
+    "height": 696,
+    "caption": "RTL diagram from the USB full-speed bulk-transfer module."
+  },
+  "images/stm32-2048.png": {
+    "width": 922,
+    "height": 691,
+    "caption": "Hardware setup for the STM32 2048 game."
+  },
+  "images/moocs.jpg": {
+    "width": 2501,
+    "height": 1309,
+    "caption": "Visualization from the MOOCs performance data analysis project."
+  }
 }

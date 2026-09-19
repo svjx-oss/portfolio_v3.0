@@ -193,6 +193,12 @@ async function validateThings() {
         Number.isInteger(image.height) && image.height > 0,
         `images.json: ${filename} height must be a positive integer.`,
       );
+      if (image.caption !== undefined) {
+        assert(
+          typeof image.caption === "string" && image.caption.trim(),
+          `images.json: ${filename} caption must be a non-empty string.`,
+        );
+      }
       await Deno.stat(`${postDir}/${filename}`);
     }
     for (const match of markdown.matchAll(/!\[[^\]]*\]\(([^\s)]+)/g)) {

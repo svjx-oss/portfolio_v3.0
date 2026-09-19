@@ -89,6 +89,7 @@ export interface ThingsEntry {
 export interface ThingsImage {
   width: number;
   height: number;
+  caption?: string;
 }
 
 export interface Things {

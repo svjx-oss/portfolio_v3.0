@@ -54,12 +54,35 @@ export function renderPostMarkdown(
       if (image) {
         child.attrSet("width", String(image.width));
         child.attrSet("height", String(image.height));
+        if (image.caption) {
+          child.attrSet("data-caption", image.caption);
+        }
       }
     }
   }
 
+  const imageRenderer = markdown.renderer.rules.image;
+  markdown.renderer.rules.image = (tokens, index, options, env, self) => {
+    const image = tokens[index];
+    const caption = String(image.attrGet("data-caption") ?? "");
+    const rendered = imageRenderer
+      ? imageRenderer(tokens, index, options, env, self)
+      : self.renderToken(tokens, index, options);
+    return caption
+      ? `<figure>${rendered}<figcaption>${
+        markdown.utils.escapeHtml(caption)
+      }</figcaption></figure>`
+      : rendered;
+  };
+
+  const html = markdown.renderer.render(tokens, markdown.options, {}).replace(
+    /<p>(<figure>.*?<\/figure>)<\/p>/gs,
+    "$1",
+  );
+  markdown.renderer.rules.image = imageRenderer;
+
   return {
-    html: markdown.renderer.render(tokens, markdown.options, {}),
+    html,
     headings,
   };
 }

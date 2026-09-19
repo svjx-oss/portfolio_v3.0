@@ -6,12 +6,8 @@ At Rutgers Preparatory School, I worked with metagenomics: genetic material reco
 
 ![Metagenomics research poster](images/metagenomics-poster.jpg)
 
-*Poster for the Rutgers Preparatory School metagenomics research.*
-
 ## Waksman Institute research
 
 With Rutgers University's Waksman Institute, I grew individual bacterial colonies containing engineered plasmids with inserts identifiable by selectable markers. The research also examined the function, process, and impact of proteins in *Landoltia punctata*, and resulted in multiple DNA-sequence submissions to NCBI.
 
 ![Waksman Institute research poster](images/waksman-poster.jpg)
-
-*Poster for the Waksman Institute research with Rutgers University.*

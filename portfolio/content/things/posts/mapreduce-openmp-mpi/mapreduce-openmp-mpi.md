@@ -2,8 +2,6 @@ This project implemented MapReduce across several multi-core machines. Its job w
 
 ![MapReduce project diagram](images/mapreduce.png)
 
-*Legacy project diagram for the MapReduce implementation.*
-
 ## The goal
 
 The implementation needed to process each word efficiently, merge independent concurrent processes, and keep time and space complexity in view.

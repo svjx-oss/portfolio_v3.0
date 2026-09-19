@@ -2,15 +2,11 @@ My first portfolio site was a Jekyll static site built in 2018 to share my skill
 
 ![Screenshot of Portfolio 1.0](images/portfolio-1.png)
 
-*Portfolio 1.0, built with Jekyll in 2018.*
-
 ## The progression
 
 Portfolio 2.0 used React and Gatsby to make a full-stack site with an emphasis on speed, security, and low latency. GraphQL organized and queried the data displayed across the site.
 
 ![Screenshot of Portfolio 2.0](images/portfolio-2.png)
-
-*Portfolio 2.0, rebuilt with React, Gatsby, and GraphQL.*
 
 ## What I carried forward
 

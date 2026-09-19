@@ -1,4 +1,12 @@
 {
-  "images/portfolio-1.png": { "width": 2560, "height": 1202 },
-  "images/portfolio-2.png": { "width": 1998, "height": 1180 }
+  "images/portfolio-1.png": {
+    "width": 2560,
+    "height": 1202,
+    "caption": "Portfolio 1.0, built with Jekyll in 2018."
+  },
+  "images/portfolio-2.png": {
+    "width": 1998,
+    "height": 1180,
+    "caption": "Portfolio 2.0, rebuilt with React, Gatsby, and GraphQL."
+  }
 }
