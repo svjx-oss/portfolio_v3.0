@@ -42,7 +42,7 @@
 
 - Preact component snapshots (fragile; dev server covers it)
 - Full CSS visual regression (manual matrix at each visual commit)
-- E2E / Playwright (overkill; loader + markdown tests cover the data path)
+- Broad E2E coverage; keep Playwright to focused smoke checks for critical routes
 
 ## Commands
 

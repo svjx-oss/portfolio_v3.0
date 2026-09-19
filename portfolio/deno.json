@@ -6,7 +6,11 @@
     "preview": "deno serve -A _fresh/server.js",
     "validate": "deno run -A lib/content/validate.ts",
     "update": "deno update && deno task check",
-    "check": "deno install --frozen=true --lock=deno.lock && deno fmt --check . && deno lint . && deno check && deno test --permit-no-files && deno task validate"
+    "check": "deno install --frozen=true --lock=deno.lock && deno fmt --check . && deno lint . && deno check && deno test --permit-no-files && deno task validate",
+    "check:ui": "uv run --project ui-tests python ui-tests/src/review.py",
+    "test:ui:install": "PLAYWRIGHT_BROWSERS_PATH=ui-tests/.playwright uv run --project ui-tests playwright install chromium",
+    "test:ui": "PLAYWRIGHT_BROWSERS_PATH=ui-tests/.playwright uv run --project ui-tests pytest ui-tests",
+    "test:ui:clean": "rm -rf ui-tests/.venv ui-tests/.playwright ui-tests/__snapshots__ ui-tests/.pytest_cache"
   },
   "lint": {
     "exclude": ["components/Seo.tsx"],
@@ -19,7 +23,10 @@
   },
   "exclude": [
     "**/_fresh/*",
-    "content/**/*.md"
+    "content/**/*.md",
+    "ui-tests/.playwright/",
+    "ui-tests/.venv/",
+    "vite.config.ts.timestamp-*.mjs"
   ],
   "imports": {
     "@/": "./",
