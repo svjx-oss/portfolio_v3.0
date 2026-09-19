@@ -39,6 +39,16 @@
       "status": "published",
       "slug": "biology-research",
       "md": "posts/biology-research/biology-research.md"
+    },
+    {
+      "title": "Why I Like Boring Software",
+      "date": "2026-07-15",
+      "type": "writing",
+      "excerpt": "A reflection on why predictable systems often outlast clever abstractions.",
+      "tags": ["Software"],
+      "status": "draft",
+      "slug": "why-i-like-boring-software",
+      "md": "posts/why-i-like-boring-software/why-i-like-boring-software.md"
     }
   ]
 }
