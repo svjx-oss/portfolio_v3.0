@@ -57,6 +57,39 @@
   border-left: 2px solid var(--color-border-strong);
 }
 
+.things-post__prose .things-post__callout {
+  margin: 0 0 var(--space-6);
+  padding: var(--space-4);
+  color: var(--color-text-subtle);
+  background: color-mix(in srgb, var(--callout-accent) 12%, transparent);
+  border-left: 3px solid var(--callout-accent);
+  border-radius: 0 var(--radius-sm) var(--radius-sm) 0;
+}
+
+.things-post__prose .things-post__callout p:last-child {
+  margin-bottom: 0;
+}
+
+.things-post__callout--note {
+  --callout-accent: var(--color-accent-blue);
+}
+
+.things-post__callout--tip {
+  --callout-accent: var(--color-accent-green);
+}
+
+.things-post__callout--important {
+  --callout-accent: var(--color-accent-violet);
+}
+
+.things-post__callout--warning {
+  --callout-accent: var(--color-accent-gold);
+}
+
+.things-post__callout--caution {
+  --callout-accent: var(--color-accent-coral);
+}
+
 .things-post__prose code {
   padding: 0.1em 0.25em;
   background: var(--color-surface);

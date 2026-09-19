@@ -2,6 +2,13 @@ import MarkdownIt from "markdown-it";
 import type { Heading, ThingsImage } from "@/lib/shared/types.ts";
 
 const markdown = new MarkdownIt({ html: false });
+const calloutTypes = new Set([
+  "NOTE",
+  "TIP",
+  "IMPORTANT",
+  "WARNING",
+  "CAUTION",
+]);
 
 export function renderMarkdown(raw: string): string {
   return markdown.render(raw);
@@ -22,6 +29,39 @@ export function renderPostMarkdown(
   const headings: Heading[] = [];
   const usedIds = new Map<string, number>();
   const tokens = markdown.parse(raw, {});
+
+  for (let index = 0; index < tokens.length - 3; index++) {
+    const opening = tokens[index];
+    const paragraph = tokens[index + 1];
+    const inline = tokens[index + 2];
+    const closing = tokens[index + 3];
+    if (
+      opening.type !== "blockquote_open" ||
+      paragraph.type !== "paragraph_open" ||
+      inline.type !== "inline" ||
+      closing.type !== "paragraph_close"
+    ) {
+      continue;
+    }
+
+    const match = inline.content.match(/^\[!(\w+)\]\n?/);
+    const type = match?.[1];
+    if (!type || !calloutTypes.has(type)) continue;
+
+    opening.tag = "aside";
+    opening.attrSet(
+      "class",
+      `things-post__callout things-post__callout--${type.toLowerCase()}`,
+    );
+    opening.attrSet("role", "note");
+    inline.content = inline.content.slice(match[0].length);
+    if (inline.children?.[0]?.type === "text") {
+      inline.children[0].content = inline.children[0].content.slice(
+        match[0].length,
+      );
+    }
+    closing.tag = "aside";
+  }
 
   for (let index = 0; index < tokens.length; index++) {
     const token = tokens[index];
