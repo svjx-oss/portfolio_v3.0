@@ -8,7 +8,7 @@ When a service has clear boundaries and familiar failure modes, teams can spend 
 
 > Reliability is a product feature: people should be able to understand what happens next.
 
-```ts
+```ts title="retry.ts"
 function retryDelay(attempt: number) {
   return Math.min(1_000 * 2 ** attempt, 30_000);
 }
@@ -16,6 +16,18 @@ function retryDelay(attempt: number) {
 
 > [!NOTE]
 > This is a callout example for highlighting an important detail without interrupting the flow.
+
+> [!TIP]
+> Prefer simple defaults that make the safe path easy to follow.
+
+> [!IMPORTANT]
+> Document the constraints that shape an interface before optimizing its implementation.
+
+> [!WARNING]
+> Retries need a limit and observability; otherwise they can hide a failing dependency.
+
+> [!CAUTION]
+> Do not turn an uncommon case into the default path without a clear reason.
 
 ## The useful kind of boring
 

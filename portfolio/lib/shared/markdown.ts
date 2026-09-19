@@ -9,13 +9,13 @@ const markdown = new MarkdownIt({
     return hljs.highlight(code, { language }).value;
   },
 });
-const calloutTypes = new Set([
-  "NOTE",
-  "TIP",
-  "IMPORTANT",
-  "WARNING",
-  "CAUTION",
-]);
+const callouts = {
+  NOTE: { label: "Note", icon: "i" },
+  TIP: { label: "Tip", icon: "*" },
+  IMPORTANT: { label: "Important", icon: "!" },
+  WARNING: { label: "Warning", icon: "!" },
+  CAUTION: { label: "Caution", icon: "!" },
+};
 
 export function renderMarkdown(raw: string): string {
   return markdown.render(raw);
@@ -26,6 +26,25 @@ function slugify(value: string) {
     /^-|-$/g,
     "",
   );
+}
+
+function renderCodeBlock(code: string, info: string) {
+  const [language = "", ...attributes] = info.trim().split(/\s+/);
+  const title = attributes.join(" ").match(/^title="([^"]+)"$/)?.[1];
+  const highlighted = language && hljs.getLanguage(language)
+    ? hljs.highlight(code, { language }).value
+    : markdown.utils.escapeHtml(code);
+  const lineNumbers = code.trimEnd().split("\n").map((_, index) => index + 1)
+    .join("\n");
+  const header = title
+    ? `<div class="things-post__code-header">${
+      markdown.utils.escapeHtml(title)
+    }</div>`
+    : "";
+
+  return `<div class="things-post__code-block">${header}<pre><code class="language-${
+    markdown.utils.escapeHtml(language)
+  }"><span class="things-post__code-lines" aria-hidden="true">${lineNumbers}</span><span class="things-post__code-content">${highlighted}</span></code></pre></div>`;
 }
 
 export function renderPostMarkdown(
@@ -52,13 +71,13 @@ export function renderPostMarkdown(
     }
 
     const match = inline.content.match(/^\[!(\w+)\]\n?/);
-    const type = match?.[1];
-    if (!type || !calloutTypes.has(type)) continue;
+    const callout = match && callouts[match[1] as keyof typeof callouts];
+    if (!callout) continue;
 
     opening.tag = "aside";
     opening.attrSet(
       "class",
-      `things-post__callout things-post__callout--${type.toLowerCase()}`,
+      `things-post__callout things-post__callout--${match[1].toLowerCase()}`,
     );
     opening.attrSet("role", "note");
     inline.content = inline.content.slice(match[0].length);
@@ -67,7 +86,21 @@ export function renderPostMarkdown(
         match[0].length,
       );
     }
+    const titleToken = Object.create(paragraph);
+    titleToken.type = "html_block";
+    titleToken.tag = "";
+    titleToken.nesting = 0;
+    titleToken.content =
+      `<p class="things-post__callout-title"><span aria-hidden="true">${callout.icon}</span>${callout.label}</p>`;
+    titleToken.block = true;
+    tokens.splice(index + 1, 0, titleToken);
     closing.tag = "aside";
+  }
+
+  for (const token of tokens) {
+    if (token.type !== "fence") continue;
+    token.type = "html_block";
+    token.content = renderCodeBlock(token.content, token.info);
   }
 
   for (let index = 0; index < tokens.length; index++) {

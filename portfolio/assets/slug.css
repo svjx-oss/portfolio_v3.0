@@ -1,5 +1,16 @@
 .things-post__prose {
   max-width: 62ch;
+  --code-bg: #111827;
+  --code-header-bg: #111827;
+  --code-text: var(--color-text-subtle);
+  --code-muted: var(--color-text-muted);
+}
+
+[data-theme="light"] .things-post__prose {
+  --code-bg: #f8fafc;
+  --code-header-bg: #e2e8f0;
+  --code-text: #1e293b;
+  --code-muted: #475569;
 }
 
 .things-post__prose h2,
@@ -62,12 +73,32 @@
   padding: var(--space-4);
   color: var(--color-text-subtle);
   background: color-mix(in srgb, var(--callout-accent) 12%, transparent);
-  border-left: 3px solid var(--callout-accent);
-  border-radius: 0 var(--radius-sm) var(--radius-sm) 0;
+  border-radius: var(--radius-sm);
 }
 
 .things-post__prose .things-post__callout p:last-child {
   margin-bottom: 0;
+}
+
+.things-post__prose .things-post__callout-title {
+  display: flex;
+  gap: var(--space-2);
+  align-items: center;
+  margin: 0 0 var(--space-3);
+  color: var(--callout-accent);
+  font-weight: 600;
+}
+
+.things-post__callout-title span {
+  display: inline-grid;
+  width: 1.25rem;
+  height: 1.25rem;
+  place-items: center;
+  border: 2px solid currentColor;
+  border-radius: 50%;
+  font-size: 0.75rem;
+  font-weight: 700;
+  line-height: 1;
 }
 
 .things-post__callout--note {
@@ -97,15 +128,46 @@
 
 .things-post__prose pre {
   overflow-x: auto;
+  margin: 0;
   padding: var(--space-4);
   background: var(--color-surface);
+  border: 0;
+}
+
+.things-post__prose .things-post__code-block {
+  margin: 0 0 var(--space-6);
+  overflow: hidden;
+  background: var(--code-bg);
   border: 1px solid var(--color-border);
+  border-radius: var(--radius-sm);
+}
+
+.things-post__prose .things-post__code-header {
+  padding: var(--space-3) var(--space-4);
+  color: var(--code-muted);
+  background: var(--code-header-bg);
+  font-size: var(--text-xs);
+  font-weight: 600;
+  border-bottom: 1px solid var(--color-border);
 }
 
 .things-post__prose pre code {
+  display: grid;
+  grid-template-columns: auto minmax(0, 1fr);
+  gap: var(--space-4);
   padding: 0;
-  color: var(--color-text-subtle);
+  color: var(--code-text);
   background: transparent;
+}
+
+.things-post__code-lines {
+  color: var(--code-muted);
+  text-align: right;
+  user-select: none;
+}
+
+.things-post__code-content {
+  min-width: max-content;
 }
 
 .things-post__prose .hljs-keyword,
