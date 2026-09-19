@@ -11,10 +11,15 @@ def test_things_filter_and_entry_hover(page: Page, site_url: str) -> None:
     entry = page.locator(".things-entry__link").first
     assert entry.get_attribute("href").startswith("/things/")
     cue = entry.locator(".things-entry__cue")
-    before_x = cue.bounding_box()["x"]
+    cue_style = cue.evaluate("element => getComputedStyle(element)")
+    assert cue_style["color"] == "rgb(170, 177, 189)"
+    assert cue_style["transform"] == "none"
+    assert "transform" in cue_style["transitionProperty"]
     entry.hover()
     page.wait_for_timeout(250)
-    assert cue.bounding_box()["x"] > before_x
+    hover_style = cue.evaluate("element => getComputedStyle(element)")
+    assert hover_style["color"] != cue_style["color"]
+    assert hover_style["transform"] != "none"
 
 
 def test_things_post_content_images_and_navigation(page: Page, site_url: str) -> None:

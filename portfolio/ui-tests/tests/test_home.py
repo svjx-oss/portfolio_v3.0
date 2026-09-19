@@ -15,7 +15,12 @@ def test_homepage_typography_spacing_and_hover(page: Page, site_url: str) -> Non
     assert float(tagline.evaluate("element => getComputedStyle(element).marginBottom").removesuffix("px")) >= 16
 
     link_label = page.locator(".landing-connect__link span:last-child").first
-    assert link_label.evaluate("element => getComputedStyle(element).backgroundSize") == "0px 1px"
+    link_style = link_label.evaluate("element => getComputedStyle(element)")
+    assert link_style["backgroundSize"] == "0px 1px"
+    assert link_style["color"] == "rgb(197, 202, 211)"
+    assert "background-size" in link_style["transitionProperty"]
     link_label.hover()
     page.wait_for_timeout(250)
-    assert link_label.evaluate("element => getComputedStyle(element).backgroundSize") == "100% 1px"
+    hover_style = link_label.evaluate("element => getComputedStyle(element)")
+    assert hover_style["backgroundSize"] == "100% 1px"
+    assert hover_style["color"] == "rgb(243, 244, 246)"
