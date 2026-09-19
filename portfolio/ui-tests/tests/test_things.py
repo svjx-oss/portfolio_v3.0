@@ -38,3 +38,15 @@ def test_things_post_content_images_and_navigation(page: Page, site_url: str) ->
 
     page.get_by_text("On this page").click()
     assert page.locator(".things-post__toc[open]").is_visible()
+
+
+def test_things_code_block_themes(page: Page, site_url: str) -> None:
+    page.goto(f"{site_url}/things/why-i-like-boring-software", wait_until="networkidle")
+
+    card = page.locator(".things-post__code-block").first
+    header = card.locator(".things-post__code-header")
+    assert card.evaluate("element => getComputedStyle(element).backgroundColor") == "rgb(17, 24, 39)"
+
+    page.locator("html").evaluate("element => element.dataset.theme = 'light'")
+    assert card.evaluate("element => getComputedStyle(element).backgroundColor") == "rgb(248, 250, 252)"
+    assert header.evaluate("element => getComputedStyle(element).backgroundColor") == "rgb(226, 232, 240)"
