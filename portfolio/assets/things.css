@@ -277,47 +277,6 @@
   padding-left: var(--space-3);
 }
 
-.things-post__prose {
-  max-width: 62ch;
-}
-
-.things-post__prose h2,
-.things-post__prose h3 {
-  color: var(--color-text);
-  line-height: 1.5;
-  scroll-margin-top: var(--space-12);
-}
-
-.things-post__prose a {
-  color: var(--color-text-subtle);
-  text-decoration-color: var(--accent);
-}
-
-.things-post__prose img {
-  display: block;
-  width: 100%;
-  height: auto;
-  margin: 0 0 var(--space-2);
-}
-
-.things-post__prose p:has(img) {
-  margin-bottom: var(--space-8);
-}
-
-.things-post__prose img[title] {
-  margin-bottom: var(--space-2);
-}
-
-.things-post__prose img[title]::after {
-  content: attr(title);
-}
-
-.things-post__prose img + em {
-  color: var(--color-text-muted);
-  font-size: var(--text-xs);
-  line-height: 1.5;
-}
-
 @media (hover: hover) and (prefers-reduced-motion: no-preference) {
   .things-entry__title,
   .things-entry__cue,
@@ -345,58 +304,6 @@
     color: var(--accent);
     transform: translateX(0.2rem);
   }
-}
-
-.things-post__prose h2 {
-  margin: var(--space-8) 0 var(--space-3);
-  font-size: var(--text-base);
-  font-weight: 400;
-}
-
-.things-post__prose h3 {
-  margin: var(--space-6) 0 var(--space-2);
-  font-size: var(--text-sm);
-  font-weight: 500;
-}
-
-.things-post__prose p,
-.things-post__prose ul,
-.things-post__prose ol,
-.things-post__prose blockquote,
-.things-post__prose pre {
-  margin: 0 0 var(--space-6);
-}
-
-.things-post__prose ul,
-.things-post__prose ol {
-  padding-left: 1.25em;
-}
-
-.things-post__prose li + li {
-  margin-top: var(--space-1);
-}
-
-.things-post__prose blockquote {
-  padding-left: var(--space-4);
-  color: var(--color-text-muted);
-  border-left: 2px solid var(--color-border-strong);
-}
-
-.things-post__prose code {
-  padding: 0.1em 0.25em;
-  background: var(--color-surface);
-}
-
-.things-post__prose pre {
-  overflow-x: auto;
-  padding: var(--space-4);
-  background: var(--color-surface);
-  border: 1px solid var(--color-border);
-}
-
-.things-post__prose pre code {
-  padding: 0;
-  background: transparent;
 }
 
 @media (max-width: 47.999rem) {

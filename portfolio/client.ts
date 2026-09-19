@@ -3,6 +3,8 @@ import "./assets/colors.css";
 import "./assets/global.css";
 import "./assets/layout.css";
 import "./assets/components.css";
+import "./assets/prose.css";
+import "./assets/slug.css";
 import "./assets/about.css";
 import "./assets/landing.css";
 import "./assets/experience.css";
