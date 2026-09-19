@@ -41,13 +41,18 @@ export function renderPostMarkdown(
   for (const token of tokens) {
     if (token.type !== "inline" || !token.children) continue;
     for (const child of token.children) {
-      if (child.type !== "image") continue;
-      const src = child.attrGet("src");
+      const src = child.attrGet(child.type === "link_open" ? "href" : "src");
       if (
         typeof src !== "string" || src.startsWith("/") || /^https?:/.test(src)
       ) {
         continue;
       }
+      if (child.type === "link_open" && src.endsWith(".pdf")) {
+        child.attrSet("href", `/things/${slug}/${src}`);
+        child.attrJoin("class", "things-post__document-link");
+        continue;
+      }
+      if (child.type !== "image") continue;
       const image = images[src];
       const filename = src.split("/").at(-1);
       child.attrSet("src", `/things/${slug}/${filename}`);

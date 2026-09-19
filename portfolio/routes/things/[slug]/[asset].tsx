@@ -1,21 +1,23 @@
 import { define } from "@/utils.ts";
 
-const imageTypes = {
+const assetTypes = {
   avif: "image/avif",
   gif: "image/gif",
   jpeg: "image/jpeg",
   jpg: "image/jpeg",
   png: "image/png",
   webp: "image/webp",
+  pdf: "application/pdf",
 };
 
 export const handler = define.handlers({
   async GET(ctx) {
     const { asset, slug } = ctx.params;
-    const filename = `images/${asset}`;
+    const directory = asset.endsWith(".pdf") ? "files" : "images";
+    const filename = `${directory}/${asset}`;
     const extension = asset.split(".").pop()?.toLowerCase();
     const contentType = extension &&
-      imageTypes[extension as keyof typeof imageTypes];
+      assetTypes[extension as keyof typeof assetTypes];
     if (!contentType || !/^[a-zA-Z0-9][a-zA-Z0-9._-]*$/.test(asset)) {
       return new Response(null, { status: 404 });
     }

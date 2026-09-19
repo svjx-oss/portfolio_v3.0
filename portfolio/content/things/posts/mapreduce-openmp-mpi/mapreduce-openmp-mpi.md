@@ -9,3 +9,5 @@ The implementation needed to process each word efficiently, merge independent co
 ## The approach
 
 The project used C with OpenMP and MPI. OpenMP supported concurrent work within a machine, while MPI coordinated the distributed work across machines.
+
+[Project report (PDF)](mapreduce-openmp-mpi.pdf)

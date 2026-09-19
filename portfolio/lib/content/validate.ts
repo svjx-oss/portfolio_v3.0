@@ -209,6 +209,19 @@ async function validateThings() {
         `images.json: ${src} is used by ${entry.md} but has no dimensions.`,
       );
     }
+    for (
+      const match of markdown.matchAll(
+        /(?<!!)(?:^|[^!])\[[^\]]+\]\(([^\s)]+\.pdf)\)/gm,
+      )
+    ) {
+      const src = match[1];
+      if (!src || src.startsWith("/") || /^https?:/.test(src)) continue;
+      assert(
+        /^[a-zA-Z0-9][a-zA-Z0-9._-]*\.pdf$/.test(src),
+        `PDF link: ${src} must be a local PDF filename.`,
+      );
+      await Deno.stat(`${postDir}/files/${src}`);
+    }
   }
 }
 

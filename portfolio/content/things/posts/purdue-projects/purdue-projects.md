@@ -17,3 +17,5 @@ I built 2048 for an STM32 microcontroller using the ARM v6-M architecture. The g
 For a MOOCs performance-prediction project, the goal was to predict whether a user would be correct on their first attempt at a question. A Gaussian-mixture clustering model was developed to predict average and individual quiz performance.
 
 ![MOOCs performance analysis visualization](images/moocs.jpg)
+
+[MOOCs performance analysis report (PDF)](moocs-performance-analysis.pdf)

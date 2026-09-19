@@ -14,6 +14,14 @@
   text-decoration-color: var(--accent);
 }
 
+.things-post__prose .things-post__document-link {
+  font-size: var(--text-xs);
+}
+
+.things-post__prose .things-post__document-link::after {
+  content: " ↗";
+}
+
 .things-post__prose h2 {
   margin: var(--space-8) 0 var(--space-3);
   font-size: var(--text-base);
