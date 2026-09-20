@@ -23,9 +23,12 @@ def test_things_filter_and_entry_hover(page: Page, site_url: str) -> None:
 
 
 def test_things_post_content_images_and_navigation(page: Page, site_url: str) -> None:
-    page.goto(f"{site_url}/things/portfolio-1-to-2", wait_until="networkidle")
+    page.goto(f"{site_url}/things", wait_until="networkidle")
+    post_url = page.locator(".things-entry__link").first.get_attribute("href")
+    assert post_url
+    page.goto(f"{site_url}{post_url}", wait_until="networkidle")
 
-    assert page.get_by_role("heading", name="Portfolio 1.0 to 2.0").is_visible()
+    assert page.locator(".things-post h1").is_visible()
     assert page.get_by_role("link", name="Back to Things").get_attribute("href") == "/things"
 
     image = page.locator(".things-post__prose img").first
@@ -41,7 +44,10 @@ def test_things_post_content_images_and_navigation(page: Page, site_url: str) ->
 
 
 def test_things_code_block_themes(page: Page, site_url: str) -> None:
-    page.goto(f"{site_url}/things/why-i-like-boring-software", wait_until="networkidle")
+    page.goto(f"{site_url}/things", wait_until="networkidle")
+    post_url = page.locator(".things-entry__link").last.get_attribute("href")
+    assert post_url
+    page.goto(f"{site_url}{post_url}", wait_until="networkidle")
 
     card = page.locator(".things-post__code-block").first
     header = card.locator(".things-post__code-header")
@@ -50,3 +56,17 @@ def test_things_code_block_themes(page: Page, site_url: str) -> None:
     page.locator("html").evaluate("element => element.dataset.theme = 'light'")
     assert card.evaluate("element => getComputedStyle(element).backgroundColor") == "rgb(248, 250, 252)"
     assert header.evaluate("element => getComputedStyle(element).backgroundColor") == "rgb(226, 232, 240)"
+
+
+def test_things_callout_variants(page: Page, site_url: str) -> None:
+    page.goto(f"{site_url}/things", wait_until="networkidle")
+    post_url = page.locator(".things-entry__link").last.get_attribute("href")
+    assert post_url
+    page.goto(f"{site_url}{post_url}", wait_until="networkidle")
+
+    callouts = page.locator(".things-post__callout")
+    assert callouts.count() > 0
+    assert callouts.locator(".things-post__callout-title").count() == callouts.count()
+
+    page.locator("html").evaluate("element => element.dataset.theme = 'light'")
+    assert callouts.nth(0).evaluate("element => getComputedStyle(element).backgroundColor") != "rgba(0, 0, 0, 0)"
