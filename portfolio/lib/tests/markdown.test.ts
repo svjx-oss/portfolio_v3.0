@@ -46,6 +46,43 @@ for (
   });
 }
 
+Deno.test("renderPostMarkdown renders code cards without titles", () => {
+  const { html } = renderPostMarkdown(
+    "```ts\nconst value = 1;\n```",
+    "example",
+  );
+
+  if (!html.includes('class="things-post__code-block"')) {
+    throw new Error("Expected a code card.");
+  }
+  if (html.includes("things-post__code-header")) {
+    throw new Error("Expected no header for a title-less fence.");
+  }
+  if (!html.includes("hljs-keyword")) {
+    throw new Error("Expected highlighted tokens.");
+  }
+});
+
+Deno.test("renderPostMarkdown deduplicates duplicate heading slugs", () => {
+  const { html, headings } = renderPostMarkdown(
+    "## Setup\n\nFirst.\n\n## Setup\n\nSecond.",
+    "example",
+  );
+
+  if (headings.length !== 2) {
+    throw new Error("Expected both headings to be collected.");
+  }
+  if (headings[0].id === headings[1].id) {
+    throw new Error("Expected duplicate slugs to be deduplicated.");
+  }
+  if (
+    !html.includes(`id="${headings[0].id}"`) ||
+    !html.includes(`id="${headings[1].id}"`)
+  ) {
+    throw new Error("Expected heading ids to be rendered.");
+  }
+});
+
 Deno.test("renderPostMarkdown safely renders unsupported code fences", () => {
   const source = "<script>alert('xss')</script>";
   const { html } = renderPostMarkdown(
