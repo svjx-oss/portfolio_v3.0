@@ -18,12 +18,13 @@
   text-decoration-color: var(--accent);
 }
 
-.things-post__prose .things-post__document-link {
-  font-size: var(--text-xs);
-}
-
 .things-post__prose .things-post__document-link::after {
-  content: " ↗";
+  display: inline-block;
+  margin-left: 0.15em;
+  content: "↗";
+  font-size: 0.8em;
+  line-height: 1;
+  vertical-align: 0.1em;
 }
 
 .things-post__prose .things-post__callout {
