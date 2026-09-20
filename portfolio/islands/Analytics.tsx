@@ -8,17 +8,22 @@ function track(name: string, params: Record<string, string | number> = {}) {
   analytics.gtag?.("event", name, params);
 }
 
-function eventForLink(link: HTMLAnchorElement) {
-  const href = link.href;
-  if (link.dataset.event) return link.dataset.event;
+export interface AnalyticsLink {
+  href: string;
+  pathname: string;
+  origin: string;
+  event?: string;
+  isThingsEntry?: boolean;
+}
+
+export function classifyLinkEvent(link: AnalyticsLink) {
+  if (link.event) return link.event;
   if (link.pathname.endsWith(".pdf")) return "resume_download";
-  if (href.startsWith(globalThis.location.origin)) {
+  if (link.href.startsWith(link.origin)) {
     if (link.pathname.startsWith("/things/")) return "blog_open";
     return "nav_click";
   }
-  return link.closest('[data-analytics-context="things-entry"]')
-    ? "blog_outbound"
-    : "outbound_click";
+  return link.isThingsEntry ? "blog_outbound" : "outbound_click";
 }
 
 export default function Analytics() {
@@ -29,7 +34,15 @@ export default function Analytics() {
       if (!(target instanceof Element)) return;
       const link = target.closest("a");
       if (!link) return;
-      const name = eventForLink(link);
+      const name = classifyLinkEvent({
+        href: link.href,
+        pathname: link.pathname,
+        origin: globalThis.location.origin,
+        event: link.dataset.event,
+        isThingsEntry: Boolean(
+          link.closest('[data-analytics-context="things-entry"]'),
+        ),
+      });
       track(name);
     };
     const onScroll = () => {
