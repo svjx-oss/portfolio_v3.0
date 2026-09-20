@@ -45,3 +45,18 @@ for (
     }
   });
 }
+
+Deno.test("renderPostMarkdown safely renders unsupported code fences", () => {
+  const source = "<script>alert('xss')</script>";
+  const { html } = renderPostMarkdown(
+    `\`\`\`unknown\n${source}\n\`\`\``,
+    "example",
+  );
+
+  if (!html.includes("&lt;script&gt;alert('xss')&lt;/script&gt;")) {
+    throw new Error("Expected unsupported code to be escaped.");
+  }
+  if (html.includes('<script>alert("xss")</script>')) {
+    throw new Error("Expected unsupported code not to render as HTML.");
+  }
+});

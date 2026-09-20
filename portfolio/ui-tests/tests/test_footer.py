@@ -11,3 +11,5 @@ def test_footer_links_and_theme_toggle(page: Page, site_url: str) -> None:
     toggle = footer.get_by_role("button", name="Switch to light theme")
     toggle.click()
     assert page.locator("html").get_attribute("data-theme") == "light"
+    page.reload(wait_until="networkidle")
+    assert page.locator("html").get_attribute("data-theme") == "light"

@@ -1,6 +1,18 @@
 from playwright.sync_api import Page
 
 
+def visit_post_with(page: Page, site_url: str, selector: str) -> None:
+    page.goto(f"{site_url}/things", wait_until="networkidle")
+    post_urls = page.locator(".things-entry__link").evaluate_all(
+        "links => links.map(link => link.getAttribute('href'))",
+    )
+    for post_url in post_urls:
+        page.goto(f"{site_url}{post_url}", wait_until="networkidle")
+        if page.locator(selector).count():
+            return
+    raise AssertionError(f"No Things post contains {selector}")
+
+
 def test_things_filter_and_entry_hover(page: Page, site_url: str) -> None:
     page.goto(f"{site_url}/things", wait_until="networkidle")
 
@@ -20,6 +32,14 @@ def test_things_filter_and_entry_hover(page: Page, site_url: str) -> None:
     hover_style = cue.evaluate("element => getComputedStyle(element)")
     assert hover_style["color"] != cue_style["color"]
     assert hover_style["transform"] != "none"
+
+    filters = page.locator(".things-filter__option")
+    assert filters.count() > 1
+    non_active_filter = filters.filter(has_not=active_filter).first
+    destination = non_active_filter.get_attribute("href")
+    assert destination
+    page.goto(f"{site_url}{destination}", wait_until="networkidle")
+    assert page.locator('.things-filter__option[aria-current="page"]').inner_text() == non_active_filter.inner_text()
 
 
 def test_things_post_content_images_and_navigation(page: Page, site_url: str) -> None:
@@ -44,10 +64,7 @@ def test_things_post_content_images_and_navigation(page: Page, site_url: str) ->
 
 
 def test_things_code_block_themes(page: Page, site_url: str) -> None:
-    page.goto(f"{site_url}/things", wait_until="networkidle")
-    post_url = page.locator(".things-entry__link").last.get_attribute("href")
-    assert post_url
-    page.goto(f"{site_url}{post_url}", wait_until="networkidle")
+    visit_post_with(page, site_url, ".things-post__code-block")
 
     card = page.locator(".things-post__code-block").first
     header = card.locator(".things-post__code-header")
@@ -59,10 +76,7 @@ def test_things_code_block_themes(page: Page, site_url: str) -> None:
 
 
 def test_things_callout_variants(page: Page, site_url: str) -> None:
-    page.goto(f"{site_url}/things", wait_until="networkidle")
-    post_url = page.locator(".things-entry__link").last.get_attribute("href")
-    assert post_url
-    page.goto(f"{site_url}{post_url}", wait_until="networkidle")
+    visit_post_with(page, site_url, ".things-post__callout")
 
     callouts = page.locator(".things-post__callout")
     assert callouts.count() > 0
