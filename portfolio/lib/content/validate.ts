@@ -5,9 +5,9 @@ import {
   loadSite,
 } from "@/lib/content/loadContent.ts";
 import type {
-  AboutContent,
+  About,
   Experience,
-  LandingContent,
+  Landing,
   Site,
   Things,
   ThingsImage,
@@ -41,18 +41,13 @@ function isHref(value: string) {
     /^https:\/\//.test(value);
 }
 
-async function readImages(postDir: string) {
-  try {
-    return JSON.parse(
-      await Deno.readTextFile(`${postDir}/images.json`),
-    ) as Record<string, ThingsImage>;
-  } catch (error) {
-    if (error instanceof Deno.errors.NotFound) return {};
-    throw error;
-  }
+export interface ThingsFiles {
+  markdown: (md: string) => Promise<string>;
+  images: (slug: string) => Promise<Record<string, ThingsImage>>;
+  exists: (path: string) => Promise<boolean>;
 }
 
-function validateSite(site: Site) {
+export function validateSite(site: Site) {
   assert(site.title, "site.json: title is required.");
   assert(site.description, "site.json: description is required.");
   assert(
@@ -70,7 +65,7 @@ function validateSite(site: Site) {
   }
 }
 
-function validateLanding(landing: LandingContent) {
+export function validateLanding(landing: Landing) {
   assert(landing.name, "landing.json: name is required.");
   assert(landing.tagline, "landing.json: tagline is required.");
   assert(
@@ -109,12 +104,12 @@ function validateLanding(landing: LandingContent) {
   }
 }
 
-function validateAbout(about: AboutContent) {
+export function validateAbout(about: About) {
   assert(about.portrait, "about.json: portrait is required.");
   assert(about.portrait_alt, "about.json: portrait_alt is required.");
 }
 
-function validateExperience(experience: Experience) {
+export function validateExperience(experience: Experience) {
   assert(
     experience.entries.length > 0,
     "experience.json: entries must not be empty.",
@@ -137,10 +132,7 @@ function validateExperience(experience: Experience) {
   }
 }
 
-async function validateThings() {
-  const things = JSON.parse(
-    await Deno.readTextFile("content/things/things.json"),
-  ) as Things;
+export async function validateThings(things: Things, files: ThingsFiles) {
   const slugs = new Set<string>();
   for (const entry of things.entries) {
     assert(entry.title, "things.json: entry title is required.");
@@ -174,12 +166,12 @@ async function validateThings() {
     assert(!slugs.has(entry.slug), "things.json: post slugs must be unique.");
     slugs.add(entry.slug);
     assert(
-      entry.md?.endsWith(".md"),
+      typeof entry.md === "string" && entry.md.endsWith(".md"),
       "things.json: post md must be a Markdown file.",
     );
     const postDir = `content/things/posts/${entry.slug}`;
-    const markdown = await Deno.readTextFile(`content/things/${entry.md}`);
-    const images = await readImages(postDir);
+    const markdown = await files.markdown(entry.md);
+    const images = await files.images(entry.slug);
     for (const [filename, image] of Object.entries(images)) {
       assert(
         /^images\/[a-zA-Z0-9][a-zA-Z0-9._-]*$/.test(filename),
@@ -199,7 +191,10 @@ async function validateThings() {
           `images.json: ${filename} caption must be a non-empty string.`,
         );
       }
-      await Deno.stat(`${postDir}/${filename}`);
+      assert(
+        await files.exists(`${postDir}/${filename}`),
+        `images.json: ${filename} must exist in ${postDir}.`,
+      );
     }
     for (const match of markdown.matchAll(/!\[[^\]]*\]\(([^\s)]+)/g)) {
       const src = match[1];
@@ -220,23 +215,52 @@ async function validateThings() {
         /^[a-zA-Z0-9][a-zA-Z0-9._-]*\.pdf$/.test(src),
         `PDF link: ${src} must be a local PDF filename.`,
       );
-      await Deno.stat(`${postDir}/files/${src}`);
+      assert(
+        await files.exists(`${postDir}/files/${src}`),
+        `PDF link: ${src} must exist in ${postDir}/files.`,
+      );
     }
   }
 }
 
+async function loadThingsFromDisk(): Promise<Things> {
+  return JSON.parse(
+    await Deno.readTextFile("content/things/things.json"),
+  ) as Things;
+}
+
+function diskThingsFiles(): ThingsFiles {
+  return {
+    markdown: (md) => Deno.readTextFile(`content/things/${md}`),
+    images: async (slug) => {
+      try {
+        return JSON.parse(
+          await Deno.readTextFile(`content/things/posts/${slug}/images.json`),
+        ) as Record<string, ThingsImage>;
+      } catch (error) {
+        if (error instanceof Deno.errors.NotFound) return {};
+        throw error;
+      }
+    },
+    exists: (path) => Deno.stat(path).then(() => true),
+  };
+}
+
 export async function validateContent() {
-  const [site, landing, about, experience] = await Promise.all([
-    loadSite(),
-    loadLanding(),
-    loadAbout(),
-    loadExperience(),
-  ]);
+  const [site, landing, about, experience, things, thingsFiles] = await Promise
+    .all([
+      loadSite(),
+      loadLanding(),
+      loadAbout(),
+      loadExperience(),
+      loadThingsFromDisk(),
+      diskThingsFiles(),
+    ]);
   validateSite(site);
   validateLanding(landing);
   validateAbout(about);
   validateExperience(experience);
-  await validateThings();
+  await validateThings(things, thingsFiles);
 }
 
 if (import.meta.main) {
