@@ -1,5 +1,5 @@
 import type { Site } from "@/lib/shared/types.ts";
-import { themeInitScript } from "@/lib/shared/theme.ts";
+import { themeColors, themeInitScript } from "@/lib/shared/theme.ts";
 
 export default function Seo(
   { site, pathname, hostname }: {
@@ -37,12 +37,12 @@ export default function Seo(
       )}
       <meta
         name="theme-color"
-        content="#0C111A"
+        content={themeColors.dark}
         media="(prefers-color-scheme: dark)"
       />
       <meta
         name="theme-color"
-        content="#F2F6FD"
+        content={themeColors.light}
         media="(prefers-color-scheme: light)"
       />
       <link rel="icon" href="/favicon.svg" type="image/svg+xml" />

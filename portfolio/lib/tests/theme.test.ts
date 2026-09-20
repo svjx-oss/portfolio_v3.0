@@ -1,4 +1,17 @@
-import { resolveTheme, themeInitScript } from "@/lib/shared/theme.ts";
+import {
+  resolveTheme,
+  themeColors,
+  themeInitScript,
+} from "@/lib/shared/theme.ts";
+
+Deno.test("theme metadata includes light and dark colors", () => {
+  if (!/^#[0-9A-F]{6}$/.test(themeColors.dark)) {
+    throw new Error("Expected a dark theme color.");
+  }
+  if (!/^#[0-9A-F]{6}$/.test(themeColors.light)) {
+    throw new Error("Expected a light theme color.");
+  }
+});
 
 Deno.test("resolveTheme accepts light and dark preferences", () => {
   if (resolveTheme("light") !== "light") throw new Error("Expected light");

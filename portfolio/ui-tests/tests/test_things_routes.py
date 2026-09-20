@@ -13,3 +13,5 @@ def test_published_things_posts_render(page: Page, site_url: str) -> None:
         assert response and response.ok
         assert page.locator(".things-post h1").count() == 1
         assert page.locator("img:not([alt]), img[alt='']").count() == 0
+        has_headings = page.locator(".things-post__prose h1, .things-post__prose h2").count() > 0
+        assert page.locator(".things-post__toc").count() == int(has_headings)

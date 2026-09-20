@@ -1,8 +1,12 @@
 import Logo from "@/components/Logo.tsx";
-import type { Site } from "@/lib/shared/types.ts";
+import type { Accent, Site } from "@/lib/shared/types.ts";
 
 export default function Header(
-  { site, pathname, accent }: { site: Site; pathname: string; accent?: string },
+  { site, pathname, accent }: {
+    site: Site;
+    pathname: string;
+    accent?: Accent;
+  },
 ) {
   const pageAccent = accent ??
     site.nav.find((item) => item.href === pathname)?.accent ??
@@ -14,14 +18,13 @@ export default function Header(
     >
       {pathname !== "/" && (
         <a
-          class={`site-logo site-logo--${pageAccent}`}
+          class={`site-logo accent--${pageAccent}`}
           href="/"
           aria-label={`${site.title} home`}
         >
           <Logo />
         </a>
       )}
-      <div class="header-end" />
     </header>
   );
 }

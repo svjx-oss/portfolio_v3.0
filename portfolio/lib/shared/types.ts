@@ -3,14 +3,14 @@ export interface Site {
   description: string;
   url: string;
   ga4_id: string;
-  nav: Array<{ label: string; href: string; accent: string }>;
+  nav: Array<{ label: string; href: string; accent: Accent }>;
 }
 
 export interface Contact {
   key: string;
   label: string;
   href: string;
-  accent: string;
+  accent: Accent;
   external?: boolean;
 }
 
@@ -64,16 +64,6 @@ export type ThingsEntryType =
   | "notes"
   | "external";
 
-export type Accent =
-  | "sienna"
-  | "coral"
-  | "blue"
-  | "magenta"
-  | "green"
-  | "violet"
-  | "teal"
-  | "gold";
-
 export interface ThingsEntry {
   title: string;
   date: string;
@@ -114,3 +104,6 @@ export interface ThingsPost extends ThingsEntry {
   html: string;
   headings: Heading[];
 }
+import type { Accent } from "@/lib/shared/accents.ts";
+
+export type { Accent } from "@/lib/shared/accents.ts";

@@ -1,5 +1,10 @@
 export type Theme = "light" | "dark";
 
+export const themeColors = {
+  dark: "#0C111A",
+  light: "#F2F6FD",
+} as const satisfies Record<Theme, string>;
+
 const THEME_STORAGE_KEY = "themePreference";
 
 export function resolveTheme(value: string | null): Theme {

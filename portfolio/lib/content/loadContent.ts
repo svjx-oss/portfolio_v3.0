@@ -1,24 +1,15 @@
 import { renderMarkdown, renderPostMarkdown } from "@/lib/shared/markdown.ts";
+import { thingsAccentByType } from "@/lib/shared/things.ts";
 import type {
   AboutContent,
-  Accent,
   Experience,
   LandingContent,
   Site,
   Things,
-  ThingsEntryType,
   ThingsFilter,
   ThingsImage,
   ThingsPost,
 } from "@/lib/shared/types.ts";
-
-export const thingsAccentByType: Record<ThingsEntryType, Accent> = {
-  project: "magenta",
-  writing: "green",
-  photography: "blue",
-  notes: "gold",
-  external: "teal",
-};
 
 export function sortThingsEntriesByDate<T extends { date: string }>(
   entries: T[],

@@ -19,3 +19,13 @@ def test_images_have_alt_text(page: Page, site_url: str) -> None:
 
     missing_alt = page.locator("img:not([alt]), img[alt='']")
     assert missing_alt.count() == 0
+
+
+def test_external_links_announce_new_tab(page: Page, site_url: str) -> None:
+    page.goto(site_url, wait_until="networkidle")
+    external_links = page.locator('a[target="_blank"]')
+
+    assert external_links.count() > 0
+    for index in range(external_links.count()):
+        label = external_links.nth(index).get_attribute("aria-label")
+        assert label and "opens in a new tab" in label

@@ -4,6 +4,7 @@ import {
   loadLanding,
   loadSite,
 } from "@/lib/content/loadContent.ts";
+import { accentSet } from "@/lib/shared/accents.ts";
 import type {
   About,
   Experience,
@@ -12,17 +13,6 @@ import type {
   Things,
   ThingsImage,
 } from "@/lib/shared/types.ts";
-
-const accents = new Set([
-  "sienna",
-  "coral",
-  "blue",
-  "magenta",
-  "green",
-  "violet",
-  "teal",
-  "gold",
-]);
 
 const thingsTypes = new Set([
   "project",
@@ -61,7 +51,10 @@ export function validateSite(site: Site) {
       isHref(item.href),
       "site.json: nav href must be root-relative or HTTPS.",
     );
-    assert(accents.has(item.accent), "site.json: nav accent is not supported.");
+    assert(
+      accentSet.has(item.accent),
+      "site.json: nav accent is not supported.",
+    );
   }
 }
 
@@ -90,7 +83,7 @@ export function validateLanding(landing: Landing) {
       "landing.json: contact href must be root-relative, mailto, or HTTPS.",
     );
     assert(
-      accents.has(contact.accent),
+      accentSet.has(contact.accent),
       "landing.json: contact accent is not supported.",
     );
   }

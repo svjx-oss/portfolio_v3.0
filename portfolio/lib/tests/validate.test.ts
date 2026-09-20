@@ -6,7 +6,7 @@ import {
   validateSite,
   validateThings,
 } from "@/lib/content/validate.ts";
-import type { Things, ThingsEntry } from "@/lib/shared/types.ts";
+import type { Accent, Things, ThingsEntry } from "@/lib/shared/types.ts";
 
 function expectError(fn: () => void, message: string) {
   try {
@@ -122,14 +122,23 @@ Deno.test("validateSite rejects unsupported nav accents", () => {
         description: "Site",
         url: "https://example.com",
         ga4_id: "G-1",
-        nav: [{ label: "Home", href: "/", accent: "purple" }],
+        nav: [{
+          label: "Home",
+          href: "/",
+          accent: "purple" as Accent,
+        }],
       }),
     "site.json: nav accent is not supported.",
   );
 });
 
 Deno.test("validateLanding rejects duplicate contact keys", () => {
-  const contact = {
+  const contact: {
+    key: string;
+    label: string;
+    href: string;
+    accent: Accent;
+  } = {
     key: "email",
     label: "Email",
     href: "mailto:me@example.com",

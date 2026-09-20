@@ -26,16 +26,6 @@
   padding-block: 0;
 }
 
-.header-start,
-.header-end {
-  display: flex;
-  align-items: center;
-}
-
-.header-end {
-  justify-content: end;
-}
-
 .site-logo,
 .header-back {
   display: inline-flex;
@@ -49,7 +39,7 @@
   width: 6rem;
   height: 3rem;
   padding: 0;
-  color: var(--color-text-muted);
+  color: var(--accent, var(--color-text-muted));
   text-decoration: none;
   transition: none;
 }
@@ -58,69 +48,6 @@
   display: block;
   width: 100%;
   height: 100%;
-}
-
-.site-logo--gold {
-  color: var(--color-accent-gold);
-}
-
-.site-logo--gold:hover,
-.site-logo--gold:focus-visible {
-  color: var(--color-accent-gold);
-}
-
-.site-logo--blue {
-  color: var(--color-accent-blue);
-}
-
-.site-logo--blue:hover,
-.site-logo--blue:focus-visible {
-  color: var(--color-accent-blue);
-}
-
-.site-logo--magenta {
-  color: var(--color-accent-magenta);
-}
-
-.site-logo--magenta:hover,
-.site-logo--magenta:focus-visible {
-  color: var(--color-accent-magenta);
-}
-
-.site-logo--green {
-  color: var(--color-accent-green);
-}
-
-.site-logo--green:hover,
-.site-logo--green:focus-visible {
-  color: var(--color-accent-green);
-}
-
-.site-logo--violet {
-  color: var(--color-accent-violet);
-}
-
-.site-logo--violet:hover,
-.site-logo--violet:focus-visible {
-  color: var(--color-accent-violet);
-}
-
-.site-logo--teal {
-  color: var(--color-accent-teal);
-}
-
-.site-logo--teal:hover,
-.site-logo--teal:focus-visible {
-  color: var(--color-accent-teal);
-}
-
-.site-logo--coral {
-  color: var(--color-accent-coral);
-}
-
-.site-logo--coral:hover,
-.site-logo--coral:focus-visible {
-  color: var(--color-accent-coral);
 }
 
 .theme-toggle {
@@ -147,28 +74,9 @@
   text-decoration: none;
 }
 
-.page-back--gold:hover,
-.page-back--gold:focus-visible {
-  color: var(--color-accent-gold);
-}
-
-.page-back--blue:hover,
-.page-back--blue:focus-visible {
-  color: var(--color-accent-blue);
-}
-
-.page-back--magenta:hover,
-.page-back--magenta:focus-visible {
-  color: var(--color-accent-magenta);
-}
-
-.page-back--violet:hover,
-.page-back--violet:focus-visible {
-  color: var(--color-accent-violet);
-}
-
 .page-back:hover,
 .page-back:focus-visible {
+  color: var(--accent);
   background-size: 100% 1px;
 }
 
@@ -238,10 +146,6 @@
   text-decoration-thickness: 1px;
 }
 
-.footer-copyright {
-  margin: 0 !important;
-}
-
 .footer-meta {
   display: flex;
   flex-wrap: wrap;
@@ -280,11 +184,6 @@
 
   .site-header--reading .site-logo {
     visibility: hidden;
-  }
-
-  .header-end {
-    grid-column: 2;
-    grid-row: 1;
   }
 
   .footer-meta {

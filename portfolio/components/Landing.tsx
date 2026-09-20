@@ -40,6 +40,9 @@ export default function Landing(
               href={contact.href}
               target={contact.external ? "_blank" : undefined}
               rel={contact.external ? "noopener noreferrer" : undefined}
+              aria-label={contact.external
+                ? `${contact.label} (opens in a new tab)`
+                : undefined}
             >
               <span>{contact.key}:</span>
               <span>{contact.label}</span>

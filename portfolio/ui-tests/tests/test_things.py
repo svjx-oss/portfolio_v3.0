@@ -21,6 +21,7 @@ def test_things_filter_and_entry_hover(page: Page, site_url: str) -> None:
     assert active_filter.evaluate("element => getComputedStyle(element).backgroundSize") == "100% 1px"
 
     entry = page.locator(".things-entry__link").first
+    assert entry.locator("xpath=..").get_attribute("data-analytics-context") == "things-entry"
     assert entry.get_attribute("href").startswith("/things/")
     cue = entry.locator(".things-entry__cue")
     cue_style = cue.evaluate("element => getComputedStyle(element)")

@@ -1,21 +1,10 @@
-import { thingsAccentByType } from "@/lib/content/loadContent.ts";
+import { Fragment } from "preact";
+import {
+  formatThingsDate,
+  thingsAccentByType,
+  thingsTypeLabels,
+} from "@/lib/shared/things.ts";
 import type { Things, ThingsFilter } from "@/lib/shared/types.ts";
-
-const typeLabels = {
-  project: "Project",
-  writing: "Writing",
-  photography: "Photography",
-  notes: "Notes",
-  external: "External",
-};
-
-function formatDate(date: string) {
-  return new Intl.DateTimeFormat("en", {
-    day: "numeric",
-    month: "short",
-    year: "numeric",
-  }).format(new Date(`${date}T00:00:00`));
-}
 
 const filters: Array<{ label: string; value: ThingsFilter }> = [
   { label: "All", value: "all" },
@@ -37,7 +26,7 @@ export default function ThingsPage({ entries, filter }: {
       </p>
       <nav class="things-filter" aria-label="Filter Things">
         {filters.map((item, index) => (
-          <>
+          <Fragment key={item.value}>
             {index > 0 && <span aria-hidden="true">/</span>}
             <a
               class={`things-filter__option things-filter__option--${item.value}`}
@@ -46,7 +35,7 @@ export default function ThingsPage({ entries, filter }: {
             >
               {item.label}
             </a>
-          </>
+          </Fragment>
         ))}
       </nav>
       {entries.length === 0
@@ -59,13 +48,18 @@ export default function ThingsPage({ entries, filter }: {
           <ol class="things__list">
             {entries.map((entry) => (
               <li
+                key={entry.slug ?? entry.external_url}
                 class={`things-entry accent--${thingsAccentByType[entry.type]}`}
+                data-analytics-context="things-entry"
               >
                 <a
                   class="things-entry__link"
                   href={entry.external_url ?? `/things/${entry.slug}`}
                   target={entry.external_url ? "_blank" : undefined}
                   rel={entry.external_url ? "noopener noreferrer" : undefined}
+                  aria-label={entry.external_url
+                    ? `${entry.title} (opens in a new tab)`
+                    : undefined}
                 >
                   <span class="things-entry__title-row">
                     <strong class="things-entry__title">{entry.title}</strong>
@@ -75,14 +69,14 @@ export default function ThingsPage({ entries, filter }: {
                   </span>
                   <span class="things-entry__metadata">
                     <span class="things-entry__type">
-                      {typeLabels[entry.type]}
+                      {thingsTypeLabels[entry.type]}
                     </span>
                     {entry.tags.map((tag) => (
                       <span class="things-entry__tag">{tag}</span>
                     ))}
                   </span>
                   <span class="things-entry__date">
-                    {formatDate(entry.date)}
+                    {formatThingsDate(entry.date)}
                   </span>
                   <span class="things-entry__excerpt">{entry.excerpt}</span>
                 </a>

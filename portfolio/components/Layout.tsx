@@ -1,5 +1,5 @@
 import type { ComponentChildren } from "preact";
-import type { Site } from "@/lib/shared/types.ts";
+import type { Accent, Site } from "@/lib/shared/types.ts";
 import Analytics from "@/islands/Analytics.tsx";
 import Footer from "./Footer.tsx";
 import Header from "./Header.tsx";
@@ -10,7 +10,7 @@ export default function Layout(
     hostname: string;
     site: Site;
     pathname: string;
-    accent?: string;
+    accent?: Accent;
   },
 ) {
   const isThingsPost = /^\/things\/[^/]+$/.test(pathname);
@@ -21,7 +21,7 @@ export default function Layout(
       <main id="main-content" class="site-main">
         {pathname !== "/" && !isThingsPost && (
           <a
-            class={`page-back page-back--${
+            class={`page-back accent--${
               site.nav.find((item) => item.href === pathname)?.accent ??
                 "sienna"
             }`}

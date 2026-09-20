@@ -16,7 +16,9 @@ function eventForLink(link: HTMLAnchorElement) {
     if (link.pathname.startsWith("/things/")) return "blog_open";
     return "nav_click";
   }
-  return link.closest(".things-entry") ? "blog_outbound" : "outbound_click";
+  return link.closest('[data-analytics-context="things-entry"]')
+    ? "blog_outbound"
+    : "outbound_click";
 }
 
 export default function Analytics() {
