@@ -20,6 +20,12 @@ export const thingsAccentByType: Record<ThingsEntryType, Accent> = {
   external: "teal",
 };
 
+export function sortThingsEntriesByDate<T extends { date: string }>(
+  entries: T[],
+) {
+  return entries.toSorted((a, b) => b.date.localeCompare(a.date));
+}
+
 export async function loadSite(): Promise<Site> {
   return JSON.parse(await Deno.readTextFile("content/site.json"));
 }
@@ -73,11 +79,13 @@ export async function loadThingsIndex(
 ): Promise<Things> {
   const things = await loadThings();
   return {
-    entries: things.entries.filter((entry) =>
-      entry.status === "published" &&
-      (filter === "all" ||
-        (filter === "projects" && entry.type === "project") ||
-        entry.type === filter)
+    entries: sortThingsEntriesByDate(
+      things.entries.filter((entry) =>
+        entry.status === "published" &&
+        (filter === "all" ||
+          (filter === "projects" && entry.type === "project") ||
+          entry.type === filter)
+      ),
     ),
   };
 }
