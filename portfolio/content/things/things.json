@@ -1,40 +1,40 @@
 {
   "entries": [
     {
-      "title": "Portfolio 1.0 to 2.0",
-      "date": "2019-01-01",
+      "title": "Personal Website 1.0 --> 2.0",
+      "date": "2023-02-01",
       "type": "project",
-      "excerpt": "A first Jekyll site gave way to a Gatsby rebuild for a deeper look at React and full-stack web development.",
-      "tags": ["Jekyll", "React", "Gatsby", "GraphQL"],
+      "excerpt": "Evolution of my personal website.",
+      "tags": ["WebDev", "React", "Javascript"],
       "status": "published",
       "slug": "portfolio-1-to-2",
       "md": "posts/portfolio-1-to-2/portfolio-1-to-2.md"
     },
     {
-      "title": "MapReduce with OpenMP and MPI",
-      "date": "2019-01-01",
+      "title": "Purdue Projects: Hardware, Firmware, and Data Analysis",
+      "date": "2022-12-14",
       "type": "project",
-      "excerpt": "A distributed word-indexing implementation built to coordinate work across multi-core machines.",
-      "tags": ["C", "OpenMP", "MPI"],
-      "status": "published",
-      "slug": "mapreduce-openmp-mpi",
-      "md": "posts/mapreduce-openmp-mpi/mapreduce-openmp-mpi.md"
-    },
-    {
-      "title": "Purdue Projects: Hardware, Firmware, and Data",
-      "date": "2019-01-01",
-      "type": "project",
-      "excerpt": "A USB SoC peripheral, an STM32 2048 game, and a MOOCs performance-prediction project.",
+      "excerpt": "A designed USB SoC peripheral, STM32 embedded game, and a statistical analysis report.",
       "tags": ["SystemVerilog", "C", "Python"],
       "status": "published",
       "slug": "purdue-projects",
       "md": "posts/purdue-projects/purdue-projects.md"
     },
     {
-      "title": "Biology Research: Metagenomics and Waksman",
+      "title": "MapReduce with OpenMP and MPI",
+      "date": "2022-05-01",
+      "type": "project",
+      "excerpt": "A distributed  word-indexing application built to parrallelize across multi-core machines.",
+      "tags": ["C", "OpenMP", "MPI"],
+      "status": "published",
+      "slug": "mapreduce-openmp-mpi",
+      "md": "posts/mapreduce-openmp-mpi/mapreduce-openmp-mpi.md"
+    },
+    {
+      "title": "Metagenomics Research",
       "date": "2018-01-01",
       "type": "project",
-      "excerpt": "Early research spanning soil metagenomics, antimicrobial screening, engineered plasmids, and plant-protein study.",
+      "excerpt": "Early biological research spanning metagenomics, antimicrobial screening, and engineered plasmids.",
       "tags": ["Research", "Metagenomics", "Biology"],
       "status": "published",
       "slug": "biology-research",
@@ -42,7 +42,7 @@
     },
     {
       "title": "Why I Like Boring Software",
-      "date": "2026-07-15",
+      "date": "2080-01-01",
       "type": "writing",
       "excerpt": "A reflection on why predictable systems often outlast clever abstractions.",
       "tags": ["Software"],

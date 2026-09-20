@@ -1,3 +1,5 @@
-I build efficient systems across hardware and software, from custom accelerators and embedded platforms to the software that brings them to life.
+I build end-to-end systems across the hardware and software stack. 
 
-My work centers on hardware + software co-design: understanding the full system, finding the constraints that matter, and making thoughtful tradeoffs to improve performance, reliability, and usability.
+My experience spans embedded platforms, optimizing consumer devices, and server grade silicon co-design.  
+
+I align application workloads and software patterns with computer architecture to deliver **scalable hardware accelerators**.

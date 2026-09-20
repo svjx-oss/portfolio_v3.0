@@ -1,4 +1,5 @@
-- Built an embedded application that **dynamically predicts latencies** of critical hardware IP blocks in real time, detecting bandwidth starvation, surges, and idling for key workflows.
-- Improved caching by `15%` for key end-user use cases and eased bandwidth bottlenecks by `20%` through software prefetching and hardware design changes.
-- Designed a **live on-device dashboard** for concurrent performance metrics across hardware IPs and replay capabilities for SoC debugging.
-- Led hardware bring-up for multiple IP blocks across SoCs and accelerated a custom data engineering platform, improving visualization speed by `500%` and memory use by up to `4000%`.
+- Built an embedded application that **dynamically predicts latencies** of critical hardware IP blocks in real time, detecting **bandwidth starvation**, surges, and idling **for key workflows**.
+- Resulted in a `15%` **caching improvement** for key end-user use-cases. Eased various bandwidth bottlenecks by `20%` through **software pre-fetching algorithms** and proposed HW design changes.
+- Designed a **live on-device dashboard** for concurrent performance metrics across hardware IPs.
+- Accelerated a **custom data engineering platform**, improving visualization speed by `500%` and memory use by up to `4000%` compared to Apache Spark leveraging **distributed caching schemes and parallel data processing**.
+- Led hardware bring-up for multiple IP blocks across SoCs as the **primary SME**.

@@ -9,9 +9,9 @@
     "height": 691,
     "caption": "Hardware setup for the STM32 2048 game."
   },
-  "images/moocs.jpg": {
-    "width": 2501,
-    "height": 1309,
-    "caption": "Visualization from the MOOCs performance data analysis project."
+  "images/data_graph.png": {
+    "width": 922,
+    "height": 691,
+    "caption": "Model performance from the data analysis project."
   }
 }

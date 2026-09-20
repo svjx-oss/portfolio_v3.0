@@ -1,4 +1,4 @@
-These projects moved between hardware design, embedded firmware, and data analysis.
+These are all the key projects that I worked on during my time at Purdue. Highlighting my experience and interest in hardware design, embedded firmware, and data analysis.
 
 ## USB full-speed bulk-transfer module
 
@@ -14,8 +14,10 @@ I built 2048 for an STM32 microcontroller using the ARM v6-M architecture. The g
 
 ## MOOCs performance analysis
 
-For a MOOCs performance-prediction project, the goal was to predict whether a user would be correct on their first attempt at a question. A Gaussian-mixture clustering model was developed to predict average and individual quiz performance.
+Working with the MOOCs data set, the goal was to predict whether a user would be correct on their first attempt at a question. 
 
-![MOOCs performance analysis visualization](images/moocs.jpg)
+A Gaussian-mixture clustering model (GMM) was developed and utilized to predict average and individual quiz performance.
+
+![MOOCs performance analysis visualization](images/data_graph.png)
 
 [MOOCs performance analysis report (PDF)](moocs-performance-analysis.pdf)
