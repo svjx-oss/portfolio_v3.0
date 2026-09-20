@@ -6,6 +6,7 @@ import type {
   LandingContent,
   Site,
   Things,
+  ThingsEntry,
   ThingsFilter,
   ThingsImage,
   ThingsPost,
@@ -15,6 +16,13 @@ export function sortThingsEntriesByDate<T extends { date: string }>(
   entries: T[],
 ) {
   return entries.toSorted((a, b) => b.date.localeCompare(a.date));
+}
+
+export function isVisibleThingsEntry(
+  entry: ThingsEntry,
+  includeDrafts: boolean,
+) {
+  return includeDrafts || entry.status === "published";
 }
 
 export async function loadSite(): Promise<Site> {
@@ -72,7 +80,7 @@ export async function loadThingsIndex(
   return {
     entries: sortThingsEntriesByDate(
       things.entries.filter((entry) =>
-        entry.status === "published" &&
+        isVisibleThingsEntry(entry, import.meta.env.DEV) &&
         (filter === "all" ||
           (filter === "projects" && entry.type === "project") ||
           entry.type === filter)
@@ -84,7 +92,8 @@ export async function loadThingsIndex(
 export async function loadThingsPost(slug: string): Promise<ThingsPost | null> {
   const things = await loadThings();
   const entry = things.entries.find((item) =>
-    item.slug === slug && item.status === "published" && item.md
+    item.slug === slug && isVisibleThingsEntry(item, import.meta.env.DEV) &&
+    item.md
   );
 
   if (!entry?.md || !entry.slug) return null;

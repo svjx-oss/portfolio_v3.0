@@ -1,4 +1,8 @@
-import { sortThingsEntriesByDate } from "@/lib/content/loadContent.ts";
+import {
+  isVisibleThingsEntry,
+  sortThingsEntriesByDate,
+} from "@/lib/content/loadContent.ts";
+import type { ThingsEntry } from "@/lib/shared/types.ts";
 
 Deno.test("sortThingsEntriesByDate orders entries newest first", () => {
   const entries = sortThingsEntriesByDate([
@@ -18,5 +22,25 @@ Deno.test("sortThingsEntriesByDate does not mutate the input", () => {
 
   if (entries[0].date !== "2025-01-01") {
     throw new Error("Expected input entries to remain unchanged.");
+  }
+});
+
+Deno.test("isVisibleThingsEntry excludes drafts outside development", () => {
+  const draft: ThingsEntry = {
+    title: "Draft",
+    date: "2026-01-01",
+    type: "writing",
+    excerpt: "Draft post.",
+    tags: ["Draft"],
+    status: "draft",
+    slug: "draft",
+    md: "posts/draft/draft.md",
+  };
+
+  if (isVisibleThingsEntry(draft, false)) {
+    throw new Error("Expected production filtering to exclude drafts.");
+  }
+  if (!isVisibleThingsEntry(draft, true)) {
+    throw new Error("Expected development filtering to include drafts.");
   }
 });
