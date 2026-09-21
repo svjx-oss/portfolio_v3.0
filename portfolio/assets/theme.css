@@ -28,6 +28,7 @@
   --font-body: "Recursive", system-ui, sans-serif;
   --font-code: "JetBrains Mono", ui-monospace, monospace;
   --font-variation-body: "CASL" 0, "CRSV" 0, "MONO" 0, "slnt" 0;
+  --font-variation-editorial: "CASL" 0.3, "CRSV" 0.15, "MONO" 0, "slnt" 0;
   --font-variation-display: "CASL" 0.65, "CRSV" 0.35, "MONO" 0, "slnt" 0;
   --font-variation-mono: "CASL" 0, "CRSV" 0, "MONO" 1, "slnt" 0;
   --text-xs: clamp(0.75rem, 0.72rem + 0.1vw, 0.8rem);

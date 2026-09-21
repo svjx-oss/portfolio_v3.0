@@ -14,6 +14,7 @@
 }
 
 .about .prose h2 {
+  font-variation-settings: var(--font-variation-editorial);
   margin: 0 0 var(--space-3);
   color: var(--color-text);
   font-size: var(--text-base);

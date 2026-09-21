@@ -4,6 +4,7 @@
 }
 
 .things__title {
+  font-variation-settings: var(--font-variation-editorial);
   margin: 0;
   color: var(--color-text);
   font-size: var(--text-xl);
@@ -123,6 +124,7 @@
 }
 
 .things-entry__title {
+  font-variation-settings: var(--font-variation-editorial);
   color: var(--color-text);
   font-size: var(--text-base);
   font-weight: 500;

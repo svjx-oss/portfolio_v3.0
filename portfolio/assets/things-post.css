@@ -3,6 +3,7 @@
 }
 
 .things-post__header h1 {
+  font-variation-settings: var(--font-variation-display);
   margin: 0;
   color: var(--color-text);
   font-size: var(--text-xl);
