@@ -2,7 +2,8 @@
   "nodeModulesDir": "manual",
   "tasks": {
     "dev": "vite",
-    "build": "vite build && deno task validate",
+    "build": "deno task generate:og && vite build && deno task validate",
+    "generate:og": "deno run -A lib/content/generateOgImages.tsx",
     "preview": "deno serve -A _fresh/server.js",
     "validate": "deno run -A lib/content/validate.ts",
     "update": "deno update && deno task check",
@@ -30,12 +31,14 @@
   ],
   "imports": {
     "@/": "./",
+    "@resvg/resvg-js": "npm:@resvg/resvg-js@^2.6.2",
     "fresh": "jsr:@fresh/core@^2.3.3",
     "markdown-it": "npm:markdown-it@^15.0.1",
     "preact": "npm:preact@^10.29.1",
     "@preact/signals": "npm:@preact/signals@^2.9.0",
     "@fresh/plugin-vite": "jsr:@fresh/plugin-vite@^1.1.2",
     "highlight.js": "npm:highlight.js@^11.11.1",
+    "satori": "npm:satori@^0.33.4",
     "vite": "npm:vite@^7.3.6"
   },
   "compilerOptions": {

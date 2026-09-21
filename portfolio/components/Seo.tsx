@@ -10,7 +10,10 @@ export default function Seo(
 ) {
   const title = pathname === "/" ? site.title : `${site.title} | Portfolio`;
   const url = `${site.url}${pathname}`;
-  const image = `${site.url}/og-image.png`;
+  const slug = pathname.match(/^\/things\/([^/]+)$/)?.[1];
+  const image = slug
+    ? `${site.url}/og/things/${slug}.png`
+    : `${site.url}/og/default.png`;
   const analyticsEnabled = Boolean(site.ga4_id) && hostname !== "localhost";
 
   return (
