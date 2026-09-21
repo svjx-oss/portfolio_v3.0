@@ -6,7 +6,7 @@ html {
   background: var(--color-bg);
   color: var(--color-text);
   font-family: var(--font-body);
-  font-variation-settings: "CASL" 0, "CRSV" 0, "MONO" 0, "slnt" 0;
+  font-variation-settings: var(--font-variation-body);
   line-height: 1.7;
   -webkit-text-size-adjust: 100%;
 }
@@ -20,7 +20,11 @@ body {
 h1,
 h2,
 h3 {
-  font-variation-settings: "CASL" 0.65, "CRSV" 0.35, "MONO" 0, "slnt" 0;
+  font-variation-settings: var(--font-variation-body);
+}
+
+.font-role--mono {
+  font-variation-settings: var(--font-variation-mono);
 }
 
 a {

@@ -15,6 +15,7 @@
   color: var(--color-text-muted);
   font-size: var(--text-xs);
   font-variant-numeric: tabular-nums;
+  font-variation-settings: var(--font-variation-mono);
 }
 
 .things-post__type {
@@ -57,6 +58,7 @@
   color: var(--color-text-muted);
   font-size: var(--text-xs);
   letter-spacing: 0.04em;
+  font-variation-settings: var(--font-variation-mono);
   list-style: none;
   background-image: linear-gradient(var(--accent), var(--accent));
   background-position: 0 100%;
@@ -92,6 +94,7 @@
 .things-post__toc a {
   color: var(--color-text-subtle);
   font-size: var(--text-xs);
+  font-variation-settings: var(--font-variation-mono);
   background-image: linear-gradient(var(--accent), var(--accent));
   background-position: 0 100%;
   background-repeat: no-repeat;

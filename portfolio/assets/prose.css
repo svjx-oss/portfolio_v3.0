@@ -21,6 +21,12 @@
   scroll-margin-top: var(--space-12);
 }
 
+.things-post .prose h2,
+.things-post .prose h3 {
+  font-family: var(--font-body);
+  font-variation-settings: var(--font-variation-display);
+}
+
 .prose h2 {
   margin: var(--space-8) 0 var(--space-3);
   font-size: var(--text-base);
