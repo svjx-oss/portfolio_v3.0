@@ -39,21 +39,21 @@ verification command.
 
 ## Content
 
-Edit site and page content in `content/`; the application code loads and
-renders these files at request time.
+Edit site and page content in `content/`; the application code loads and renders
+these files at request time.
 
-| Content | Location |
-| --- | --- |
-| Site title, URL, navigation, analytics ID | `content/site.json` |
-| Landing page | `content/landing/` |
-| About page | `content/about/` |
-| Experience timeline and entries | `content/experience/` |
-| Things index metadata | `content/things/things.json` |
-| Things post Markdown and post assets | `content/things/posts/<slug>/` |
+| Content                                   | Location                       |
+| ----------------------------------------- | ------------------------------ |
+| Site title, URL, navigation, analytics ID | `content/site.json`            |
+| Landing page                              | `content/landing/`             |
+| About page                                | `content/about/`               |
+| Experience timeline and entries           | `content/experience/`          |
+| Things index metadata                     | `content/things/things.json`   |
+| Things post Markdown and post assets      | `content/things/posts/<slug>/` |
 
 Shared UI and server code live in `components/`, `routes/`, `lib/`, and
-`assets/`. Read `../detailed_design/README.md` before making product changes;
-it links to the applicable design and implementation documents.
+`assets/`. Read `../detailed_design/README.md` before making product changes; it
+links to the applicable design and implementation documents.
 
 ## Open Graph Images
 
@@ -81,8 +81,8 @@ deno task build
 deno task preview
 ```
 
-Deploy with Deno Deploy after the production configuration in `content/site.json`
-is correct:
+Deploy with Deno Deploy after the production configuration in
+`content/site.json` is correct:
 
 ```sh
 deno deploy --prod
