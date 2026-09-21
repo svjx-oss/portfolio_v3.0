@@ -1,0 +1,22 @@
+[project]
+name = "ui-tests"
+version = "0.1.0"
+description = "Portfolio UI Tests"
+readme = "README.md"
+authors = [
+    { name = "Sahil Jaganmohan", email = "dev.sahil.jaganmohan@gmail.com" }
+]
+requires-python = ">=3.14"
+dependencies = [
+    "pillow>=12.3.0",
+    "pixelmatch>=0.4.0",
+    "pytest-playwright>=0.9.0",
+]
+
+[build-system]
+requires = ["uv_build>=0.12.17,<0.13.0"]
+build-backend = "uv_build"
+
+[tool.uv]
+managed = true
+package = false

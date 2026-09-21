@@ -1,0 +1,6 @@
+def main():
+    print("hello")
+    print("world")
+
+
+main()
