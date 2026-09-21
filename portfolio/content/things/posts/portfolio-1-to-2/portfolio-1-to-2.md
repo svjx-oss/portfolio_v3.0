@@ -1,4 +1,4 @@
-## The progression
+## Version 1.0
 
 My first portfolio site was a Jekyll static site built in 2018 to share my skills and experience. 
 

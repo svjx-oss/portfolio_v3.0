@@ -2,6 +2,6 @@
   "images/mapreduce.png": {
     "width": 1536,
     "height": 898,
-    "caption": "Legacy project diagram for the MapReduce implementation."
+    "caption": "MapReduce implementation diagram."
   }
 }
