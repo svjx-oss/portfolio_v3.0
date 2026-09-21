@@ -81,6 +81,7 @@
 }
 
 .things-post__prose code {
+  font-family: var(--font-code);
   padding: 0.1em 0.25em;
   background: var(--color-surface);
 }
@@ -102,6 +103,7 @@
 }
 
 .things-post__prose .things-post__code-header {
+  font-family: var(--font-code);
   padding: var(--space-3) var(--space-4);
   color: var(--code-muted);
   background: var(--code-header-bg);
