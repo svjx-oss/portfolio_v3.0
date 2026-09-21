@@ -25,7 +25,7 @@
   --color-accent-teal-hover: #A7E8E2;
   --color-accent-gold: #FFD166;
   --color-accent-gold-hover: #FFE39B;
-  --font-body: "Inter", system-ui, sans-serif;
+  --font-body: "Recursive", system-ui, sans-serif;
   --font-code: "JetBrains Mono", ui-monospace, monospace;
   --text-xs: clamp(0.75rem, 0.72rem + 0.1vw, 0.8rem);
   --text-sm: clamp(0.875rem, 0.84rem + 0.15vw, 0.95rem);
