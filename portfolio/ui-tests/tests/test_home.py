@@ -4,7 +4,7 @@ from playwright.sync_api import Page
 def test_homepage_typography_spacing_and_hover(page: Page, site_url: str) -> None:
     page.goto(site_url, wait_until="networkidle")
 
-    assert page.title() == "Sahil Jaganmohan"
+    assert page.title() == "Home | Sahil Jaganmohan"
 
     hero = page.locator(".hero-name")
     assert "Inter" in hero.evaluate("element => getComputedStyle(element).fontFamily")

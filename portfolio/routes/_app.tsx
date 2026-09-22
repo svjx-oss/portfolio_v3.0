@@ -1,9 +1,15 @@
 import Layout from "@/components/Layout.tsx";
 import Seo from "@/components/Seo.tsx";
+import { loadThingsPost } from "@/lib/content/loadContent.ts";
 import { define } from "@/utils.ts";
 
-export default define.page(function App(ctx) {
+export default define.page(async function App(ctx) {
   const { site } = ctx.state;
+  const slug = ctx.url.pathname.match(/^\/things\/([^/]+)$/)?.[1];
+  const loadedPost = slug ? await loadThingsPost(slug) : null;
+  const post = loadedPost && slug
+    ? { slug, title: loadedPost.title, excerpt: loadedPost.excerpt }
+    : undefined;
   return (
     <html lang="en">
       <head>
@@ -17,6 +23,7 @@ export default define.page(function App(ctx) {
           site={site}
           pathname={ctx.url.pathname}
           hostname={ctx.url.hostname}
+          post={post}
         />
       </head>
       <body>

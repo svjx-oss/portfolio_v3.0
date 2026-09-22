@@ -1,4 +1,3 @@
-import { loadThingsPost } from "@/lib/content/loadContent.ts";
 import type { Site } from "@/lib/shared/types.ts";
 import { themeColors, themeInitScript } from "@/lib/shared/theme.ts";
 
@@ -9,23 +8,23 @@ const pageTitles = {
   "/things": "Things | Sahil Jaganmohan",
 } as const;
 
-export default async function Seo(
-  { site, pathname, hostname }: {
+export default function Seo(
+  { site, pathname, hostname, post }: {
     site: Site;
     pathname: string;
     hostname: string;
+    post?: { slug: string; title: string; excerpt: string };
   },
 ) {
-  const slug = pathname.match(/^\/things\/([^/]+)$/)?.[1];
-  const post = slug ? await loadThingsPost(slug) : null;
+  const isThingsPost = /^\/things\/[^/]+$/.test(pathname);
   const title = post
     ? post.title
     : pageTitles[pathname as keyof typeof pageTitles] ??
       `${site.title} | Portfolio`;
   const description = post?.excerpt ?? site.description;
   const url = `${site.url}${pathname}`;
-  const image = slug
-    ? `${site.url}/og/things/${slug}.png`
+  const image = isThingsPost
+    ? `${site.url}/og/things/${post?.slug}.png`
     : `${site.url}/og/default.png`;
   const analyticsEnabled = Boolean(site.ga4_id) && hostname !== "localhost";
 
