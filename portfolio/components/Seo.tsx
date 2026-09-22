@@ -1,16 +1,29 @@
+import { loadThingsPost } from "@/lib/content/loadContent.ts";
 import type { Site } from "@/lib/shared/types.ts";
 import { themeColors, themeInitScript } from "@/lib/shared/theme.ts";
 
-export default function Seo(
+const pageTitles = {
+  "/": "Home | Sahil Jaganmohan",
+  "/about": "About | Sahil Jaganmohan",
+  "/experience": "Experience | Sahil Jaganmohan",
+  "/things": "Things | Sahil Jaganmohan",
+} as const;
+
+export default async function Seo(
   { site, pathname, hostname }: {
     site: Site;
     pathname: string;
     hostname: string;
   },
 ) {
-  const title = pathname === "/" ? site.title : `${site.title} | Portfolio`;
-  const url = `${site.url}${pathname}`;
   const slug = pathname.match(/^\/things\/([^/]+)$/)?.[1];
+  const post = slug ? await loadThingsPost(slug) : null;
+  const title = post
+    ? post.title
+    : pageTitles[pathname as keyof typeof pageTitles] ??
+      `${site.title} | Portfolio`;
+  const description = post?.excerpt ?? site.description;
+  const url = `${site.url}${pathname}`;
   const image = slug
     ? `${site.url}/og/things/${slug}.png`
     : `${site.url}/og/default.png`;
@@ -19,14 +32,28 @@ export default function Seo(
   return (
     <>
       <title>{title}</title>
-      <meta name="description" content={site.description} />
+      <meta name="description" content={description} />
       <link rel="canonical" href={url} />
       <meta property="og:title" content={title} />
-      <meta property="og:description" content={site.description} />
+      <meta property="og:description" content={description} />
       <meta property="og:url" content={url} />
       <meta property="og:type" content="website" />
       <meta property="og:site_name" content={site.title} />
       <meta property="og:image" content={image} />
+      <meta
+        property="og:image:alt"
+        content={post ? `${post.title} preview` : `${site.title} preview`}
+      />
+      <meta property="og:image:width" content="2400" />
+      <meta property="og:image:height" content="1260" />
+      <meta name="twitter:card" content="summary_large_image" />
+      <meta name="twitter:title" content={title} />
+      <meta name="twitter:description" content={description} />
+      <meta name="twitter:image" content={image} />
+      <meta
+        name="twitter:image:alt"
+        content={post ? `${post.title} preview` : `${site.title} preview`}
+      />
       {analyticsEnabled && (
         <>
           <script

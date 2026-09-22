@@ -85,7 +85,13 @@ interface CardData {
   type: string;
   accent: string;
   date: string;
+  cta: string;
   siteUrl: string;
+}
+
+function ctaForType(type: ThingsEntryType) {
+  if (type === "photography") return "View the Photograph →";
+  return `View the ${thingsTypeLabels[type]} →`;
 }
 
 function cardData(post: ThingsEntry, siteUrl: string): CardData {
@@ -95,15 +101,15 @@ function cardData(post: ThingsEntry, siteUrl: string): CardData {
     type: thingsTypeLabels[post.type],
     accent: accentColors[thingsAccentByType[post.type as ThingsEntryType]],
     date: formatThingsDate(post.date),
+    cta: ctaForType(post.type),
     siteUrl,
   };
 }
 
 async function createPng(
-  { title, blurb, type, accent, date, siteUrl }: CardData,
+  { title, blurb, type, accent, date, cta, siteUrl }: CardData,
   fonts: Awaited<ReturnType<typeof loadFonts>>,
 ) {
-  const compact = title.length > 42 || blurb.length > 100;
   const svg = await satori(
     el(
       "div",
@@ -126,7 +132,7 @@ async function createPng(
             display: "flex",
             flexDirection: "column",
             height: "100%",
-            padding: compact ? "50px 58px 42px" : "64px 58px 48px",
+            padding: "64px 58px 48px",
             width: "100%",
           },
         },
@@ -134,21 +140,28 @@ async function createPng(
           "div",
           {
             style: {
-              borderBottom: `6px solid ${colors.divider}`,
               display: "flex",
               flexDirection: "column",
-              gap: compact ? 20 : 28,
-              paddingBottom: compact ? 26 : 34,
+              gap: 24,
             },
           },
+          el("div", {
+            style: {
+              background: accent,
+              display: "flex",
+              height: 8,
+              width: 112,
+            },
+          }),
           el(
             "div",
             {
               style: {
                 display: "flex",
-                fontSize: compact ? 46 : 56,
+                fontSize: 54,
                 fontWeight: 600,
-                lineHeight: 1.18,
+                letterSpacing: -1,
+                lineHeight: 1.12,
               },
             },
             title,
@@ -159,9 +172,9 @@ async function createPng(
               style: {
                 color: colors.subtle,
                 display: "flex",
-                fontSize: compact ? 23 : 27,
+                fontSize: 25,
                 fontWeight: 500,
-                lineHeight: 1.45,
+                lineHeight: 1.4,
               },
             },
             blurb,
@@ -171,12 +184,14 @@ async function createPng(
           "div",
           {
             style: {
+              borderTop: `3px solid ${colors.divider}`,
               display: "flex",
-              flexDirection: "column",
-              fontSize: 21,
+              gap: 18,
+              fontSize: 19,
               fontWeight: 500,
               letterSpacing: 1,
-              marginTop: compact ? 26 : 36,
+              marginTop: 38,
+              paddingTop: 28,
             },
           },
           el(
@@ -190,7 +205,6 @@ async function createPng(
               style: {
                 color: colors.muted,
                 display: "flex",
-                marginTop: 10,
               },
             },
             date,
@@ -200,14 +214,37 @@ async function createPng(
           "div",
           {
             style: {
-              color: colors.url,
+              alignItems: "center",
               display: "flex",
-              fontSize: 21,
-              fontWeight: 500,
+              justifyContent: "space-between",
               marginTop: "auto",
+              paddingTop: 28,
             },
           },
-          siteUrl,
+          el(
+            "div",
+            {
+              style: {
+                color: colors.text,
+                display: "flex",
+                fontSize: 20,
+                fontWeight: 600,
+              },
+            },
+            cta,
+          ),
+          el(
+            "div",
+            {
+              style: {
+                color: colors.muted,
+                display: "flex",
+                fontSize: 17,
+                fontWeight: 500,
+              },
+            },
+            siteUrl.replace(/^https:\/\//, ""),
+          ),
         ),
       ),
     ),
