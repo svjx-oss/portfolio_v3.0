@@ -35,3 +35,13 @@ def test_things_post_share_metadata(page: Page, site_url: str) -> None:
         "https://sahiljaganmohan.com/og/things/purdue-projects.png"
     )
     assert page.locator('meta[name="twitter:card"]').get_attribute("content") == "summary_large_image"
+
+
+def test_analytics_bootstrap_is_valid_javascript(page: Page, site_url: str) -> None:
+    page.goto(site_url, wait_until="networkidle")
+
+    scripts = page.locator("script:not([src])").all_text_contents()
+    assert (
+        'window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments)}'
+        'gtag("js",new Date());gtag("config","G-N5Q8SBSQYK");'
+    ) in scripts
