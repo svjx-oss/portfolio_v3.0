@@ -15,7 +15,7 @@ a dense project catalogue.
 ```text
 Artifacts
 
-Artifacts I've built, written, photographed,
+Things I've built, written, photographed,
 and thought about.
 ```
 

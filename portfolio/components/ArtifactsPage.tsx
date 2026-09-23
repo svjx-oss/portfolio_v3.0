@@ -22,7 +22,7 @@ export default function ArtifactsPage({ entries, filter }: {
     <article class="artifacts">
       <h1 class="artifacts__title">Artifacts</h1>
       <p class="artifacts__tagline">
-        Artifacts I've built, written, photographed, and thought about.
+        Things I've built, written, photographed, and thought about.
       </p>
       <nav class="artifacts-filter" aria-label="Filter Artifacts">
         {filters.map((item, index) => (
