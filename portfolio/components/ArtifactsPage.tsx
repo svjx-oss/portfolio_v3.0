@@ -8,8 +8,8 @@ import type { Artifacts, ArtifactsFilter } from "@/lib/shared/types.ts";
 
 const filters: Array<{ label: string; value: ArtifactsFilter }> = [
   { label: "All", value: "all" },
-  { label: "Writing", value: "writing" },
   { label: "Projects", value: "projects" },
+  { label: "Writing", value: "writing" },
   { label: "Photography", value: "photography" },
   { label: "Notes", value: "notes" },
 ];

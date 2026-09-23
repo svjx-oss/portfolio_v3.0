@@ -31,9 +31,9 @@ The index filters server-side from an optional `type` query parameter:
 | Label   | Query value | Included entry type   |
 | ------- | ----------- | --------------------- |
 | All     | omitted     | all published entries |
+| Projects | `projects` | `project`             |
 | Writing | `writing`   | `written`             |
-| Making  | `making`    | `built`               |
-| Photos  | `photos`    | `photographed`        |
+| Photography | `photography` | `photography`    |
 | Notes   | `notes`     | `thought`             |
 
 An unknown query value falls back to All. External entries remain visible in All
@@ -54,9 +54,9 @@ When open, the links remain in document flow beneath the summary:
 Writing                                         ↑
 ────────────────────────────────────────────────
 All
+Projects
 Writing
-Making
-Photos
+Photography
 Notes
 ```
 
