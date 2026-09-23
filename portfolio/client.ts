@@ -8,5 +8,5 @@ import "./assets/slug.css";
 import "./assets/about.css";
 import "./assets/landing.css";
 import "./assets/experience.css";
-import "./assets/things-index.css";
-import "./assets/things-post.css";
+import "./assets/artifacts-index.css";
+import "./assets/artifacts-post.css";

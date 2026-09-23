@@ -57,17 +57,17 @@ export interface Experience {
   entries: ExperienceEntry[];
 }
 
-export type ThingsEntryType =
+export type ArtifactsEntryType =
   | "project"
   | "writing"
   | "photography"
   | "notes"
   | "external";
 
-export interface ThingsEntry {
+export interface ArtifactsEntry {
   title: string;
   date: string;
-  type: ThingsEntryType;
+  type: ArtifactsEntryType;
   excerpt: string;
   tags: string[];
   status: "published" | "draft";
@@ -76,17 +76,17 @@ export interface ThingsEntry {
   external_url?: string;
 }
 
-export interface ThingsImage {
+export interface ArtifactsImage {
   width: number;
   height: number;
   caption?: string;
 }
 
-export interface Things {
-  entries: ThingsEntry[];
+export interface Artifacts {
+  entries: ArtifactsEntry[];
 }
 
-export type ThingsFilter =
+export type ArtifactsFilter =
   | "all"
   | "writing"
   | "projects"
@@ -99,7 +99,7 @@ export interface Heading {
   text: string;
 }
 
-export interface ThingsPost extends ThingsEntry {
+export interface ArtifactsPost extends ArtifactsEntry {
   accent: Accent;
   html: string;
   headings: Heading[];

@@ -1,6 +1,6 @@
 import hljs from "highlight.js";
 import MarkdownIt from "markdown-it";
-import type { Heading, ThingsImage } from "@/lib/shared/types.ts";
+import type { ArtifactsImage, Heading } from "@/lib/shared/types.ts";
 
 const markdown = new MarkdownIt({
   html: false,
@@ -37,20 +37,20 @@ function renderCodeBlock(code: string, info: string) {
   const lineNumbers = code.trimEnd().split("\n").map((_, index) => index + 1)
     .join("\n");
   const header = title
-    ? `<div class="things-post__code-header">${
+    ? `<div class="artifacts-post__code-header">${
       markdown.utils.escapeHtml(title)
     }</div>`
     : "";
 
-  return `<div class="things-post__code-block">${header}<pre><code class="language-${
+  return `<div class="artifacts-post__code-block">${header}<pre><code class="language-${
     markdown.utils.escapeHtml(language)
-  }"><span class="things-post__code-lines" aria-hidden="true">${lineNumbers}</span><span class="things-post__code-content">${highlighted}</span></code></pre></div>`;
+  }"><span class="artifacts-post__code-lines" aria-hidden="true">${lineNumbers}</span><span class="artifacts-post__code-content">${highlighted}</span></code></pre></div>`;
 }
 
 export function renderPostMarkdown(
   raw: string,
   slug: string,
-  images: Record<string, ThingsImage> = {},
+  images: Record<string, ArtifactsImage> = {},
 ) {
   const headings: Heading[] = [];
   const usedIds = new Map<string, number>();
@@ -77,7 +77,9 @@ export function renderPostMarkdown(
     opening.tag = "aside";
     opening.attrSet(
       "class",
-      `things-post__callout things-post__callout--${match[1].toLowerCase()}`,
+      `artifacts-post__callout artifacts-post__callout--${
+        match[1].toLowerCase()
+      }`,
     );
     opening.attrSet("role", "note");
     inline.content = inline.content.slice(match[0].length);
@@ -91,7 +93,7 @@ export function renderPostMarkdown(
     titleToken.tag = "";
     titleToken.nesting = 0;
     titleToken.content =
-      `<p class="things-post__callout-title"><span aria-hidden="true">${callout.icon}</span>${callout.label}</p>`;
+      `<p class="artifacts-post__callout-title"><span aria-hidden="true">${callout.icon}</span>${callout.label}</p>`;
     titleToken.block = true;
     tokens.splice(index + 1, 0, titleToken);
     closing.tag = "aside";
@@ -128,14 +130,14 @@ export function renderPostMarkdown(
         continue;
       }
       if (child.type === "link_open" && src.endsWith(".pdf")) {
-        child.attrSet("href", `/things/${slug}/${src}`);
-        child.attrJoin("class", "things-post__document-link");
+        child.attrSet("href", `/artifacts/${slug}/${src}`);
+        child.attrJoin("class", "artifacts-post__document-link");
         continue;
       }
       if (child.type !== "image") continue;
       const image = images[src];
       const filename = src.split("/").at(-1);
-      child.attrSet("src", `/things/${slug}/${filename}`);
+      child.attrSet("src", `/artifacts/${slug}/${filename}`);
       if (image) {
         child.attrSet("width", String(image.width));
         child.attrSet("height", String(image.height));

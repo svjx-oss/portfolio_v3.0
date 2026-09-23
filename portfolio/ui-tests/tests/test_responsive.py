@@ -1,5 +1,5 @@
 from playwright.sync_api import Page
-from test_things import visit_post_with
+from test_artifacts import visit_post_with
 
 
 def test_about_portrait_reflows_for_mobile(page: Page, site_url: str) -> None:
@@ -12,9 +12,9 @@ def test_about_portrait_reflows_for_mobile(page: Page, site_url: str) -> None:
     assert portrait.bounding_box()["width"] == 192
 
 
-def test_things_filter_and_code_card_do_not_overflow_mobile(page: Page, site_url: str) -> None:
+def test_artifacts_filter_and_code_card_do_not_overflow_mobile(page: Page, site_url: str) -> None:
     page.set_viewport_size({"width": 390, "height": 844})
-    visit_post_with(page, site_url, ".things-post__code-block")
+    visit_post_with(page, site_url, ".artifacts-post__code-block")
 
     assert page.evaluate("() => document.documentElement.scrollWidth <= window.innerWidth")
-    assert page.locator(".things-post__code-block").first.is_visible()
+    assert page.locator(".artifacts-post__code-block").first.is_visible()

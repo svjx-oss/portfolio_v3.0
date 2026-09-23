@@ -7,14 +7,14 @@ import {
 import { accentSet } from "@/lib/shared/accents.ts";
 import type {
   About,
+  Artifacts,
+  ArtifactsImage,
   Experience,
   Landing,
   Site,
-  Things,
-  ThingsImage,
 } from "@/lib/shared/types.ts";
 
-const thingsTypes = new Set([
+const artifactsTypes = new Set([
   "project",
   "writing",
   "photography",
@@ -31,9 +31,9 @@ function isHref(value: string) {
     /^https:\/\//.test(value);
 }
 
-export interface ThingsFiles {
+export interface ArtifactsFiles {
   markdown: (md: string) => Promise<string>;
-  images: (slug: string) => Promise<Record<string, ThingsImage>>;
+  images: (slug: string) => Promise<Record<string, ArtifactsImage>>;
   exists: (path: string) => Promise<boolean>;
 }
 
@@ -125,44 +125,56 @@ export function validateExperience(experience: Experience) {
   }
 }
 
-export async function validateThings(things: Things, files: ThingsFiles) {
+export async function validateArtifacts(
+  artifacts: Artifacts,
+  files: ArtifactsFiles,
+) {
   const slugs = new Set<string>();
-  for (const entry of things.entries) {
-    assert(entry.title, "things.json: entry title is required.");
+  for (const entry of artifacts.entries) {
+    assert(entry.title, "artifacts.json: entry title is required.");
     assert(
       /^\d{4}-\d{2}-\d{2}$/.test(entry.date),
-      "things.json: entry date must be ISO.",
+      "artifacts.json: entry date must be ISO.",
     );
-    assert(thingsTypes.has(entry.type), "things.json: entry type is invalid.");
-    assert(entry.excerpt, "things.json: entry excerpt is required.");
-    assert(entry.tags.length > 0, "things.json: entry tags must not be empty.");
+    assert(
+      artifactsTypes.has(entry.type),
+      "artifacts.json: entry type is invalid.",
+    );
+    assert(entry.excerpt, "artifacts.json: entry excerpt is required.");
+    assert(
+      entry.tags.length > 0,
+      "artifacts.json: entry tags must not be empty.",
+    );
     assert(
       entry.status === "published" || entry.status === "draft",
-      "things.json: entry status is invalid.",
+      "artifacts.json: entry status is invalid.",
     );
     assert(
       Boolean(entry.md) !== Boolean(entry.external_url),
-      "things.json: each entry needs exactly one of md or external_url.",
+      "artifacts.json: each entry needs exactly one of md or external_url.",
     );
     if (entry.external_url) {
       assert(
         /^https:\/\//.test(entry.external_url),
-        "things.json: external_url must be HTTPS.",
+        "artifacts.json: external_url must be HTTPS.",
       );
       continue;
     }
-    assert(entry.slug, "things.json: post slug is required.");
+    assert(entry.slug, "artifacts.json: post slug is required.");
     assert(
       /^[a-z0-9]+(?:-[a-z0-9]+)*$/.test(entry.slug),
-      "things.json: post slug is invalid.",
+      "artifacts.json: post slug is invalid.",
     );
-    assert(!slugs.has(entry.slug), "things.json: post slugs must be unique.");
+    assert(
+      !slugs.has(entry.slug),
+      "artifacts.json: post slugs must be unique.",
+    );
     slugs.add(entry.slug);
     assert(
       typeof entry.md === "string" && entry.md.endsWith(".md"),
-      "things.json: post md must be a Markdown file.",
+      "artifacts.json: post md must be a Markdown file.",
     );
-    const postDir = `content/things/posts/${entry.slug}`;
+    const postDir = `content/artifacts/posts/${entry.slug}`;
     const markdown = await files.markdown(entry.md);
     const images = await files.images(entry.slug);
     for (const [filename, image] of Object.entries(images)) {
@@ -216,20 +228,22 @@ export async function validateThings(things: Things, files: ThingsFiles) {
   }
 }
 
-async function loadThingsFromDisk(): Promise<Things> {
+async function loadArtifactsFromDisk(): Promise<Artifacts> {
   return JSON.parse(
-    await Deno.readTextFile("content/things/things.json"),
-  ) as Things;
+    await Deno.readTextFile("content/artifacts/artifacts.json"),
+  ) as Artifacts;
 }
 
-function diskThingsFiles(): ThingsFiles {
+function diskArtifactsFiles(): ArtifactsFiles {
   return {
-    markdown: (md) => Deno.readTextFile(`content/things/${md}`),
+    markdown: (md) => Deno.readTextFile(`content/artifacts/${md}`),
     images: async (slug) => {
       try {
         return JSON.parse(
-          await Deno.readTextFile(`content/things/posts/${slug}/images.json`),
-        ) as Record<string, ThingsImage>;
+          await Deno.readTextFile(
+            `content/artifacts/posts/${slug}/images.json`,
+          ),
+        ) as Record<string, ArtifactsImage>;
       } catch (error) {
         if (error instanceof Deno.errors.NotFound) return {};
         throw error;
@@ -240,20 +254,21 @@ function diskThingsFiles(): ThingsFiles {
 }
 
 export async function validateContent() {
-  const [site, landing, about, experience, things, thingsFiles] = await Promise
-    .all([
-      loadSite(),
-      loadLanding(),
-      loadAbout(),
-      loadExperience(),
-      loadThingsFromDisk(),
-      diskThingsFiles(),
-    ]);
+  const [site, landing, about, experience, artifacts, artifactsFiles] =
+    await Promise
+      .all([
+        loadSite(),
+        loadLanding(),
+        loadAbout(),
+        loadExperience(),
+        loadArtifactsFromDisk(),
+        diskArtifactsFiles(),
+      ]);
   validateSite(site);
   validateLanding(landing);
   validateAbout(about);
   validateExperience(experience);
-  await validateThings(things, thingsFiles);
+  await validateArtifacts(artifacts, artifactsFiles);
 }
 
 if (import.meta.main) {

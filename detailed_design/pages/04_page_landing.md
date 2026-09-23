@@ -5,7 +5,7 @@
 
 **Goal:** introduce a point of view and direct the visitor into the portfolio. Minimal hero + metadata strip + two short point-of-view paragraphs + link row.
 
-**Visitor path:** identity → orientation → point of view → clear paths into Things and the resume. The page ends with generous whitespace.
+**Visitor path:** identity → orientation → point of view → clear paths into Artifacts and the resume. The page ends with generous whitespace.
 
 ---
 
@@ -65,7 +65,7 @@ export default function Landing({ frontmatter, html }: Landing) {
 ```
 
 - No island. Fully static HTML.
-- The Markdown body is exactly two short point-of-view paragraphs followed by one text link row: Things · Resume. It is not a resume summary or a second About page.
+- The Markdown body is exactly two short point-of-view paragraphs followed by one text link row: Artifacts · Resume. It is not a resume summary or a second About page.
 - Resume link in the link row is a direct path to `/resume.pdf`.
 
 ## CSS

@@ -13,17 +13,17 @@ export interface AnalyticsLink {
   pathname: string;
   origin: string;
   event?: string;
-  isThingsEntry?: boolean;
+  isArtifactsEntry?: boolean;
 }
 
 export function classifyLinkEvent(link: AnalyticsLink) {
   if (link.event) return link.event;
   if (link.pathname.endsWith(".pdf")) return "resume_download";
   if (link.href.startsWith(link.origin)) {
-    if (link.pathname.startsWith("/things/")) return "blog_open";
+    if (link.pathname.startsWith("/artifacts/")) return "blog_open";
     return "nav_click";
   }
-  return link.isThingsEntry ? "blog_outbound" : "outbound_click";
+  return link.isArtifactsEntry ? "blog_outbound" : "outbound_click";
 }
 
 export default function Analytics() {
@@ -39,8 +39,8 @@ export default function Analytics() {
         pathname: link.pathname,
         origin: globalThis.location.origin,
         event: link.dataset.event,
-        isThingsEntry: Boolean(
-          link.closest('[data-analytics-context="things-entry"]'),
+        isArtifactsEntry: Boolean(
+          link.closest('[data-analytics-context="artifacts-entry"]'),
         ),
       });
       track(name);

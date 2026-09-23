@@ -76,7 +76,7 @@ skip link, keyboard focus, mobile header, 404 page, and both color schemes work.
 - Replace static shell links with navigation from `site.json`.
 - Render the complete landing: hero with optional sienna emphasis,
   Focus/Based/Exploring metadata strip, two point-of-view paragraphs, and
-  Things/Resume link row.
+  Artifacts/Resume link row.
 - Add the base `.prose` styles because landing prose renders in this change;
   extend them only when a later page introduces new Markdown elements.
 - Add `MobileNav` enhancement because the navigation is now driven by the real
@@ -111,33 +111,33 @@ meaningful without colors.
   heading IDs.
 - Render years, company/role/dates, summary, two-to-four bullets, and current
   `Present` label.
-- Add no Things infrastructure.
+- Add no Artifacts infrastructure.
 
 Verification: `/experience` is chronological, usable without company colors, and
 readable at narrow widths.
 
-## Phase 3: Things
+## Phase 3: Artifacts
 
-### `feat: add Things page shell`
+### `feat: add Artifacts page shell`
 
-- Add `/things`, the `Things` title, and the approved tagline
-  `Things I’ve built, written, photographed, and thought about.`
-- Render an accessible empty-state placeholder only. Do not add Things content
+- Add `/artifacts`, the `Artifacts` title, and the approved tagline
+  `Artifacts I’ve built, written, photographed, and thought about.`
+- Render an accessible empty-state placeholder only. Do not add Artifacts content
   files, entries, filters, or post routes.
-- Update navigation and landing paths required to expose `/things`.
+- Update navigation and landing paths required to expose `/artifacts`.
 
-Verification: `/things` renders in both themes at 320px and desktop widths;
+Verification: `/artifacts` renders in both themes at 320px and desktop widths;
 navigation, heading hierarchy, and empty state are accessible.
 
-### `feat: add Things content foundation`
+### `feat: add Artifacts content foundation`
 
-- Add `things.json`, entry types, validation, loader, development fixtures, and
+- Add `artifacts.json`, entry types, validation, loader, development fixtures, and
   co-located Markdown files for `built`, `written`, `thought`, and `external`
   entries.
 - Render all published entries as basic semantic HTML only. Do not add final
   index styling, filters, or individual post routes.
 - Add the centralized `isProduction()` helper (`DENO_DEPLOYMENT_ID` or
-  `APP_ENV=production`) and implement `show_things_fixtures`;
+  `APP_ENV=production`) and implement `show_artifacts_fixtures`;
   local/non-production preview may use it, production validation requires
   `false` and production loaders never read fixtures.
 
@@ -145,7 +145,7 @@ Verification: valid and invalid content reports clearly; internal/external
 entries and empty production state render; fixtures are never exposed in
 production.
 
-### `feat: style Things index`
+### `feat: style Artifacts index`
 
 - Implement the approved chronological index layout: full-row destinations,
   title, metadata, optional excerpt, arrow cue, dividers, focus states, and
@@ -156,21 +156,21 @@ production.
 Verification: optional excerpts collapse naturally; rows are full link targets;
 both themes, keyboard focus, 320px, desktop, and 200% zoom work.
 
-### `feat: add Things post routes`
+### `feat: add Artifacts post routes`
 
 - Extend Markdown rendering with unique heading IDs, H1/H2 extraction, and
-  relative-image rewriting as needed by Things posts.
+  relative-image rewriting as needed by Artifacts posts.
 - Add post loader, post validation, dynamic post route, safe co-located asset
   route, and post styles.
 - Render title, date, title plus H2 TOC, prose, optional one related
-  continuation, and return-to-Things link.
+  continuation, and return-to-Artifacts link.
 - Missing and draft posts render the shared 404 page.
 
 Verification: writing, project, and thought fixtures; TOC anchors; duplicate
 headings; code blocks; image assets; draft/missing 404; and reduced-motion
 behavior work.
 
-### `feat: add Things filter control`
+### `feat: add Artifacts filter control`
 
 - Add the native `<details>` filter disclosure with URL links for All, Writing,
   Making, Photos, and Notes.
@@ -182,7 +182,7 @@ behavior work.
 Verification: filter control works without JavaScript, supports keyboard use,
 preserves shareable URLs, and is readable in both themes.
 
-### `feat: filter Things entries on the server`
+### `feat: filter Artifacts entries on the server`
 
 - Filter published entries by the `type` query parameter on the server.
 - Map `writing`, `making`, `photos`, and `notes` to their entry types; invalid
@@ -191,10 +191,10 @@ preserves shareable URLs, and is readable in both themes.
 Verification: every filter URL returns the expected entries; invalid values,
 empty results, refreshes, direct links, and no-JS navigation work.
 
-### `feat: add photography Things`
+### `feat: add photography Artifacts`
 
 - Add the `photographed` entry type and photography fixtures.
-- Render photo-oriented Things as deliberate responsive image sequences with
+- Render photo-oriented Artifacts as deliberate responsive image sequences with
   dimensions, alt text, captions, and reading-flow spacing.
 - Do not add gallery grids, masonry, slideshows, or lightboxes.
 
@@ -203,7 +203,7 @@ text, captions, dimensions, image paths, and no page-level overflow.
 
 ### `feat: add publishing discovery endpoints`
 
-- Add RSS from published internal Things posts and sitemap from available
+- Add RSS from published internal Artifacts posts and sitemap from available
   routes/published posts.
 - Add reusable Blue Slate Open Graph fallback metadata/template.
 - Add RSS/sitemap tests and XML escaping.
@@ -219,7 +219,7 @@ where appropriate; shared links use complete metadata.
   localhost.
 - Add `Analytics` island only now, after the routes/events it observes exist.
 - Implement documented aggregate events for navigation, external links, resume,
-  Things, TOC, scroll depth, and explicit theme changes.
+  Artifacts, TOC, scroll depth, and explicit theme changes.
 - Do not add a consent banner or privacy page. Do not send personal data or
   free-form content.
 
@@ -242,7 +242,7 @@ Verification: `deno task check` is green; the complete matrix in
 
 ### `build: audit deployment readiness`
 
-- Keep `show_things_fixtures: false` for production.
+- Keep `show_artifacts_fixtures: false` for production.
 - Resolve production-only values when available: domain, optional GA4 ID,
   resume, portrait, Bitmoji, SJ favicon, fonts, and deployment configuration.
 - Remove dead scaffold assets and verify all public links/assets.
@@ -253,10 +253,10 @@ assets, unresolved placeholders, console errors, or horizontal overflow.
 
 ## Content Growth Decisions
 
-- Things unifies built work, writing, photographs, and thoughts; projects do not
+- Artifacts unifies built work, writing, photographs, and thoughts; projects do not
   receive a separate route or data model.
 - Add search only when chronological lists, tags, and RSS no longer support
-  Things discovery.
+  Artifacts discovery.
 - Add reading time only when generated reliably; display an update date only
   after a material revision.
 - Prepare photography with responsive AVIF/WebP derivatives, dimensions, alt
@@ -269,7 +269,7 @@ assets, unresolved placeholders, console errors, or horizontal overflow.
   reviewed when its change lands.
 - Shared code exists only because a currently delivered feature uses it.
 - The only islands are `MobileNav`, `ThemeToggle`, and optional `Analytics`.
-- Landing is concise; About, Experience, and Things follow the documented
+- Landing is concise; About, Experience, and Artifacts follow the documented
   editorial reading paths.
 - Sienna is the interaction accent; pop/company/discipline colors are decorative
   and labeled.

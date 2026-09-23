@@ -39,7 +39,7 @@ Nav dropdown (all breakpoints, localized, right-aligned):
 │ Home      │
 │ About      │
 │ Experience │
-│ Things     │
+│ Artifacts     │
 └──────────┘
 ```
 
@@ -76,7 +76,7 @@ Minimal hero + metadata strip + short prose + path link row.
 │   idea to something finished, useful, and    │
 │   easy to understand.                        │
 │                                              │
-│   Things · Resume                             │ ← compact path selector
+│   Artifacts · Resume                             │ ← compact path selector
 │                                              │
 │                                              │ ← intentional ending whitespace
 ├──────────────────────────────────────────────┤
@@ -178,9 +178,9 @@ text, not a live badge. Same reading order mobile → desktop.
 
 ---
 
-## 4. Things `/things`
+## 4. Artifacts `/artifacts`
 
-One chronological archive for Things built, written, photographed, and thought
+One chronological archive for Artifacts built, written, photographed, and thought
 about. Entries are complete row links; the filter uses a native disclosure and
 URL links.
 
@@ -188,9 +188,9 @@ URL links.
 ┌──────────────────────────────────────────────┐
 │ [◐]                                ◑  ≡    │
 ├──────────────────────────────────────────────┤
-│   Things                                     │
+│   Artifacts                                     │
 │                                              │
-│   Things I've built, written, photographed,  │
+│   Artifacts I've built, written, photographed,  │
 │   and thought about.                          │
 │                                              │
 │   All                                      ↓ │
@@ -222,11 +222,11 @@ URL links.
 The filter opens in normal document flow: `All`, `Writing`, `Making`, `Photos`,
 and `Notes` link to the corresponding URL query state. Each row is one full-link
 target. Metadata follows the title; excerpts are optional; images appear only in
-individual Things.
+individual Artifacts.
 
 ---
 
-## 5. Things post `/things/{slug}`
+## 5. Artifacts post `/artifacts/{slug}`
 
 TOC shows H1 + H2.
 
@@ -253,7 +253,7 @@ TOC shows H1 + H2.
 │   ## Results                                 │
 │   We observed a 500% improvement...          │
 │                                              │
-│   ← back to Things                           │
+│   ← back to Artifacts                           │
 ├──────────────────────────────────────────────┤
 │   email · linkedin · github · resume        │
 └──────────────────────────────────────────────┘
@@ -283,7 +283,7 @@ TOC shows H1 + H2.
 1. **Centered column** — `--content-max` for prose, `--content-max-wide` for
    lists.
 2. **Section titles** — H1 + sienna subtitle on non-landing pages.
-3. **Lists over cards** — Things is a divided list, not a card grid. Things rows
+3. **Lists over cards** — Artifacts is a divided list, not a card grid. Artifacts rows
    show title + metadata + optional excerpt + destination cue. Experience
    entries remain the only structured chronological entries.
 4. **Mono font** for dates, tags, nav, metadata labels.
@@ -298,4 +298,4 @@ TOC shows H1 + H2.
 10. **Landing color moment** — one sienna phrase and metadata rule create visual
     interest; no multicolor status panel.
 11. **Landing progression** — identity → three-row orientation strip → two short
-    point-of-view paragraphs → Things/Resume → intentional whitespace.
+    point-of-view paragraphs → Artifacts/Resume → intentional whitespace.

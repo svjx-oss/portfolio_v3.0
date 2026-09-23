@@ -18,21 +18,21 @@ Deno.test("classifyLinkEvent identifies PDFs and internal links", () => {
   if (link({ pathname: "/resume.pdf" }) !== "resume_download") {
     throw new Error("Expected PDF links to be resume downloads.");
   }
-  if (link({ pathname: "/things/example" }) !== "blog_open") {
-    throw new Error("Expected internal Things links to be blog opens.");
+  if (link({ pathname: "/artifacts/example" }) !== "blog_open") {
+    throw new Error("Expected internal Artifacts links to be blog opens.");
   }
   if (link({ pathname: "/about" }) !== "nav_click") {
     throw new Error("Expected internal links to be navigation clicks.");
   }
 });
 
-Deno.test("classifyLinkEvent distinguishes Things and generic outbound links", () => {
+Deno.test("classifyLinkEvent distinguishes Artifacts and generic outbound links", () => {
   if (
-    link({ href: "https://external.example", isThingsEntry: true }) !==
+    link({ href: "https://external.example", isArtifactsEntry: true }) !==
       "blog_outbound"
   ) {
     throw new Error(
-      "Expected external Things links to be blog outbound events.",
+      "Expected external Artifacts links to be blog outbound events.",
     );
   }
   if (link({ href: "https://external.example" }) !== "outbound_click") {

@@ -26,15 +26,15 @@
 - Theme cycles system → light → dark, persists after reload, and reacts to OS changes only in system mode
 - Keyboard order, skip link, Escape behavior, returned focus, and visible focus rings work
 - Both themes work at 320px, mobile, desktop, and 200% zoom without horizontal page scrolling
-- Landing hero emphasis is present at most once; metadata has exactly Focus, Based, and Exploring rows; the body has two point-of-view paragraphs plus Things/Resume links; the page ends with intentional whitespace rather than a featured-content block, grid, or status panel.
+- Landing hero emphasis is present at most once; metadata has exactly Focus, Based, and Exploring rows; the body has two point-of-view paragraphs plus Artifacts/Resume links; the page ends with intentional whitespace rather than a featured-content block, grid, or status panel.
 - About disciplines render in content order as `01`–`04`, remain a single vertical reading sequence at every breakpoint, and remain understandable when decorative number colors are unavailable.
 - About portrait and editorial intro align at desktop and stack on mobile; Markdown biography returns to full reading width below the intro rather than remaining in a narrow image-adjacent column.
 - Experience entries show a summary before two to four bullets; a current role uses visible `Present` text and remains understandable without the decorative company bar color.
 - Project rows render decorative sequential numbers, wrap cleanly, show an optional challenge only when present, and use destination-specific link labels rather than generic “more.”
-- Each non-landing page has one relevant continuation link after its primary content; Things posts have at most one related-post continuation plus the return-to-index link
-- Things entries display the correct human-readable type. Photo essays remain readable and image-led without masonry layouts, lightboxes, page-level horizontal overflow, or missing alt text/captions.
-- Things index rows contain no author avatar or post image; photographs render only in their individual post context.
-- Things fixtures render only in local/non-production preview when `show_things_fixtures` is enabled; `DENO_DEPLOYMENT_ID` or `APP_ENV=production` is production, where configuration rejects the flag and loaders never expose fixtures.
+- Each non-landing page has one relevant continuation link after its primary content; Artifacts posts have at most one related-post continuation plus the return-to-index link
+- Artifacts entries display the correct human-readable type. Photo essays remain readable and image-led without masonry layouts, lightboxes, page-level horizontal overflow, or missing alt text/captions.
+- Artifacts index rows contain no author avatar or post image; photographs render only in their individual post context.
+- Artifacts fixtures render only in local/non-production preview when `show_artifacts_fixtures` is enabled; `DENO_DEPLOYMENT_ID` or `APP_ENV=production` is production, where configuration rejects the flag and loaders never expose fixtures.
 - Reduced-motion and forced-colors modes preserve all content and controls
 - Accent assignments remain stable across reloads, restart per documented visual group or prose paragraph, and never depend on client-side randomness
 

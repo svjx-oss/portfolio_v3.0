@@ -1,25 +1,25 @@
 import { renderMarkdown, renderPostMarkdown } from "@/lib/shared/markdown.ts";
-import { thingsAccentByType } from "@/lib/shared/things.ts";
+import { artifactsAccentByType } from "@/lib/shared/artifacts.ts";
 import type {
   AboutContent,
+  Artifacts,
+  ArtifactsEntry,
+  ArtifactsFilter,
+  ArtifactsImage,
+  ArtifactsPost,
   Experience,
   LandingContent,
   Site,
-  Things,
-  ThingsEntry,
-  ThingsFilter,
-  ThingsImage,
-  ThingsPost,
 } from "@/lib/shared/types.ts";
 
-export function sortThingsEntriesByDate<T extends { date: string }>(
+export function sortArtifactsEntriesByDate<T extends { date: string }>(
   entries: T[],
 ) {
   return entries.toSorted((a, b) => b.date.localeCompare(a.date));
 }
 
-export function isVisibleThingsEntry(
-  entry: ThingsEntry,
+export function isVisibleArtifactsEntry(
+  entry: ArtifactsEntry,
   includeDrafts: boolean,
 ) {
   return includeDrafts || entry.status === "published";
@@ -29,15 +29,15 @@ export async function loadSite(): Promise<Site> {
   return JSON.parse(await Deno.readTextFile("content/site.json"));
 }
 
-async function loadThings(): Promise<Things> {
+async function loadArtifacts(): Promise<Artifacts> {
   return JSON.parse(
-    await Deno.readTextFile("content/things/things.json"),
-  ) as Things;
+    await Deno.readTextFile("content/artifacts/artifacts.json"),
+  ) as Artifacts;
 }
 
-export async function loadPublishedThingsPosts() {
-  const things = await loadThings();
-  return things.entries.filter((entry) =>
+export async function loadPublishedArtifactsPosts() {
+  const artifacts = await loadArtifacts();
+  return artifacts.entries.filter((entry) =>
     entry.status === "published" && entry.md && entry.slug
   );
 }
@@ -73,14 +73,14 @@ export async function loadExperience(): Promise<Experience> {
   return { entries };
 }
 
-export async function loadThingsIndex(
-  filter: ThingsFilter = "all",
-): Promise<Things> {
-  const things = await loadThings();
+export async function loadArtifactsIndex(
+  filter: ArtifactsFilter = "all",
+): Promise<Artifacts> {
+  const artifacts = await loadArtifacts();
   return {
-    entries: sortThingsEntriesByDate(
-      things.entries.filter((entry) =>
-        isVisibleThingsEntry(entry, import.meta.env.DEV) &&
+    entries: sortArtifactsEntriesByDate(
+      artifacts.entries.filter((entry) =>
+        isVisibleArtifactsEntry(entry, import.meta.env.DEV) &&
         (filter === "all" ||
           (filter === "projects" && entry.type === "project") ||
           entry.type === filter)
@@ -89,24 +89,26 @@ export async function loadThingsIndex(
   };
 }
 
-export async function loadThingsPost(slug: string): Promise<ThingsPost | null> {
-  const things = await loadThings();
-  const entry = things.entries.find((item) =>
-    item.slug === slug && isVisibleThingsEntry(item, import.meta.env.DEV) &&
+export async function loadArtifactsPost(
+  slug: string,
+): Promise<ArtifactsPost | null> {
+  const artifacts = await loadArtifacts();
+  const entry = artifacts.entries.find((item) =>
+    item.slug === slug && isVisibleArtifactsEntry(item, import.meta.env.DEV) &&
     item.md
   );
 
   if (!entry?.md || !entry.slug) return null;
-  const postDir = `content/things/posts/${entry.slug}`;
+  const postDir = `content/artifacts/posts/${entry.slug}`;
   const images = await Deno.readTextFile(`${postDir}/images.json`)
-    .then((raw) => JSON.parse(raw) as Record<string, ThingsImage>)
+    .then((raw) => JSON.parse(raw) as Record<string, ArtifactsImage>)
     .catch((error) => {
       if (error instanceof Deno.errors.NotFound) return {};
       throw error;
     });
   return {
     ...entry,
-    accent: thingsAccentByType[entry.type],
+    accent: artifactsAccentByType[entry.type],
     ...renderPostMarkdown(
       await Deno.readTextFile(`${postDir}/${entry.slug}.md`),
       entry.slug,

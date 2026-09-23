@@ -26,4 +26,4 @@ Event the footer looks odd and unpolished. Maybe that is due to the alignment be
 
 Response: Align the header, main content, and footer to the same content container. Use a restrained top rule, one linear row of text links, smaller gaps, and subdued supporting text so the footer feels like a quiet conclusion rather than a separate visual block. Confirm final spacing once real landing content establishes the page rhythm.
 
-Review: What are we trying to establish here? That is important, we want things to look polished with intent and hence dictate how the reader percieves the author.
+Review: What are we trying to establish here? That is important, we want artifacts to look polished with intent and hence dictate how the reader percieves the author.

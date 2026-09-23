@@ -24,7 +24,7 @@ export const handler = define.handlers({
 
     try {
       const body = await Deno.readFile(
-        `content/things/posts/${slug}/${filename}`,
+        `content/artifacts/posts/${slug}/${filename}`,
       );
       return new Response(body, {
         headers: {

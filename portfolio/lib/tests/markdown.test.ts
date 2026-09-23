@@ -7,7 +7,9 @@ Deno.test("renderPostMarkdown renders callouts with labels and body text", () =>
   );
 
   if (
-    !html.includes('class="things-post__callout things-post__callout--warning"')
+    !html.includes(
+      'class="artifacts-post__callout artifacts-post__callout--warning"',
+    )
   ) {
     throw new Error("Expected a warning callout.");
   }
@@ -32,14 +34,14 @@ for (
       "example",
     );
 
-    if (!html.includes('class="things-post__code-block"')) {
+    if (!html.includes('class="artifacts-post__code-block"')) {
       throw new Error("Expected a code card.");
     }
     if (!html.includes(`example.${language}`) || !html.includes(token)) {
       throw new Error(`Expected ${language} title and highlighted tokens.`);
     }
     if (
-      !html.includes('class="things-post__code-lines" aria-hidden="true">1')
+      !html.includes('class="artifacts-post__code-lines" aria-hidden="true">1')
     ) {
       throw new Error("Expected line numbers.");
     }
@@ -52,10 +54,10 @@ Deno.test("renderPostMarkdown renders code cards without titles", () => {
     "example",
   );
 
-  if (!html.includes('class="things-post__code-block"')) {
+  if (!html.includes('class="artifacts-post__code-block"')) {
     throw new Error("Expected a code card.");
   }
-  if (html.includes("things-post__code-header")) {
+  if (html.includes("artifacts-post__code-header")) {
     throw new Error("Expected no header for a title-less fence.");
   }
   if (!html.includes("hljs-keyword")) {

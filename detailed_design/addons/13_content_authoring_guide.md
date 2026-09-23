@@ -22,8 +22,8 @@ The landing page answers: who is this person, what do they care about, and where
 - **Tagline:** one concise point of view, not a job-title inventory. The optional sienna phrase should identify the idea worth remembering.
 - **Metadata:** use exactly three concise orientation rows: `Focus`, `Based`, and `Exploring`. Values should be short, human, and stable rather than live-status updates.
 - **Introduction:** exactly two short point-of-view paragraphs. Explain the kind of work, decisions, or outcomes that matter to you; do not summarize the resume or repeat the About page.
-- **Link row:** follow the paragraphs with `Things · Resume`. It is a compact path selector, not a list of social links.
-- End after the Things/Resume link row. Do not add a featured-work preview, content feed, or additional call to action; whitespace is intentional.
+- **Link row:** follow the paragraphs with `Artifacts · Resume`. It is a compact path selector, not a list of social links.
+- End after the Artifacts/Resume link row. Do not add a featured-work preview, content feed, or additional call to action; whitespace is intentional.
 
 ### About
 
@@ -51,9 +51,9 @@ For each role, write one summary sentence followed by two to four bullets:
 
 Avoid duplicating every resume bullet. The timeline should be readable as a narrative of increasing responsibility.
 
-## 4. Things
+## 4. Artifacts
 
-Things gathers built work, writing, photographs, and thoughts in one index. Include older work only when a concise retrospective still offers useful context or reflection.
+Artifacts gathers built work, writing, photographs, and thoughts in one index. Include older work only when a concise retrospective still offers useful context or reflection.
 
 ### Built work
 
@@ -70,7 +70,7 @@ Use screenshots, diagrams, or code only when they clarify a decision. Every imag
 
 ## 5. Writing and Photography
 
-Writing and photography demonstrate depth of thought and give Things a personal voice. Publish technical essays, field notes, and photo essays when there is a useful perspective, result, observation, or visual story, not to maintain an artificial cadence.
+Writing and photography demonstrate depth of thought and give Artifacts a personal voice. Publish technical essays, field notes, and photo essays when there is a useful perspective, result, observation, or visual story, not to maintain an artificial cadence.
 
 ### Types
 
@@ -79,7 +79,7 @@ Writing and photography demonstrate depth of thought and give Things a personal 
 - **Photographed:** a short visual narrative with a purposeful image sequence and enough text to orient the reader.
 - **External:** a worthwhile piece published elsewhere.
 
-Keep all types in the same Things index. The type label gives context; it does not create separate navigation sections at launch.
+Keep all types in the same Artifacts index. The type label gives context; it does not create separate navigation sections at launch.
 
 - Use a title that states the subject or argument.
 - Open with the problem, question, or conclusion within the first few paragraphs.

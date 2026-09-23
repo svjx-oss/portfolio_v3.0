@@ -42,8 +42,8 @@ export default define.page((ctx) => {
 There is no persistent dropdown or global header navigation. The footer provides direct page links.
 
 - Index and standalone pages rely on the centered/left-aligned identity mark and footer navigation for orientation.
-- Things post routes (`/things/:slug`) add one contextual return control only: a clean icon-only SVG back arrow linking to `/things`.
-- The Things back control has a 44px target, visible focus treatment, and `aria-label="Back to Things"`. It has no visible text, enclosing border, or hover tooltip.
+- Artifacts post routes (`/artifacts/:slug`) add one contextual return control only: a clean icon-only SVG back arrow linking to `/artifacts`.
+- The Artifacts back control has a 44px target, visible focus treatment, and `aria-label="Back to Artifacts"`. It has no visible text, enclosing border, or hover tooltip.
 - Links use native `<a href>` (full page load, not SPA routing). Fresh SSRs each page.
 
 ---
@@ -80,8 +80,8 @@ Blog post:
 
 - The landing page omits the `SJ` mark because the hero already establishes identity.
 - Interior pages show the `SJ` home link. Desktop centers it; mobile aligns it left.
-- Things post routes add the back-arrow control in the left grid column; all other routes leave it empty.
-- The header is sticky only on Things post routes, where a persistent return path aids long-form reading. All other headers scroll with the page.
+- Artifacts post routes add the back-arrow control in the left grid column; all other routes leave it empty.
+- The header is sticky only on Artifacts post routes, where a persistent return path aids long-form reading. All other headers scroll with the page.
 - No structural border, persistent container background, visible button circles, or hover tooltip. Hierarchy comes from alignment and whitespace.
 - The `SJ` identity links to `/`. The theme control lives in the footer beside the copyright, using a custom SVG sun/moon icon, a 44px target, visible focus ring, and an explicit accessible label. Theme selection never changes layout.
 
@@ -94,7 +94,7 @@ A clean, minimal footer. **No icon boxes or disclosures.** It presents direct pa
 ```
 ┌──────────────────────────────────────────────────┐
 │                                                  │
-│   Home / About / Experience / Things              │
+│   Home / About / Experience / Artifacts              │
 │                                                  │
 │   © 2026 Sahil Jaganmohan · Prefer light mode?   │ ← desktop
 │   © 2026 Sahil Jaganmohan                         │ ← mobile
@@ -142,7 +142,7 @@ Renders `<head>` tags from `site` + `url`:
 ## 8. Shared Interaction Rules
 
 - `main` has `id="main-content"`; the skip link becomes visible on focus.
-- Header controls remain keyboard reachable in visual order: Things back control when present, logo, then theme.
+- Header controls remain keyboard reachable in visual order: Artifacts back control when present, logo, then theme.
 - All controls meet the 44px target requirement and use `:focus-visible`.
 - No interaction depends on hover. At 200% zoom, controls may wrap but cannot overlap.
 - Page-level continuation links appear after primary content, not in the header or as floating controls.

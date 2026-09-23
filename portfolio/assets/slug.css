@@ -1,4 +1,4 @@
-.things-post__prose {
+.artifacts-post__prose {
   max-width: 62ch;
   --code-bg: #111827;
   --code-header-bg: #111827;
@@ -6,19 +6,19 @@
   --code-muted: var(--color-text-muted);
 }
 
-[data-theme="light"] .things-post__prose {
+[data-theme="light"] .artifacts-post__prose {
   --code-bg: #f8fafc;
   --code-header-bg: #e2e8f0;
   --code-text: #1e293b;
   --code-muted: #475569;
 }
 
-.things-post__prose a {
+.artifacts-post__prose a {
   color: var(--color-text-subtle);
   text-decoration-color: var(--accent);
 }
 
-.things-post__prose .things-post__document-link::after {
+.artifacts-post__prose .artifacts-post__document-link::after {
   display: inline-block;
   margin-left: 0.15em;
   content: "↗";
@@ -27,7 +27,7 @@
   vertical-align: 0.1em;
 }
 
-.things-post__prose .things-post__callout {
+.artifacts-post__prose .artifacts-post__callout {
   margin: 0 0 var(--space-6);
   padding: var(--space-4);
   color: var(--color-text-subtle);
@@ -35,11 +35,11 @@
   border-radius: var(--radius-sm);
 }
 
-.things-post__prose .things-post__callout p:last-child {
+.artifacts-post__prose .artifacts-post__callout p:last-child {
   margin-bottom: 0;
 }
 
-.things-post__prose .things-post__callout-title {
+.artifacts-post__prose .artifacts-post__callout-title {
   display: flex;
   gap: var(--space-2);
   align-items: center;
@@ -48,7 +48,7 @@
   font-weight: 600;
 }
 
-.things-post__callout-title span {
+.artifacts-post__callout-title span {
   display: inline-grid;
   width: 1.25rem;
   height: 1.25rem;
@@ -60,33 +60,33 @@
   line-height: 1;
 }
 
-.things-post__callout--note {
+.artifacts-post__callout--note {
   --callout-accent: var(--color-accent-blue);
 }
 
-.things-post__callout--tip {
+.artifacts-post__callout--tip {
   --callout-accent: var(--color-accent-green);
 }
 
-.things-post__callout--important {
+.artifacts-post__callout--important {
   --callout-accent: var(--color-accent-violet);
 }
 
-.things-post__callout--warning {
+.artifacts-post__callout--warning {
   --callout-accent: var(--color-accent-gold);
 }
 
-.things-post__callout--caution {
+.artifacts-post__callout--caution {
   --callout-accent: var(--color-accent-coral);
 }
 
-.things-post__prose code {
+.artifacts-post__prose code {
   font-family: var(--font-code);
   padding: 0.1em 0.25em;
   background: var(--color-surface);
 }
 
-.things-post__prose pre {
+.artifacts-post__prose pre {
   overflow-x: auto;
   margin: 0;
   padding: var(--space-4);
@@ -94,7 +94,7 @@
   border: 0;
 }
 
-.things-post__prose .things-post__code-block {
+.artifacts-post__prose .artifacts-post__code-block {
   margin: 0 0 var(--space-6);
   overflow: hidden;
   background: var(--code-bg);
@@ -102,7 +102,7 @@
   border-radius: var(--radius-sm);
 }
 
-.things-post__prose .things-post__code-header {
+.artifacts-post__prose .artifacts-post__code-header {
   font-family: var(--font-code);
   padding: var(--space-3) var(--space-4);
   color: var(--code-muted);
@@ -112,7 +112,7 @@
   border-bottom: 1px solid var(--color-border);
 }
 
-.things-post__prose pre code {
+.artifacts-post__prose pre code {
   display: grid;
   grid-template-columns: auto minmax(0, 1fr);
   gap: var(--space-4);
@@ -121,41 +121,41 @@
   background: transparent;
 }
 
-.things-post__code-lines {
+.artifacts-post__code-lines {
   color: var(--code-muted);
   text-align: right;
   user-select: none;
 }
 
-.things-post__code-content {
+.artifacts-post__code-content {
   min-width: max-content;
 }
 
-.things-post__prose .hljs-keyword,
-.things-post__prose .hljs-title.function_ {
+.artifacts-post__prose .hljs-keyword,
+.artifacts-post__prose .hljs-title.function_ {
   color: var(--color-accent-violet);
 }
 
-.things-post__prose .hljs-params,
-.things-post__prose .hljs-number {
+.artifacts-post__prose .hljs-params,
+.artifacts-post__prose .hljs-number {
   color: var(--color-accent-gold);
 }
 
-.things-post__prose .hljs-title,
-.things-post__prose .hljs-function {
+.artifacts-post__prose .hljs-title,
+.artifacts-post__prose .hljs-function {
   color: var(--color-accent-blue);
 }
 
-.things-post__prose .hljs-string,
-.things-post__prose .hljs-template-variable {
+.artifacts-post__prose .hljs-string,
+.artifacts-post__prose .hljs-template-variable {
   color: var(--color-accent-green);
 }
 
-.things-post__prose .hljs-comment {
+.artifacts-post__prose .hljs-comment {
   color: var(--color-text-muted);
 }
 
-.things-post__prose img {
+.artifacts-post__prose img {
   display: block;
   width: 100%;
   height: auto;
@@ -163,11 +163,11 @@
   border-radius: var(--radius-sm);
 }
 
-.things-post__prose figure {
+.artifacts-post__prose figure {
   margin: var(--space-8) 0;
 }
 
-.things-post__prose figcaption {
+.artifacts-post__prose figcaption {
   margin-top: var(--space-3);
   color: var(--color-text-muted);
   font-size: var(--text-xs);

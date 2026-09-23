@@ -8,7 +8,7 @@ from playwright.sync_api import Page
         ("/", "Home | Sahil Jaganmohan"),
         ("/about", "About | Sahil Jaganmohan"),
         ("/experience", "Experience | Sahil Jaganmohan"),
-        ("/things", "Things | Sahil Jaganmohan"),
+        ("/artifacts", "Artifacts | Sahil Jaganmohan"),
     ],
 )
 def test_static_page_titles(page: Page, site_url: str, path: str, title: str) -> None:
@@ -17,8 +17,8 @@ def test_static_page_titles(page: Page, site_url: str, path: str, title: str) ->
     assert page.title() == title
 
 
-def test_things_post_share_metadata(page: Page, site_url: str) -> None:
-    path = "/things/purdue-projects"
+def test_artifacts_post_share_metadata(page: Page, site_url: str) -> None:
+    path = "/artifacts/purdue-projects"
     title = "Purdue Projects: Hardware, Firmware, and Data Analysis"
     description = (
         "A designed USB SoC peripheral, STM32 embedded game, and a statistical "
@@ -32,7 +32,7 @@ def test_things_post_share_metadata(page: Page, site_url: str) -> None:
         f"https://sahiljaganmohan.com{path}"
     )
     assert page.locator('meta[property="og:image"]').get_attribute("content") == (
-        "https://sahiljaganmohan.com/og/things/purdue-projects.png"
+        "https://sahiljaganmohan.com/og/artifacts/purdue-projects.png"
     )
     assert page.locator('meta[name="twitter:card"]').get_attribute("content") == "summary_large_image"
 

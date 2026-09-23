@@ -1,12 +1,12 @@
 import {
-  type ThingsFiles,
+  type ArtifactsFiles,
   validateAbout,
+  validateArtifacts,
   validateExperience,
   validateLanding,
   validateSite,
-  validateThings,
 } from "@/lib/content/validate.ts";
-import type { Accent, Things, ThingsEntry } from "@/lib/shared/types.ts";
+import type { Accent, Artifacts, ArtifactsEntry } from "@/lib/shared/types.ts";
 
 function expectError(fn: () => void, message: string) {
   try {
@@ -20,7 +20,7 @@ function expectError(fn: () => void, message: string) {
   throw new Error(`Expected error "${message}".`);
 }
 
-const validEntry: ThingsEntry = {
+const validEntry: ArtifactsEntry = {
   title: "Example Post",
   date: "2026-01-01",
   type: "project",
@@ -31,34 +31,34 @@ const validEntry: ThingsEntry = {
   md: "posts/example-post/example-post.md",
 };
 
-const noFiles: ThingsFiles = {
+const noFiles: ArtifactsFiles = {
   markdown: () => Promise.resolve(""),
   images: () => Promise.resolve({}),
   exists: () => Promise.resolve(true),
 };
 
-Deno.test("validateThings accepts valid entries", async () => {
-  const things: Things = { entries: [validEntry] };
-  await validateThings(things, noFiles);
+Deno.test("validateArtifacts accepts valid entries", async () => {
+  const artifacts: Artifacts = { entries: [validEntry] };
+  await validateArtifacts(artifacts, noFiles);
 });
 
-Deno.test("validateThings rejects invalid entry shapes", async () => {
-  const things: Things = {
-    entries: [{ ...validEntry, type: "unknown" as ThingsEntry["type"] }],
+Deno.test("validateArtifacts rejects invalid entry shapes", async () => {
+  const artifacts: Artifacts = {
+    entries: [{ ...validEntry, type: "unknown" as ArtifactsEntry["type"] }],
   };
-  await validateThings(things, noFiles).then(() => {
+  await validateArtifacts(artifacts, noFiles).then(() => {
     throw new Error("Expected invalid type to be rejected.");
   }, () => {});
 });
 
-Deno.test("validateThings requires exactly one of md or external_url", async () => {
-  await validateThings(
+Deno.test("validateArtifacts requires exactly one of md or external_url", async () => {
+  await validateArtifacts(
     { entries: [{ ...validEntry, external_url: "https://example.com" }] },
     noFiles,
   ).then(() => {
     throw new Error("Expected both md and external_url to be rejected.");
   }, () => {});
-  await validateThings(
+  await validateArtifacts(
     { entries: [{ ...validEntry, md: undefined }] },
     noFiles,
   ).then(() => {
@@ -66,8 +66,8 @@ Deno.test("validateThings requires exactly one of md or external_url", async () 
   }, () => {});
 });
 
-Deno.test("validateThings rejects duplicate slugs", async () => {
-  await validateThings({ entries: [validEntry, validEntry] }, noFiles).then(
+Deno.test("validateArtifacts rejects duplicate slugs", async () => {
+  await validateArtifacts({ entries: [validEntry, validEntry] }, noFiles).then(
     () => {
       throw new Error("Expected duplicate slugs to be rejected.");
     },
@@ -76,18 +76,18 @@ Deno.test("validateThings rejects duplicate slugs", async () => {
         () => {
           throw error;
         },
-        "things.json: post slugs must be unique.",
+        "artifacts.json: post slugs must be unique.",
       );
     },
   );
 });
 
-Deno.test("validateThings requires image dimensions for used images", async () => {
-  const files: ThingsFiles = {
+Deno.test("validateArtifacts requires image dimensions for used images", async () => {
+  const files: ArtifactsFiles = {
     ...noFiles,
     markdown: () => Promise.resolve("![Alt](images/example.png)"),
   };
-  await validateThings({ entries: [validEntry] }, files).then(() => {
+  await validateArtifacts({ entries: [validEntry] }, files).then(() => {
     throw new Error("Expected missing image dimensions to be rejected.");
   }, (error) => {
     expectError(
@@ -99,8 +99,8 @@ Deno.test("validateThings requires image dimensions for used images", async () =
   });
 });
 
-Deno.test("validateThings validates external URLs", async () => {
-  await validateThings(
+Deno.test("validateArtifacts validates external URLs", async () => {
+  await validateArtifacts(
     {
       entries: [{
         ...validEntry,
@@ -161,7 +161,7 @@ Deno.test("validateLanding rejects tagline_emphasis occurring twice", () => {
     () =>
       validateLanding({
         name: "Name",
-        tagline: "Building bold bold things",
+        tagline: "Building bold bold artifacts",
         tagline_emphasis: "bold",
         metadata: [{ label: "Role", value: "Engineer" }],
         contacts: [{

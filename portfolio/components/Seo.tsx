@@ -5,7 +5,7 @@ const pageTitles = {
   "/": "Home | Sahil Jaganmohan",
   "/about": "About | Sahil Jaganmohan",
   "/experience": "Experience | Sahil Jaganmohan",
-  "/things": "Things | Sahil Jaganmohan",
+  "/artifacts": "Artifacts | Sahil Jaganmohan",
 } as const;
 
 export default function Seo(
@@ -16,15 +16,15 @@ export default function Seo(
     post?: { slug: string; title: string; excerpt: string };
   },
 ) {
-  const isThingsPost = /^\/things\/[^/]+$/.test(pathname);
+  const isArtifactsPost = /^\/artifacts\/[^/]+$/.test(pathname);
   const title = post
     ? post.title
     : pageTitles[pathname as keyof typeof pageTitles] ??
       `${site.title} | Portfolio`;
   const description = post?.excerpt ?? site.description;
   const url = `${site.url}${pathname}`;
-  const image = isThingsPost
-    ? `${site.url}/og/things/${post?.slug}.png`
+  const image = isArtifactsPost
+    ? `${site.url}/og/artifacts/${post?.slug}.png`
     : `${site.url}/og/default.png`;
   const analyticsEnabled = Boolean(site.ga4_id) && hostname !== "localhost";
 

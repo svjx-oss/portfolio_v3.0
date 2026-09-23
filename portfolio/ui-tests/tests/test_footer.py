@@ -6,7 +6,7 @@ def test_footer_links_and_theme_toggle(page: Page, site_url: str) -> None:
 
     footer = page.locator(".site-footer")
     assert footer.get_by_role("link", name="Home").get_attribute("href") == "/"
-    assert footer.get_by_role("link", name="Things").get_attribute("href") == "/things"
+    assert footer.get_by_role("link", name="Artifacts").get_attribute("href") == "/artifacts"
 
     toggle = footer.get_by_role("button", name="Switch to light theme")
     toggle.click()

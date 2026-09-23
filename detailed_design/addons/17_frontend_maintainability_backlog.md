@@ -10,7 +10,7 @@ to the design documents.
 The following refactors were identified and planned but are not currently
 present in the codebase. They should be treated as future work.
 
-- Centralize Things type labels, date formatting, and type-to-accent mapping in
+- Centralize Artifacts type labels, date formatting, and type-to-accent mapping in
   a shared module.
 - Type site navigation, contacts, and route accent state with `Accent`.
 - Add shared accent hover tokens.
@@ -18,38 +18,38 @@ present in the codebase. They should be treated as future work.
 - Remove duplicated logo and page-back accent selectors.
 - Remove the empty header element.
 - Add stable keys to mapped fragments and TOC entries.
-- Avoid rendering an empty Things post TOC.
+- Avoid rendering an empty Artifacts post TOC.
 - Remove the footer `!important` rule.
 - Remove repetitive landing `:has()` accent selectors.
 
-### 1. Split Things styles by responsibility
+### 1. Split Artifacts styles by responsibility
 
-`portfolio/assets/things.css` currently contains Things index, filters, entry
+`portfolio/assets/artifacts.css` currently contains Artifacts index, filters, entry
 rows, post headers, post navigation, TOC, Markdown prose, and responsive rules.
 
 Consider splitting it into:
 
-- `things-index.css`
-- `things-post.css`
+- `artifacts-index.css`
+- `artifacts-post.css`
 
 Keep the shared accent and underline primitives in `components.css`.
 
 ### 2. Consolidate Markdown styles
 
-Most Markdown styles currently live under `.things-post__prose`, while the
+Most Markdown styles currently live under `.artifacts-post__prose`, while the
 shared `.prose` class in `portfolio/assets/components.css` only covers basic
 paragraph and link styles.
 
 Move genuinely shared Markdown rules into `.prose` and leave only post-specific
-layout rules under `.things-post__prose`.
+layout rules under `.artifacts-post__prose`.
 
-Verify About, Experience, landing, and Things content after the change because
+Verify About, Experience, landing, and Artifacts content after the change because
 they all render through `portfolio/components/Markdown.tsx`.
 
 ### 3. Remove remaining duplicated underline rules
 
 The shared `.accent-underline` primitive now covers several components, but
-Things-specific selectors still repeat underline behavior for entry titles,
+Artifacts-specific selectors still repeat underline behavior for entry titles,
 post navigation, TOC summaries, and TOC links.
 
 Evaluate whether those elements can use `.accent-underline` directly without
@@ -57,18 +57,18 @@ changing their direction, spacing, or hover behavior.
 
 ### 4. Decouple analytics from CSS classes
 
-`portfolio/islands/Analytics.tsx` identifies outbound Things links with:
+`portfolio/islands/Analytics.tsx` identifies outbound Artifacts links with:
 
 ```ts
-link.closest(".things-entry")
+link.closest(".artifacts-entry")
 ```
 
-Use a semantic attribute such as `data-analytics-context="things-entry"`
+Use a semantic attribute such as `data-analytics-context="artifacts-entry"`
 instead. Analytics behavior should not depend on presentation class names.
 
 ### 5. Replace image pseudo-element captions
 
-`portfolio/assets/things.css` uses `img[title]::after`. Generated content on a
+`portfolio/assets/artifacts.css` uses `img[title]::after`. Generated content on a
 replaced `img` element is not reliable across browsers.
 
 If image captions are needed, emit explicit caption markup from the Markdown
@@ -83,12 +83,12 @@ Choose one maintainable source for these values. If they must remain available
 to server-rendered metadata, document the intentional duplication or expose a
 shared TypeScript theme metadata constant.
 
-### 7. Add tests for shared Things configuration
+### 7. Add tests for shared Artifacts configuration
 
-Add focused tests for `portfolio/lib/shared/things.ts` covering:
+Add focused tests for `portfolio/lib/shared/artifacts.ts` covering:
 
-- Every `ThingsEntryType` has a display label.
-- Every `ThingsEntryType` has an accent.
+- Every `ArtifactsEntryType` has a display label.
+- Every `ArtifactsEntryType` has an accent.
 - Date formatting remains stable for ISO dates.
 - The mappings remain exhaustive when a new content type is added.
 
@@ -121,14 +121,14 @@ adding an abstraction solely for the current single optional value.
 
 ### 12. Verify external-link semantics consistently
 
-Review external links in landing contacts, Things entries, and generated
+Review external links in landing contacts, Artifacts entries, and generated
 content for consistent accessible labeling when opening a new tab. Keep the
 current visual treatment unchanged unless a real accessibility issue is found.
 
 ## Suggested Order
 
-1. Add shared Things configuration tests.
-2. Split Things CSS by responsibility.
+1. Add shared Artifacts configuration tests.
+2. Split Artifacts CSS by responsibility.
 3. Consolidate Markdown styles.
 4. Replace analytics class coupling with data attributes.
 5. Replace image pseudo-element captions if captions are actively used.
@@ -144,5 +144,5 @@ deno task check
 ```
 
 For styling changes, also inspect all routes in both themes at narrow and wide
-viewports, including a Things post with headings, images, tags, and external
+viewports, including a Artifacts post with headings, images, tags, and external
 links.

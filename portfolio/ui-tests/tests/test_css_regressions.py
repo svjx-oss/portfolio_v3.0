@@ -1,18 +1,18 @@
 from playwright.sync_api import Page
-from test_things import visit_post_with
+from test_artifacts import visit_post_with
 
 
-def test_things_post_surfaces_fit_desktop_and_mobile(page: Page, site_url: str) -> None:
+def test_artifacts_post_surfaces_fit_desktop_and_mobile(page: Page, site_url: str) -> None:
     for width, height in [(1200, 900), (390, 844)]:
         page.set_viewport_size({"width": width, "height": height})
-        visit_post_with(page, site_url, ".things-post__code-block")
+        visit_post_with(page, site_url, ".artifacts-post__code-block")
 
         assert page.evaluate("() => document.documentElement.scrollWidth <= window.innerWidth")
         for selector in [
-            ".things-post__back",
-            ".things-post__toc",
-            ".things-post__code-block",
-            ".things-post__callout",
+            ".artifacts-post__back",
+            ".artifacts-post__toc",
+            ".artifacts-post__code-block",
+            ".artifacts-post__callout",
             ".site-footer",
         ]:
             element = page.locator(selector).first
@@ -21,14 +21,14 @@ def test_things_post_surfaces_fit_desktop_and_mobile(page: Page, site_url: str) 
             assert box and box["width"] <= width
 
 
-def test_things_post_theme_surfaces_change_without_losing_layout(
+def test_artifacts_post_theme_surfaces_change_without_losing_layout(
     page: Page,
     site_url: str,
 ) -> None:
     page.set_viewport_size({"width": 1200, "height": 900})
-    visit_post_with(page, site_url, ".things-post__code-block")
+    visit_post_with(page, site_url, ".artifacts-post__code-block")
 
-    code_card = page.locator(".things-post__code-block").first
+    code_card = page.locator(".artifacts-post__code-block").first
     dark_background = code_card.evaluate("element => getComputedStyle(element).backgroundColor")
     page.get_by_role("button", name="Switch to light theme").click()
     light_background = code_card.evaluate("element => getComputedStyle(element).backgroundColor")
@@ -37,7 +37,7 @@ def test_things_post_theme_surfaces_change_without_losing_layout(
     assert light_background != dark_background
     assert page.evaluate("() => document.documentElement.scrollWidth <= window.innerWidth")
     assert code_card.is_visible()
-    assert page.locator(".things-post__callout").first.is_visible()
+    assert page.locator(".artifacts-post__callout").first.is_visible()
 
 
 def test_shared_prose_stays_within_main_content(page: Page, site_url: str) -> None:

@@ -1,22 +1,22 @@
-import type { Accent, ThingsEntryType } from "@/lib/shared/types.ts";
+import type { Accent, ArtifactsEntryType } from "@/lib/shared/types.ts";
 
-export const thingsAccentByType = {
+export const artifactsAccentByType = {
   project: "magenta",
   writing: "green",
   photography: "blue",
   notes: "gold",
   external: "teal",
-} satisfies Record<ThingsEntryType, Accent>;
+} satisfies Record<ArtifactsEntryType, Accent>;
 
-export const thingsTypeLabels = {
+export const artifactsTypeLabels = {
   project: "Project",
   writing: "Writing",
   photography: "Photography",
   notes: "Notes",
   external: "External",
-} satisfies Record<ThingsEntryType, string>;
+} satisfies Record<ArtifactsEntryType, string>;
 
-export function formatThingsDate(date: string) {
+export function formatArtifactsDate(date: string) {
   return new Intl.DateTimeFormat("en", {
     day: "numeric",
     month: "short",

@@ -1,9 +1,9 @@
-import type { Site, ThingsEntry } from "@/lib/shared/types.ts";
+import type { ArtifactsEntry, Site } from "@/lib/shared/types.ts";
 import { escapeXml } from "@/lib/shared/xml.ts";
 
-export function buildRssFeed(site: Site, posts: ThingsEntry[]): string {
+export function buildRssFeed(site: Site, posts: ArtifactsEntry[]): string {
   const items = posts.map((post) => {
-    const url = `${site.url}/things/${post.slug}`;
+    const url = `${site.url}/artifacts/${post.slug}`;
     return `
       <item>
         <title>${escapeXml(post.title)}</title>
@@ -23,13 +23,13 @@ export function buildRssFeed(site: Site, posts: ThingsEntry[]): string {
 </rss>`;
 }
 
-export function buildSitemap(site: Site, posts: ThingsEntry[]): string {
+export function buildSitemap(site: Site, posts: ArtifactsEntry[]): string {
   const urls = [
     "/",
     "/about",
     "/experience",
-    "/things?type=all",
-    ...posts.map((post) => `/things/${post.slug}`),
+    "/artifacts?type=all",
+    ...posts.map((post) => `/artifacts/${post.slug}`),
   ];
   return `<?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">${

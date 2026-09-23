@@ -12,8 +12,8 @@ def test_skip_link_reaches_main_content(page: Page, site_url: str) -> None:
 
 
 def test_images_have_alt_text(page: Page, site_url: str) -> None:
-    page.goto(f"{site_url}/things", wait_until="networkidle")
-    post_url = page.locator(".things-entry__link").last.get_attribute("href")
+    page.goto(f"{site_url}/artifacts", wait_until="networkidle")
+    post_url = page.locator(".artifacts-entry__link").last.get_attribute("href")
     assert post_url
     page.goto(f"{site_url}{post_url}", wait_until="networkidle")
 

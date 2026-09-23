@@ -1,15 +1,15 @@
 import { Resvg } from "@resvg/resvg-js";
 import satori from "satori";
 import {
-  loadPublishedThingsPosts,
+  loadPublishedArtifactsPosts,
   loadSite,
 } from "@/lib/content/loadContent.ts";
 import {
-  formatThingsDate,
-  thingsAccentByType,
-  thingsTypeLabels,
-} from "@/lib/shared/things.ts";
-import type { ThingsEntry, ThingsEntryType } from "@/lib/shared/types.ts";
+  artifactsAccentByType,
+  artifactsTypeLabels,
+  formatArtifactsDate,
+} from "@/lib/shared/artifacts.ts";
+import type { ArtifactsEntry, ArtifactsEntryType } from "@/lib/shared/types.ts";
 
 const width = 1200;
 const height = 630;
@@ -89,18 +89,19 @@ interface CardData {
   siteUrl: string;
 }
 
-function ctaForType(type: ThingsEntryType) {
+function ctaForType(type: ArtifactsEntryType) {
   if (type === "photography") return "View the Photograph →";
-  return `View the ${thingsTypeLabels[type]} →`;
+  return `View the ${artifactsTypeLabels[type]} →`;
 }
 
-function cardData(post: ThingsEntry, siteUrl: string): CardData {
+function cardData(post: ArtifactsEntry, siteUrl: string): CardData {
   return {
     title: post.title,
     blurb: post.excerpt,
-    type: thingsTypeLabels[post.type],
-    accent: accentColors[thingsAccentByType[post.type as ThingsEntryType]],
-    date: formatThingsDate(post.date),
+    type: artifactsTypeLabels[post.type],
+    accent:
+      accentColors[artifactsAccentByType[post.type as ArtifactsEntryType]],
+    date: formatArtifactsDate(post.date),
     cta: ctaForType(post.type),
     siteUrl,
   };
@@ -263,16 +264,16 @@ async function createPng(
 
 export async function generateOgImages() {
   const [posts, site] = await Promise.all([
-    loadPublishedThingsPosts(),
+    loadPublishedArtifactsPosts(),
     loadSite(),
   ]);
   const fonts = await loadFonts();
-  await Deno.mkdir("static/og/things", { recursive: true });
+  await Deno.mkdir("static/og/artifacts", { recursive: true });
 
   await Promise.all(posts.map(async (post) => {
     if (!post.slug) return;
     const image = await createPng(cardData(post, site.url), fonts);
-    await Deno.writeFile(`static/og/things/${post.slug}.png`, image);
+    await Deno.writeFile(`static/og/artifacts/${post.slug}.png`, image);
   }));
 
   return posts.length;
@@ -280,5 +281,5 @@ export async function generateOgImages() {
 
 if (import.meta.main) {
   const count = await generateOgImages();
-  console.log(`Generated ${count} Things Open Graph images.`);
+  console.log(`Generated ${count} Artifacts Open Graph images.`);
 }

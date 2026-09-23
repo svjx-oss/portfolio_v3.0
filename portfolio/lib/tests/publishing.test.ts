@@ -1,5 +1,5 @@
 import { buildRssFeed, buildSitemap } from "@/lib/content/publishing.ts";
-import type { Site, ThingsEntry } from "@/lib/shared/types.ts";
+import type { ArtifactsEntry, Site } from "@/lib/shared/types.ts";
 
 const site: Site = {
   title: "Sahil <J>",
@@ -9,7 +9,7 @@ const site: Site = {
   nav: [],
 };
 
-const post: ThingsEntry = {
+const post: ArtifactsEntry = {
   title: "Boring <Software>",
   date: "2026-07-15",
   type: "writing",
@@ -31,7 +31,7 @@ Deno.test("buildRssFeed escapes XML and links post URLs", () => {
   }
   if (
     !xml.includes(
-      "<link>https://example.com/things/why-i-like-boring-software</link>",
+      "<link>https://example.com/artifacts/why-i-like-boring-software</link>",
     )
   ) {
     throw new Error("Expected the post URL in the feed.");
@@ -49,8 +49,8 @@ Deno.test("buildSitemap lists base routes and post URLs", () => {
       "https://example.com/",
       "https://example.com/about",
       "https://example.com/experience",
-      "https://example.com/things?type=all",
-      "https://example.com/things/why-i-like-boring-software",
+      "https://example.com/artifacts?type=all",
+      "https://example.com/artifacts/why-i-like-boring-software",
     ]
   ) {
     if (!xml.includes(`<loc>${path}</loc>`)) {

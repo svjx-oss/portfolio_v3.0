@@ -13,13 +13,13 @@ export default function Layout(
     accent?: Accent;
   },
 ) {
-  const isThingsPost = /^\/things\/[^/]+$/.test(pathname);
+  const isArtifactsPost = /^\/artifacts\/[^/]+$/.test(pathname);
 
   return (
     <div class={`site-shell${pathname === "/" ? " site-shell--home" : ""}`}>
       <Header site={site} pathname={pathname} accent={accent} />
       <main id="main-content" class="site-main">
-        {pathname !== "/" && !isThingsPost && (
+        {pathname !== "/" && !isArtifactsPost && (
           <a
             class={`page-back accent--${
               site.nav.find((item) => item.href === pathname)?.accent ??

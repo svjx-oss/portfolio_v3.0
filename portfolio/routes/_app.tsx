@@ -1,12 +1,12 @@
 import Layout from "@/components/Layout.tsx";
 import Seo from "@/components/Seo.tsx";
-import { loadThingsPost } from "@/lib/content/loadContent.ts";
+import { loadArtifactsPost } from "@/lib/content/loadContent.ts";
 import { define } from "@/utils.ts";
 
 export default define.page(async function App(ctx) {
   const { site } = ctx.state;
-  const slug = ctx.url.pathname.match(/^\/things\/([^/]+)$/)?.[1];
-  const loadedPost = slug ? await loadThingsPost(slug) : null;
+  const slug = ctx.url.pathname.match(/^\/artifacts\/([^/]+)$/)?.[1];
+  const loadedPost = slug ? await loadArtifactsPost(slug) : null;
   const post = loadedPost && slug
     ? { slug, title: loadedPost.title, excerpt: loadedPost.excerpt }
     : undefined;

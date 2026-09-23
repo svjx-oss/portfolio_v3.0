@@ -19,7 +19,7 @@ Before deployment, replace or confirm these values:
 
 - `content/site.json → url` is the production HTTPS origin.
 - `content/site.json → ga4_id` is either the approved GA4 measurement ID or empty.
-- `content/site.json → show_things_fixtures` is `false` when that field is present.
+- `content/site.json → show_artifacts_fixtures` is `false` when that field is present.
 - `content/about/about.json → portrait` points to the final portrait asset.
 - `site.json` contains the final resume and social/contact links when available.
 - Deployment organization and app identifiers are configured for Deno Deploy.

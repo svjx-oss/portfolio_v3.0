@@ -1,11 +1,11 @@
-# 07 - Things Index (`/things`)
+# 07 - Artifacts Index (`/artifacts`)
 
-> Route: `routes/things/index.tsx` · Content: `content/things/things.json` ·
-> CSS: `assets/things.css` Wireframe: `09` §4
+> Route: `routes/artifacts/index.tsx` · Content: `content/artifacts/artifacts.json` ·
+> CSS: `assets/artifacts.css` Wireframe: `09` §4
 
 ## Goal
 
-Present a compact, chronological archive of Things built, written, photographed,
+Present a compact, chronological archive of Artifacts built, written, photographed,
 and thought about. Each entry is an obvious full-row destination; the index
 helps visitors assess an entry before opening it without becoming a card grid or
 a dense project catalogue.
@@ -13,13 +13,13 @@ a dense project catalogue.
 ## Header
 
 ```text
-Things
+Artifacts
 
-Things I've built, written, photographed,
+Artifacts I've built, written, photographed,
 and thought about.
 ```
 
-- `Things` uses the existing normal-case page-title treatment. Do not use all
+- `Artifacts` uses the existing normal-case page-title treatment. Do not use all
   caps, an eyebrow, or a separate subtitle component.
 - The tagline uses subdued body text and wraps naturally. It remains visible at
   every breakpoint.
@@ -60,7 +60,7 @@ Photos
 Notes
 ```
 
-- Filter options are ordinary links to `/things` or `/things?type=<value>` so
+- Filter options are ordinary links to `/artifacts` or `/artifacts?type=<value>` so
   every state is bookmarkable, shareable, and works without JavaScript.
 - The selected option has stronger text and a non-color indicator such as an
   `aria-current="page"` state. Other options use muted text.
