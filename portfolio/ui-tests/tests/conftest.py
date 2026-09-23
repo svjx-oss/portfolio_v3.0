@@ -16,10 +16,11 @@ def site_url(pytestconfig: pytest.Config) -> str:
 
 
 @pytest.fixture(autouse=True)
-def fail_on_console_errors(page: Page) -> Generator[None, None, None]:
+def fail_on_console_errors(request: pytest.FixtureRequest, page: Page) -> Generator[None, None, None]:
     errors: list[str] = []
     page.on("console", lambda message: errors.append(message.text) if message.type == "error" else None)
 
     yield
 
-    assert not errors, "Browser console errors:\n" + "\n".join(errors)
+    if request.node.get_closest_marker("no_console_error_check") is None:
+        assert not errors, "Browser console errors:\n" + "\n".join(errors)
