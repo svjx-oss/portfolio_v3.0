@@ -24,7 +24,7 @@ present in the codebase. They should be treated as future work.
 
 ### 1. Split Artifacts styles by responsibility
 
-`portfolio/assets/artifacts.css` currently contains Artifacts index, filters, entry
+`portfolio/assets/artifacts-index.css` currently contains Artifacts index, filters, entry
 rows, post headers, post navigation, TOC, Markdown prose, and responsive rules.
 
 Consider splitting it into:
@@ -68,7 +68,7 @@ instead. Analytics behavior should not depend on presentation class names.
 
 ### 5. Replace image pseudo-element captions
 
-`portfolio/assets/artifacts.css` uses `img[title]::after`. Generated content on a
+`portfolio/assets/artifacts-post.css` uses `img[title]::after`. Generated content on a
 replaced `img` element is not reliable across browsers.
 
 If image captions are needed, emit explicit caption markup from the Markdown

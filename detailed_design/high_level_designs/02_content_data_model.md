@@ -15,7 +15,7 @@
 | `content/experience/experience.json` | roles metadata |
 | `content/experience/*.md` | one file per role |
 | `content/artifacts/artifacts.json` | Artifacts entries (post or external link) |
-| `content/artifacts/posts/<slug>/<slug>.md` | Thing body: writing, project reflection, photography, or note |
+| `content/artifacts/posts/<slug>/<slug>.md` | Artifact body: writing, project reflection, photography, or note |
 | `content/artifacts/posts/<slug>/*.{png,jpg,webp}` | co-located post images |
 | `content/artifacts/fixtures/` | development-only Artifacts fixtures |
 
@@ -187,7 +187,7 @@ Hand-rolled (no zod). Collects all errors, prints clear report, exits non-zero. 
 
 | To add | Do |
 |---|---|
-| Thing | `posts/<slug>/<slug>.md` + one entry in `artifacts.json` |
+| Artifact | `posts/<slug>/<slug>.md` + one entry in `artifacts.json` |
 | External thing | one entry in `artifacts.json` with `external_url` |
 | Experience role | one entry in `experience.json` + one `<name>.md` |
 | Navigation or GA ID | edit `site.json` |

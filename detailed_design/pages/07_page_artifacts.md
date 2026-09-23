@@ -1,7 +1,7 @@
 # 07 - Artifacts Index (`/artifacts`)
 
 > Route: `routes/artifacts/index.tsx` · Content: `content/artifacts/artifacts.json` ·
-> CSS: `assets/artifacts.css` Wireframe: `09` §4
+> CSS: `assets/artifacts-index.css` and `assets/artifacts-post.css` Wireframe: `09` §4
 
 ## Goal
 
@@ -95,7 +95,7 @@ Photography · Japan · 2026
 - Entries without excerpts collapse naturally without empty reserved space.
 - A thin divider separates entries. The final entry has no divider.
 - Images and thumbnails do not appear on the index; photography is
-  differentiated by its type label and rendered in the individual Thing.
+  differentiated by its type label and rendered in the individual Artifact.
 - External entries retain the full-row destination pattern and add a visible
   external marker instead of the internal arrow.
 

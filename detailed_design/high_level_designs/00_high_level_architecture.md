@@ -97,7 +97,7 @@ portfolio/
 │   ├── portrait.jpg        # about portrait
 │   ├── fonts/             # self-hosted fonts
 │   ├── resume.pdf
-│   └── artifacts/<slug>/     # per-Thing images
+│   └── artifacts/<slug>/     # per-Artifact images
 │
 ├── content/               # ★ THE EDIT LAYER
 │   ├── site.json           # title, nav, contact registry, GA ID

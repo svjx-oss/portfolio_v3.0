@@ -65,7 +65,7 @@ Use jj only. Before creating or describing a change, load `.agents/skills/commit
 
 All recipes are content-only. Run `deno task check` after, then `jj git push`.
 
-## Add a Thing
+## Add an Artifact
 1. Create `content/artifacts/posts/<slug>/<slug>.md` (pure markdown, `## H2` for sections).
 2. Add one entry to `content/artifacts/artifacts.json` with `slug`, `date`, `type`, `title`, `excerpt`, `tags`, `status: "published"`, `md`.
 3. `deno task check` → `jj git push`.
@@ -76,7 +76,7 @@ Follow `13_content_authoring_guide.md` for post structure, excerpts, code/media 
 
 Set `site.json → show_artifacts_fixtures` to `true` only in local development or a non-production preview. The centralized `isProduction()` helper treats `DENO_DEPLOYMENT_ID` or `APP_ENV=production` as production. Fixtures render Lorem Ipsum, headings, code blocks, captions, and sample images for visual review. Production validation requires the flag to be `false`; fixtures are never exposed in production.
 
-## Add an external Thing
+## Add an external Artifact
 Add one entry to `artifacts.json` with `type: "external"` and `external_url` (no `slug`/`md`/`status`).
 
 ## Update landing orientation
